@@ -5,30 +5,30 @@ const AboutPage = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "राजेंद्र चव्हाण",
-      role: "संस्थापक व मुख्य कार्यकारी अधिकारी (CEO)",
-      bio: "२५+ वर्षांचा IT शिक्षण क्षेत्रातील अनुभव , २००१ मध्ये इन्साइट कॉम्प्यूटर्सची स्थापना केली.",
+      name: "Rajendra Chavan",
+      role: "Founder & CEO",
+      bio: "With over 25 years of experience in IT education, Rajesh founded Incite Computers in 2001 with a vision to bring quality computer education to rural India.",
       image: "https://randomuser.me/api/portraits/men/32.jpg"
     },
     {
       id: 2,
-      name: "सुमित चव्हाण",
-      role: "सहसंस्थापक व प्रशिक्षण प्रमुख",
-      bio: "शिक्षण पद्धती आणि अभ्यासक्रम विकसित करण्यात महत्त्वाची भूमिका.",
+      name: "Sumit Chavan",
+      role: "Co-founder & Training Head",
+      bio: "Priya has been instrumental in developing the curriculum and training methodology that has helped thousands of students succeed in their careers.",
       image: "https://randomuser.me/api/portraits/women/44.jpg"
     },
     {
       id: 3,
-      name: "प्रशांत वांजुळे",
-      role: "तांत्रिक संचालक",
-      bio: "विद्यार्थ्यांना अद्ययावत कौशल्ये शिकवण्यासाठी तांत्रिक व्यवस्थापन.",
+      name: "Prashant Vanjule",
+      role: "Technical Director",
+      bio: "Amit oversees all technical aspects of the training programs and ensures students learn the most relevant and up-to-date skills.",
       image: "https://randomuser.me/api/portraits/men/68.jpg"
     },
     {
       id: 4,
-      name: "पृथ्वीराज चव्हाण",
-      role: "प्लेसमेंट अधिकारी",
-      bio: "विद्यार्थ्यांसाठी उद्योगांशी संपर्क साधून नोकऱ्या मिळवून देण्याचे कार्य",
+      name: "Pruthviraj Chavan",
+      role: "Placement Officer",
+      bio: "Neha works tirelessly to build industry connections and help our students find suitable job placements after completing their courses.",
       image: "https://randomuser.me/api/portraits/women/65.jpg"
     }
   ];
@@ -151,21 +151,19 @@ const AboutPage = () => {
             <div className="bg-white rounded-xl p-8 shadow-blue">
               <h3 className="text-2xl font-bold mb-6 gradient-text">Our Vision</h3>
               <p className="text-gray-700 mb-4">
-                ✅ परवडणारे, सुलभ आणि दर्जेदार संगणक शिक्षण देणे.
-                ✅ ग्रामीण भागातील लोकांना डिजिटल कौशल्यांनी सक्षम करणे.
-
+                To be the leading computer education provider in rural India, empowering individuals with digital skills that transform their lives and communities.
               </p>
               <p className="text-gray-700">
-                ✅ डिजिटल तफावत कमी करून तंत्रज्ञान शिक्षण सर्वांसाठी उपलब्ध करणे.
-                ✅ कोणालाही डिजिटल क्रांतीत मागे पडू न देणे.
+                We envision a digitally literate rural India where everyone has access to quality computer education and the opportunity to participate in the digital economy.
+              </p>
             </div>
             <div className="bg-white rounded-xl p-8 shadow-orange">
               <h3 className="text-2xl font-bold mb-6 gradient-text-orange">Our Mission</h3>
               <p className="text-gray-700 mb-4">
-                ग्रामीण भारतातील अग्रगण्य संगणक शिक्षण संस्था बनणे, जिथे प्रत्येक व्यक्तीला डिजिटल कौशल्ये मिळतील आणि त्यांच्या जीवनात सकारात्मक बदल घडतील.
+                To provide affordable, accessible, and high-quality computer education to the rural population, equipping them with the skills they need to succeed in today's digital world.
               </p>
               <p className="text-gray-700">
-                आम्ही डिजिटल साक्षर ग्रामीण भारताचे स्वप्न पाहतो, जिथे प्रत्येकाला दर्जेदार संगणक शिक्षण आणि डिजिटल अर्थव्यवस्थेत सहभाग घेण्याची संधी मिळेल
+                We are committed to bridging the digital divide by making technology education inclusive and ensuring that no one is left behind in the digital revolution.
               </p>
             </div>
           </div>
