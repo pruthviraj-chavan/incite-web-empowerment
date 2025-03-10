@@ -15,21 +15,21 @@ const AboutPage = () => {
       name: "Sumit Chavan",
       role: "Co-founder & Training Head",
       bio: "अभ्यासक्रम आणि प्रशिक्षण पद्धती विकसित करण्यात महत्त्वाची भूमिका निभावली.",
-      image: "https://randomuser.me/api/portraits/women/44.jpg"
+      image: "/sumit.jpg"
     },
     {
       id: 3,
       name: "Prashant Vanjule",
       role: "Technical Director",
       bio: "विद्यार्थ्यांना सर्वात अद्ययावत आणि उद्योगास उपयुक्त तांत्रिक कौशल्ये शिकवण्यासाठी जबाबदार.",
-      image: "https://randomuser.me/api/portraits/men/68.jpg"
+      image: "/prashant.png"
     },
     {
       id: 4,
       name: "Pruthviraj Chavan",
       role: "Placement Officer",
       bio: "विद्यार्थ्यांना योग्य संधी मिळवून देण्यासाठी उद्योगांशी संपर्क साधण्याचे कार्य करतात",
-      image: "https://randomuser.me/api/portraits/women/65.jpg"
+      image: "/pruthvi.jpg"
     }
   ];
 
