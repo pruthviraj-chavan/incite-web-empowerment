@@ -397,7 +397,7 @@ const HomePage = () => {
             <div className="relative">
               <div className="rounded-xl overflow-hidden shadow-blue">
                 <img 
-                  src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                  src="/rajendra.png" 
                   alt="Computer Lab at Incite Computers" 
                   className="w-full h-auto object-cover"
                   loading="lazy"
