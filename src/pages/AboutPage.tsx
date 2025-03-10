@@ -91,7 +91,7 @@ const AboutPage = () => {
               About <span className="gradient-text">Incite Computers</span>
             </h1>
             <p className="text-xl text-gray-700">
-              Since 2001, we've been on a mission to empower rural India with quality computer education and digital skills.
+              सन 2001 पासून, आम्ही ग्रामीण भारतात दर्जेदार संगणक शिक्षण आणि डिजिटल कौशल्ये प्रदान करण्याच्या मिशनवर कार्यरत आहोत.
             </p>
           </div>
           
