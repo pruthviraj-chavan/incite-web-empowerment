@@ -5,28 +5,28 @@ const AboutPage = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Rajesh Patil",
+      name: "Rajendra Chavan",
       role: "Founder & CEO",
       bio: "With over 25 years of experience in IT education, Rajesh founded Incite Computers in 2001 with a vision to bring quality computer education to rural India.",
       image: "https://randomuser.me/api/portraits/men/32.jpg"
     },
     {
       id: 2,
-      name: "Priya Deshmukh",
+      name: "Sumit Chavan",
       role: "Co-founder & Training Head",
       bio: "Priya has been instrumental in developing the curriculum and training methodology that has helped thousands of students succeed in their careers.",
       image: "https://randomuser.me/api/portraits/women/44.jpg"
     },
     {
       id: 3,
-      name: "Amit Jadhav",
+      name: "Prashant Vanjule",
       role: "Technical Director",
       bio: "Amit oversees all technical aspects of the training programs and ensures students learn the most relevant and up-to-date skills.",
       image: "https://randomuser.me/api/portraits/men/68.jpg"
     },
     {
       id: 4,
-      name: "Neha Sharma",
+      name: "Pruthviraj Chavan",
       role: "Placement Officer",
       bio: "Neha works tirelessly to build industry connections and help our students find suitable job placements after completing their courses.",
       image: "https://randomuser.me/api/portraits/women/65.jpg"
