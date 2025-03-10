@@ -110,11 +110,11 @@ const HomePage = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 text-left mb-8 md:mb-0">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              <span className="gradient-text">Empowering Rural India</span>
-              <br /> with Digital Skills!
+              <span className="gradient-text">ग्रामीण भारताला डिजिटल कौशल्यांची ताकद</span>
+              <br /> संगणक शिक्षणाची नवी क्रांती!
             </h1>
             <p className="text-base md:text-lg text-gray-700 mb-6">
-              Since 2001, Incite Computers has been transforming lives through quality computer education in Radhanagari.
+              राधानगरीतील डिजिटल परिवर्तनासाठी इनसाईट कॉम्प्यूटर्स, २००१ पासून कार्यरत!
             </p>
             <div className="flex flex-wrap gap-3">
               <Button size="sm" className="gradient-blue text-white btn-hover">
