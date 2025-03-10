@@ -24,39 +24,39 @@ const GalleryPage = () => {
       { id: 3, src: "/img-12.jpg", title: "Programming Class", date: "August 5, 2023", views: 210 }
     ],
     hall: [
-      { id: 1, src: "https://images.unsplash.com/photo-1558008258-3256797b43f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80", title: "Main Lecture Hall", date: "May 10, 2023", views: 178 },
-      { id: 2, src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Interactive Session", date: "June 28, 2023", views: 156 },
-      { id: 3, src: "https://images.unsplash.com/photo-1588072432904-843af37f8eaf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80", title: "Certification Ceremony", date: "September 15, 2023", views: 232 }
+      { id: 1, src: "/img-08.jpg", title: "Main Lecture Hall", date: "May 10, 2023", views: 178 },
+      { id: 2, src: "/img-04.jpg", title: "Interactive Session", date: "June 28, 2023", views: 156 },
+      { id: 3, src: "/img-03.jpg", title: "Certification Ceremony", date: "September 15, 2023", views: 232 }
     ],
     office: [
-      { id: 1, src: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80", title: "Administrative Office", date: "April 20, 2023", views: 145 },
-      { id: 2, src: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80", title: "Planning Meeting", date: "July 12, 2023", views: 132 },
-      { id: 3, src: "https://images.unsplash.com/photo-1622937343750-fd06525e542c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Staff Meeting", date: "August 25, 2023", views: 167 }
+      { id: 1, src: "/img-06.jpg", title: "Administrative Office", date: "April 20, 2023", views: 145 },
+      { id: 2, src: "/img-05.jpg", title: "Planning Meeting", date: "July 12, 2023", views: 132 },
+      { id: 3, src: "/img-03.jpg", title: "Staff Meeting", date: "August 25, 2023", views: 167 }
     ],
     reception: [
-      { id: 1, src: "https://images.unsplash.com/photo-1560749003-f4b1e17e2dff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80", title: "Reception Area", date: "March 15, 2023", views: 187 },
-      { id: 2, src: "https://images.unsplash.com/photo-1555048945-4233f436377b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Student Inquiry", date: "May 22, 2023", views: 154 },
-      { id: 3, src: "https://images.unsplash.com/photo-1575476783086-d09ed268aa4c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Welcome Desk", date: "July 5, 2023", views: 176 }
+      { id: 1, src: "/img-06.jpg", title: "Reception Area", date: "March 15, 2023", views: 187 },
+      { id: 2, src: "/img-07.jpg", title: "Student Inquiry", date: "May 22, 2023", views: 154 },
+      { id: 3, src: "/img-03.jpg", title: "Welcome Desk", date: "July 5, 2023", views: 176 }
     ],
     seminar: [
-      { id: 1, src: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Career Guidance Seminar", date: "April 10, 2023", views: 211 },
-      { id: 2, src: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Industry Expert Session", date: "June 18, 2023", views: 189 },
-      { id: 3, src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1412&q=80", title: "Technology Workshop", date: "August 20, 2023", views: 230 }
+      { id: 1, src: "/img-14.jpg", title: "Career Guidance Seminar", date: "April 10, 2023", views: 211 },
+      { id: 2, src: "/img-13.jpg", title: "Industry Expert Session", date: "June 18, 2023", views: 189 },
+      { id: 3, src: "/img-15.jpg", title: "Technology Workshop", date: "August 20, 2023", views: 230 }
     ],
     placement: [
-      { id: 1, src: "https://images.unsplash.com/photo-1573497019707-1c04de26e58c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Interview Preparation", date: "May 15, 2023", views: 178 },
-      { id: 2, src: "https://images.unsplash.com/photo-1596568359553-a55baccbcebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Campus Recruitment", date: "July 25, 2023", views: 203 },
-      { id: 3, src: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Job Fair", date: "September 8, 2023", views: 245 }
+      { id: 1, src: "/img-03.jpg", title: "Interview Preparation", date: "May 15, 2023", views: 178 },
+      { id: 2, src: "/img-02.jpg", title: "Campus Recruitment", date: "July 25, 2023", views: 203 },
+      { id: 3, src: "/img-01.jpg", title: "Job Fair", date: "September 8, 2023", views: 245 }
     ],
     lectures: [
-      { id: 1, src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Industry Expert Talk", date: "April 22, 2023", views: 167 },
-      { id: 2, src: "https://images.unsplash.com/photo-1544928147-79a2dbc1f389?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80", title: "Tech Trends Lecture", date: "June 15, 2023", views: 193 },
-      { id: 3, src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80", title: "Guest Speaker", date: "August 10, 2023", views: 215 }
+      { id: 1, src: "/img-16.jpg", title: "Industry Expert Talk", date: "April 22, 2023", views: 167 },
+      { id: 2, src: "/img-12.jpg", title: "Tech Trends Lecture", date: "June 15, 2023", views: 193 },
+      { id: 3, src: "/img-11.jpg", title: "Guest Speaker", date: "August 10, 2023", views: 215 }
     ],
     activities: [
-      { id: 1, src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Group Project", date: "May 18, 2023", views: 178 },
-      { id: 2, src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80", title: "Coding Competition", date: "July 7, 2023", views: 210 },
-      { id: 3, src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", title: "Tech Quiz", date: "August 25, 2023", views: 186 }
+      { id: 1, src: "/img-01.jpg", title: "Group Project", date: "May 18, 2023", views: 178 },
+      { id: 2, src: "/img-02.jpg", title: "Coding Competition", date: "July 7, 2023", views: 210 },
+      { id: 3, src: "/img-03.jpg", title: "Tech Quiz", date: "August 25, 2023", views: 186 }
     ]
   };
   
