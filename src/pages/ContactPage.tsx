@@ -113,7 +113,7 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Our Location</h3>
               <p className="text-gray-600">
-                Near Bus Stand, Main Road,<br />
+                Near Post  Office , Main Road,<br />
                 Radhanagari, Kolhapur,<br />
                 Maharashtra 416212
               </p>
@@ -131,7 +131,7 @@ const ContactPage = () => {
                 <a href="tel:+919423281767" className="hover:text-incite-blue">+91 94232 81767</a>
               </p>
               <p className="text-gray-600">
-                <a href="tel:+919130105900" className="hover:text-incite-blue">+91 91301 05900</a>
+                <a href="tel:+919130105900" className="hover:text-incite-blue">+91 8263031055</a>
               </p>
             </motion.div>
             
@@ -144,10 +144,10 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Email Address</h3>
               <p className="text-gray-600 mb-2">
-                <a href="mailto:incitecomps@gmail.com" className="hover:text-incite-blue">incitecomps@gmail.com</a>
+                <a href="mailto:incitecomps@gmail.com" className="hover:text-incite-blue">incitecomputer@gmail.com</a>
               </p>
               <p className="text-gray-600">
-                <a href="mailto:info@incitecomputers.com" className="hover:text-incite-blue">info@incitecomputers.com</a>
+                <a href="mailto:info@incitecomputers.com" className="hover:text-incite-blue">rajendrachavan@gmail.com</a>
               </p>
             </motion.div>
             
@@ -246,7 +246,7 @@ const ContactPage = () => {
             {/* Google Map */}
             <div className="rounded-xl overflow-hidden shadow-md h-[500px]">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15320.293277274444!2d73.97726221909179!3d16.979873699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc111f4da92f93b%3A0x2612ff24b9f498ca!2sRadhanagari%2C%20Maharashtra%20416212!5e0!3m2!1sen!2sin!4v1696569301402!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.606923872979!2d74.10920147338389!3d16.444777929278267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc044edbc12aad5%3A0x2bf7d4858ae230e!2sIncite%20Computer!5e0!3m2!1sen!2sin!4v1741621699049!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
