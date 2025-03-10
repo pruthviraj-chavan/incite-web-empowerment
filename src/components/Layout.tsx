@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "./Navbar";
@@ -28,43 +28,37 @@ const Layout = () => {
     }
   }, [location.pathname]);
 
-  // Animation variants for page transition
+  // Animation variants for page transition - simplified
   const pageVariants = {
     initial: {
       opacity: 0,
-      y: 20,
     },
     in: {
       opacity: 1,
-      y: 0,
     },
     out: {
       opacity: 0,
-      y: -20,
     },
   };
 
   const pageTransition = {
     type: "tween",
-    ease: "anticipate",
-    duration: 0.4,
+    duration: 0.3,
   };
 
-  // Animated background gradient elements
-  const gradientElements = [
-    { width: 300, height: 300, top: "5%", left: "-5%", delay: 0, duration: 15 },
-    { width: 250, height: 250, top: "10%", right: "-5%", delay: 2, duration: 18 },
-    { width: 200, height: 200, bottom: "15%", left: "10%", delay: 1, duration: 20 },
-    { width: 180, height: 180, bottom: "5%", right: "5%", delay: 3, duration: 17 },
-  ];
+  // Optimized with useMemo - fewer and more efficient gradient elements
+  const gradientElements = useMemo(() => [
+    { width: 280, height: 280, top: "5%", left: "-5%", delay: 0, duration: 20 },
+    { width: 230, height: 230, bottom: "15%", right: "-5%", delay: 2, duration: 22 },
+  ], []);
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Background gradient elements */}
+      {/* Background gradient elements - reduced number and simplified animation */}
       {gradientElements.map((el, i) => (
         <motion.div
           key={i}
-          className={`fixed blur-[150px] rounded-full opacity-10 z-0 ${gradientType}`}
+          className={`fixed blur-[120px] rounded-full opacity-10 z-0 ${gradientType}`}
           style={{
             width: el.width,
             height: el.height,
@@ -74,15 +68,14 @@ const Layout = () => {
             bottom: el.bottom,
           }}
           animate={{
-            x: [0, 30, 0],
-            y: [0, 20, 0],
-            scale: [1, 1.1, 1],
+            x: [0, 20, 0],
+            y: [0, 10, 0],
           }}
           transition={{
             duration: el.duration,
             repeat: Infinity,
             repeatType: "reverse",
-            ease: "easeInOut",
+            ease: "linear",
             delay: el.delay,
           }}
         />

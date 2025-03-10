@@ -2,7 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Star, Users, Clock, ArrowRight, CheckCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const PopularCourses = [
   {
@@ -70,160 +71,240 @@ const Testimonials = [
 
 const HomePage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const coursesRef = useRef(null);
+  const isInView = useInView(coursesRef, { once: false, amount: 0.3 });
+  const controls = useAnimation();
 
-  // Circular animation for courses
+  // Efficient carousel for courses that works well on mobile
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % PopularCourses.length);
-    }, 5000);
+    }, 3000);
     
     return () => clearInterval(interval);
   }, []);
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    })
+  };
+
   return (
     <div className="page-fade-in overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-screen hero-gradient pt-24 md:pt-32 pb-16 flex flex-col justify-center">
+      {/* Hero Section - Optimized for faster rendering */}
+      <section className="relative min-h-[80vh] md:min-h-screen hero-gradient pt-20 md:pt-28 pb-16 flex flex-col justify-center">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 text-left mb-10 md:mb-0 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <div className="md:w-1/2 text-left mb-8 md:mb-0">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
               <span className="gradient-text">Empowering Rural India</span>
               <br /> with Digital Skills!
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-8">
+            <p className="text-base md:text-lg text-gray-700 mb-6">
               Since 2001, Incite Computers has been transforming lives through quality computer education in Radhanagari.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gradient-blue text-white btn-hover">
+            <div className="flex flex-wrap gap-3">
+              <Button size="sm" className="gradient-blue text-white btn-hover">
                 <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer">
                   Enroll Now
                 </a>
               </Button>
-              <Button variant="outline" size="lg" className="border-incite-blue text-incite-blue btn-hover">
+              <Button variant="outline" size="sm" className="border-incite-blue text-incite-blue btn-hover">
                 <Link to="/courses">
                   Explore Courses
                 </Link>
               </Button>
             </div>
-            <div className="mt-10 flex items-center space-x-6">
+            <div className="mt-8 flex items-center space-x-4 md:space-x-6">
               <div className="text-center">
-                <h3 className="text-3xl font-bold gradient-text">2001</h3>
-                <p className="text-gray-600">Established</p>
+                <h3 className="text-2xl md:text-3xl font-bold gradient-text">2001</h3>
+                <p className="text-sm text-gray-600">Established</p>
               </div>
               <div className="text-center">
-                <h3 className="text-3xl font-bold gradient-text">15,000+</h3>
-                <p className="text-gray-600">Students</p>
+                <h3 className="text-2xl md:text-3xl font-bold gradient-text">15,000+</h3>
+                <p className="text-sm text-gray-600">Students</p>
               </div>
               <div className="text-center">
-                <h3 className="text-3xl font-bold gradient-text">30+</h3>
-                <p className="text-gray-600">Courses</p>
+                <h3 className="text-2xl md:text-3xl font-bold gradient-text">30+</h3>
+                <p className="text-sm text-gray-600">Courses</p>
               </div>
             </div>
           </div>
-          <div className="md:w-1/2 relative animate-fade-in-right">
+          <div className="md:w-1/2 relative">
             <div className="rounded-xl overflow-hidden shadow-blue">
               <img 
                 src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                 alt="Students learning at Incite Computers" 
+                loading="lazy"
                 className="w-full h-auto object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg animate-float">
+            <motion.div 
+              className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-3 md:p-4 rounded-lg shadow-lg"
+              animate={{
+                y: [0, -5, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            >
               <div className="flex items-center space-x-2">
-                <div className="text-3xl">🚀</div>
+                <div className="text-2xl md:text-3xl">🚀</div>
                 <div className="text-left">
-                  <p className="text-sm text-gray-500">Trusted by</p>
-                  <p className="font-bold">Rural Communities</p>
+                  <p className="text-xs md:text-sm text-gray-500">Trusted by</p>
+                  <p className="font-bold text-sm md:text-base">Rural Communities</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Services Section - Simplified for better performance */}
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our <span className="gradient-text">Services</span></h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Our <span className="gradient-text">Services</span></h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               We offer a wide range of computer training services to help you succeed in the digital world.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {Services.map((service) => (
-              <div key={service.id} className="bg-white rounded-xl p-6 shadow-md hover:shadow-blue transition-all duration-300 animate-scale-in">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {Services.map((service, index) => (
+              <motion.div 
+                key={service.id} 
+                className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+              >
+                <div className="text-3xl md:text-4xl mb-3">{service.icon}</div>
+                <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
+                <p className="text-gray-600 text-sm">{service.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Courses Preview with Circular Animation */}
-      <section className="py-20">
+      {/* New Mobile-friendly Course Preview Section with horizontal carousel */}
+      <section ref={coursesRef} className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular <span className="gradient-text">Courses</span></h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Popular <span className="gradient-text">Courses</span></h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               Discover our most popular computer training courses designed to boost your career.
             </p>
           </div>
           
-          <div className="relative h-[400px] mb-10">
-            {PopularCourses.map((course, index) => {
-              // Calculate the position in the circle
-              const angle = ((index - activeIndex) * 2 * Math.PI) / PopularCourses.length;
-              const radius = 150; // Radius of the circle
-              const x = radius * Math.cos(angle);
-              const y = radius * Math.sin(angle);
-              const scale = index === activeIndex ? 1 : 0.8;
-              const opacity = index === activeIndex ? 1 : 0.6;
-              
-              return (
-                <div
-                  key={course.id}
-                  className="absolute top-1/2 left-1/2 w-full max-w-md bg-white rounded-xl p-6 shadow-md transform -translate-x-1/2 -translate-y-1/2 transition-all duration-1000"
-                  style={{
-                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`,
-                    opacity,
-                    zIndex: index === activeIndex ? 10 : 5
-                  }}
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="text-4xl">{course.icon}</div>
-                    <div className="flex items-center">
-                      <Star className="text-yellow-400 fill-yellow-400 w-4 h-4" />
-                      <span className="text-sm font-medium ml-1">{course.rating}</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{course.title}</h3>
-                  <p className="text-gray-600 mb-4">{course.description}</p>
-                  <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
-                    <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-1" />
-                      <span>{course.students}+ students</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="w-4 h-4 mr-1" />
-                      <span>{course.duration}</span>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-lg">{course.fee}</span>
-                    <Button variant="outline" size="sm" className="border-incite-blue text-incite-blue">
-                      <Link to="/courses">View Details</Link>
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Mobile-friendly course display */}
+          <div className="relative overflow-hidden pb-10">
+            <div className="flex justify-center items-center">
+              <div className="w-full max-w-md">
+                {PopularCourses.map((course, index) => {
+                  const isActive = index === activeIndex;
+                  
+                  return (
+                    <motion.div
+                      key={course.id}
+                      className="bg-white rounded-xl p-6 shadow-md transition-all duration-300"
+                      initial="hidden"
+                      animate={isActive ? "visible" : "hidden"}
+                      variants={{
+                        hidden: { 
+                          opacity: 0, 
+                          scale: 0.9,
+                          position: "absolute",
+                          top: 0,
+                          left: "50%",
+                          x: "-50%",
+                          zIndex: 0
+                        },
+                        visible: { 
+                          opacity: 1, 
+                          scale: 1,
+                          position: "relative",
+                          top: 0,
+                          left: 0,
+                          x: 0,
+                          zIndex: 10
+                        }
+                      }}
+                      transition={{ 
+                        duration: 0.4,
+                        ease: "easeInOut" 
+                      }}
+                    >
+                      <div className="flex justify-between items-start mb-4">
+                        <motion.div 
+                          className="text-4xl"
+                          animate={{ scale: [1, 1.1, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          {course.icon}
+                        </motion.div>
+                        <div className="flex items-center">
+                          <Star className="text-yellow-400 fill-yellow-400 w-4 h-4" />
+                          <span className="text-sm font-medium ml-1">{course.rating}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">{course.title}</h3>
+                      <p className="text-gray-600 mb-4">{course.description}</p>
+                      <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
+                        <div className="flex items-center">
+                          <Users className="w-4 h-4 mr-1" />
+                          <span>{course.students}+ students</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-1" />
+                          <span>{course.duration}</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-lg">{course.fee}</span>
+                        <Button variant="outline" size="sm" className="border-incite-blue text-incite-blue">
+                          <Link to="/courses">View Details</Link>
+                        </Button>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            {/* Carousel indicators */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {PopularCourses.map((_, index) => (
+                <button 
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`h-2 rounded-full transition-all ${
+                    index === activeIndex ? 'w-6 bg-incite-blue' : 'w-2 bg-gray-300'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
           
-          <div className="text-center">
+          <div className="text-center mt-6">
             <Button className="gradient-blue text-white btn-hover">
               <Link to="/courses" className="flex items-center">
                 View All Courses <ArrowRight className="ml-2 w-4 h-4" />
@@ -233,57 +314,65 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Testimonials Section - Simplified for performance */}
+      <section className="py-12 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Student <span className="gradient-text">Testimonials</span></h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Student <span className="gradient-text">Testimonials</span></h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               Hear what our students have to say about their learning experience.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {Testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="bg-white rounded-xl p-6 shadow-md hover:shadow-blue transition-all duration-300">
-                <div className="flex items-center space-x-2 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {Testimonials.map((testimonial, index) => (
+              <motion.div 
+                key={testimonial.id} 
+                className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300"
+                custom={index}
+                initial="hidden"
+                animate={controls}
+                variants={cardVariants}
+              >
+                <div className="flex items-center space-x-1 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star 
                       key={i} 
-                      className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
+                      className={`w-4 h-4 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
                     />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-6">"{testimonial.comment}"</p>
+                <p className="text-gray-600 mb-4 text-sm">"{testimonial.comment}"</p>
                 <div className="flex items-center">
                   <img 
                     src={testimonial.avatar} 
                     alt={testimonial.name} 
-                    className="w-12 h-12 rounded-full mr-4"
+                    className="w-10 h-10 rounded-full mr-3"
+                    loading="lazy"
                   />
                   <div>
-                    <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-500">Student</p>
+                    <h4 className="font-semibold text-sm">{testimonial.name}</h4>
+                    <p className="text-xs text-gray-500">Student</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20">
+      {/* Why Choose Us - Optimized */}
+      <section className="py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose <span className="gradient-text">Incite Computers</span>?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Why Choose <span className="gradient-text">Incite Computers</span>?</h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               Since 2001, we've been the trusted computer education partner for rural India.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex flex-col space-y-6">
+            <div className="flex flex-col space-y-4">
               {[
                 "20+ years of experience in computer education",
                 "Specialized courses designed for rural students",
@@ -292,10 +381,16 @@ const HomePage = () => {
                 "Job placement assistance and career guidance",
                 "Affordable course fees with flexible payment options"
               ].map((item, index) => (
-                <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="w-6 h-6 text-incite-blue flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-700">{item}</p>
-                </div>
+                <motion.div 
+                  key={index} 
+                  className="flex items-start space-x-3"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                >
+                  <CheckCircle className="w-5 h-5 text-incite-blue flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-sm md:text-base">{item}</p>
+                </motion.div>
               ))}
             </div>
             
@@ -305,31 +400,43 @@ const HomePage = () => {
                   src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                   alt="Computer Lab at Incite Computers" 
                   className="w-full h-auto object-cover"
+                  loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+              <motion.div 
+                className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white p-3 md:p-4 rounded-lg shadow-lg"
+                animate={{
+                  y: [0, -5, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }}
+              >
                 <div className="text-center">
-                  <p className="font-bold gradient-text text-xl">Since 2001</p>
-                  <p className="text-sm text-gray-600">Trusted Legacy</p>
+                  <p className="font-bold gradient-text text-lg md:text-xl">Since 2001</p>
+                  <p className="text-xs md:text-sm text-gray-600">Trusted Legacy</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 gradient-blue-to-orange">
+      {/* CTA Section - Simplified */}
+      <section className="py-12 md:py-16 gradient-blue-to-orange">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Ready to Start Your Digital Journey?
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="text-base md:text-lg text-white/90 mb-6 max-w-3xl mx-auto">
             Join thousands of successful students who transformed their careers with Incite Computers.
           </p>
-          <Button size="lg" className="bg-white text-incite-blue hover:bg-gray-100 btn-hover">
+          <Button size="sm" className="bg-white text-incite-blue hover:bg-gray-100 btn-hover">
             <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="flex items-center">
-              Contact Us Now <ArrowRight className="ml-2 w-5 h-5" />
+              Contact Us Now <ArrowRight className="ml-2 w-4 h-4" />
             </a>
           </Button>
         </div>

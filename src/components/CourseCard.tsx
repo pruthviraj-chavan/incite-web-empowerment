@@ -20,45 +20,40 @@ interface CourseProps {
 }
 
 const CourseCard = ({ course, index }: CourseProps) => {
-  // Animation variants
+  // Animation variants - simplified for better performance
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.5, 
-        delay: index * 0.1,
+        duration: 0.3, 
+        delay: index * 0.1 > 0.5 ? 0.5 : index * 0.1,  // Cap delay for better performance
         ease: "easeOut"
       }
     },
     hover: {
-      y: -10,
-      scale: 1.02,
-      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      y: -5,
       transition: {
-        duration: 0.3
+        duration: 0.2
       }
     }
   };
 
   const iconVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
+    hidden: { scale: 0.9, opacity: 0 },
     visible: { 
       scale: 1, 
       opacity: 1,
       transition: {
-        delay: index * 0.1 + 0.2,
-        duration: 0.5
+        delay: 0.1,
+        duration: 0.3
       }
     },
     hover: {
-      scale: 1.2,
-      rotate: 5,
+      scale: 1.1,
       transition: {
-        duration: 0.3,
-        yoyo: Infinity,
-        repeatDelay: 0.5
+        duration: 0.2
       }
     }
   };
@@ -70,23 +65,19 @@ const CourseCard = ({ course, index }: CourseProps) => {
       "gradient-purple",
       "gradient-green",
       "gradient-pink",
-      "gradient-cyan",
-      "gradient-yellow",
-      "gradient-blue-purple",
-      "gradient-orange-pink",
-      "gradient-green-blue",
-      "gradient-yellow-orange"
+      "gradient-cyan"
     ];
     return gradients[index % gradients.length];
   };
 
   return (
     <motion.div
-      className="bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden h-full flex flex-col"
+      className="bg-white rounded-xl shadow-md transition-all duration-200 overflow-hidden h-full flex flex-col"
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       whileHover="hover"
+      layout
     >
       <div className="p-6 flex-grow">
         <div className="flex justify-between items-start mb-4">
