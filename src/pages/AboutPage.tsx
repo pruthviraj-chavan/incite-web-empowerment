@@ -160,10 +160,10 @@ const AboutPage = () => {
             <div className="bg-white rounded-xl p-8 shadow-orange">
               <h3 className="text-2xl font-bold mb-6 gradient-text-orange">Our Mission</h3>
               <p className="text-gray-700 mb-4">
-                To provide affordable, accessible, and high-quality computer education to the rural population, equipping them with the skills they need to succeed in today's digital world.
+                ग्रामीण भागातील लोकसंख्येला परवडणारे, सुलभ आणि उच्च-गुणवत्तेचे संगणक शिक्षण प्रदान करणे, ज्यामुळे त्यांना आजच्या डिजिटल जगात यशस्वी होण्यासाठी आवश्यक कौशल्ये मिळतील.
               </p>
               <p className="text-gray-700">
-                We are committed to bridging the digital divide by making technology education inclusive and ensuring that no one is left behind in the digital revolution.
+                आम्ही डिजिटल दरी कमी करण्यासाठी कटिबद्ध आहोत, तंत्रज्ञान शिक्षण सर्वसमावेशक बनवण्याचा आणि कोणालाही डिजिटल क्रांतीत मागे राहू न देण्याचा आमचा संकल्प आहे
               </p>
             </div>
           </div>
