@@ -5,7 +5,7 @@ const AboutPage = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "Rajendra Chavan",
+      name: "राजेंद्र चव्हाण",
       role: "Founder & CEO",
       bio: "With over 25 years of experience in IT education, Rajesh founded Incite Computers in 2001 with a vision to bring quality computer education to rural India.",
       image: "https://randomuser.me/api/portraits/men/32.jpg"
