@@ -65,19 +65,19 @@ const AboutPage = () => {
       id: 1,
       title: "Modern Computer Labs",
       description: "Equipped with the latest hardware and software to provide hands-on learning experience.",
-      image: "https://images.unsplash.com/photo-1581092160607-ee23481aee90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      image: "/img-15.jpg"
     },
     {
       id: 2,
       title: "Smart Classrooms",
       description: "Interactive learning environment with projectors and digital teaching aids.",
-      image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      image: "/img-16.jpg"
     },
     {
       id: 3,
       title: "Study Library",
       description: "Comprehensive collection of books, guides and digital resources for self-study.",
-      image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+      image: "/img-12.jpg"
     }
   ];
 
