@@ -23,7 +23,7 @@ const VishwakarmaPage = () => {
   const tradeImages = {
     carpentry: Array(10).fill(0).map((_, i) => ({ 
       id: i + 1, 
-      src: `https://source.unsplash.com/random/800x600?carpentry,woodwork&sig=${i}`, 
+      src: `/p${i + 1}.png`, 
       alt: `Carpentry Training Image ${i + 1}` 
     })),
     welding: Array(10).fill(0).map((_, i) => ({ 
