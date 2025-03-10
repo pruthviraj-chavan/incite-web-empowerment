@@ -85,8 +85,57 @@
     @apply bg-gradient-to-r from-incite-blue via-incite-blue-light to-incite-orange;
   }
   
+  /* New gradients */
+  .gradient-purple {
+    @apply bg-gradient-to-r from-purple-500/90 to-purple-700/90;
+  }
+  
+  .gradient-green {
+    @apply bg-gradient-to-r from-emerald-500/90 to-emerald-700/90;
+  }
+  
+  .gradient-pink {
+    @apply bg-gradient-to-r from-pink-500/90 to-rose-700/90;
+  }
+  
+  .gradient-cyan {
+    @apply bg-gradient-to-r from-cyan-400/90 to-blue-600/90;
+  }
+  
+  .gradient-yellow {
+    @apply bg-gradient-to-r from-amber-400/90 to-yellow-600/90;
+  }
+  
+  .gradient-blue-purple {
+    @apply bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500;
+  }
+  
+  .gradient-orange-pink {
+    @apply bg-gradient-to-r from-orange-400 via-red-400 to-pink-500;
+  }
+  
+  .gradient-green-blue {
+    @apply bg-gradient-to-r from-green-400 via-teal-400 to-blue-500;
+  }
+  
+  .gradient-yellow-orange {
+    @apply bg-gradient-to-r from-yellow-300 via-amber-400 to-orange-500;
+  }
+  
   .hero-gradient {
     background: linear-gradient(135deg, rgba(30,136,229,0.05) 0%, rgba(255,152,0,0.05) 100%);
+  }
+  
+  .hero-gradient-purple {
+    background: linear-gradient(135deg, rgba(147,51,234,0.05) 0%, rgba(236,72,153,0.05) 100%);
+  }
+  
+  .hero-gradient-green {
+    background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(59,130,246,0.05) 100%);
+  }
+  
+  .hero-gradient-cyan {
+    background: linear-gradient(135deg, rgba(6,182,212,0.05) 0%, rgba(124,58,237,0.05) 100%);
   }
   
   .page-fade-in {
@@ -101,12 +150,46 @@
     box-shadow: 0 4px 20px -2px rgba(255,152,0,0.25);
   }
   
+  .shadow-purple {
+    box-shadow: 0 4px 20px -2px rgba(147,51,234,0.25);
+  }
+  
+  .shadow-green {
+    box-shadow: 0 4px 20px -2px rgba(16,185,129,0.25);
+  }
+  
+  .shadow-pink {
+    box-shadow: 0 4px 20px -2px rgba(236,72,153,0.25);
+  }
+  
   .image-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:-translate-y-1;
   }
   
   .btn-hover {
     @apply transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Course card animations */
+  .course-card-animate {
+    @apply hover:shadow-lg transition-all duration-500;
+    transform-style: preserve-3d;
+  }
+  
+  .course-card-animate:hover {
+    transform: translateY(-10px) rotateX(5deg);
+  }
+  
+  .spin-slow {
+    animation: spin 8s linear infinite;
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .pulse-animation {
+    animation: pulse 3s ease-in-out infinite;
   }
 }
 
@@ -118,6 +201,33 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
   }
 }
 

@@ -1,5 +1,6 @@
 
 import { Users, Clock, Star } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -15,15 +16,91 @@ interface CourseProps {
     fee: string;
     icon: string;
   };
+  index: number;
 }
 
-const CourseCard = ({ course }: CourseProps) => {
+const CourseCard = ({ course, index }: CourseProps) => {
+  // Animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5, 
+        delay: index * 0.1,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      y: -10,
+      scale: 1.02,
+      boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  const iconVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1,
+      transition: {
+        delay: index * 0.1 + 0.2,
+        duration: 0.5
+      }
+    },
+    hover: {
+      scale: 1.2,
+      rotate: 5,
+      transition: {
+        duration: 0.3,
+        yoyo: Infinity,
+        repeatDelay: 0.5
+      }
+    }
+  };
+
+  const getRandomGradient = () => {
+    const gradients = [
+      "gradient-blue",
+      "gradient-orange",
+      "gradient-purple",
+      "gradient-green",
+      "gradient-pink",
+      "gradient-cyan",
+      "gradient-yellow",
+      "gradient-blue-purple",
+      "gradient-orange-pink",
+      "gradient-green-blue",
+      "gradient-yellow-orange"
+    ];
+    return gradients[index % gradients.length];
+  };
+
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-blue transition-all duration-300 overflow-hidden animate-scale-in h-full flex flex-col">
+    <motion.div
+      className="bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden h-full flex flex-col"
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover="hover"
+    >
       <div className="p-6 flex-grow">
         <div className="flex justify-between items-start mb-4">
-          <div className="text-4xl">{course.icon}</div>
-          <Badge variant="outline" className="text-xs font-medium px-2 py-1 border-incite-blue text-incite-blue">
+          <motion.div 
+            className="text-4xl"
+            variants={iconVariants}
+            whileHover="hover"
+          >
+            {course.icon}
+          </motion.div>
+          <Badge 
+            variant="outline" 
+            className="text-xs font-medium px-2 py-1 border-incite-blue text-incite-blue"
+          >
             {course.category}
           </Badge>
         </div>
@@ -57,7 +134,7 @@ const CourseCard = ({ course }: CourseProps) => {
       <div className="p-6 border-t border-gray-100 bg-gray-50">
         <div className="flex justify-between items-center">
           <span className="font-bold text-lg">{course.fee}</span>
-          <Button size="sm" className="gradient-blue text-white btn-hover">
+          <Button size="sm" className={`text-white btn-hover ${getRandomGradient()}`}>
             <a 
               href={`https://wa.me/919423281767?text=I'm interested in the ${course.title} course. Please provide more information.`} 
               target="_blank" 
@@ -68,7 +145,7 @@ const CourseCard = ({ course }: CourseProps) => {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

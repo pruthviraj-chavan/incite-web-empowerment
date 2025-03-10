@@ -1,6 +1,7 @@
 
-import { useState } from "react";
-import { Users, Clock, Star, MessageSquare, Search, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Users, Clock, Star, Search, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -467,9 +468,75 @@ const categories = [
   "Designing"
 ];
 
+// Animation circles component
+const AnimatedCircles = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <motion.div 
+        className="absolute top-20 left-10 w-40 h-40 rounded-full bg-blue-400/10"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, 50, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-40 right-10 w-60 h-60 rounded-full bg-orange-400/10"
+        animate={{
+          x: [0, -120, 0],
+          y: [0, 70, 0],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-purple-400/10"
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 180, 360],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 left-1/4 w-24 h-24 rounded-full bg-green-400/10"
+        animate={{
+          scale: [1, 1.5, 1],
+          x: [0, 50, 0],
+          y: [0, 30, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute top-1/2 left-10 w-16 h-16 rounded-full bg-pink-400/10 spin-slow"
+      />
+    </div>
+  );
+};
+
 const CoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Courses");
+  const [animationsEnabled, setAnimationsEnabled] = useState(false);
+  
+  // Enable animations after component mounts to prevent SSR hydration issues
+  useEffect(() => {
+    setAnimationsEnabled(true);
+  }, []);
   
   // Filter courses based on search query and active category
   const filteredCourses = allCourses.filter((course) => {
@@ -491,20 +558,48 @@ const CoursesPage = () => {
     };
   });
   
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
   return (
-    <div className="page-fade-in pt-24">
+    <div className="page-fade-in pt-24 relative overflow-hidden">
+      {animationsEnabled && <AnimatedCircles />}
+      
       {/* Hero Section */}
-      <section className="relative py-20 hero-gradient">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 hero-gradient-purple">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <motion.h1 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
                 Explore Our <span className="gradient-text">Courses</span>
-              </h1>
-              <p className="text-xl text-gray-700 mb-8">
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-gray-700 mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
                 Discover a wide range of computer courses designed to enhance your digital skills and advance your career.
-              </p>
-              <div className="relative mb-8">
+              </motion.p>
+              <motion.div 
+                className="relative mb-8"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
                 <Input
                   type="text"
                   placeholder="Search for courses..."
@@ -513,23 +608,37 @@ const CoursesPage = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <Search className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
-              </div>
-              <div className="flex items-center space-x-4">
+              </motion.div>
+              <motion.div 
+                className="flex items-center space-x-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
                 <Badge variant="outline" className="px-4 py-2 text-base font-medium border-incite-blue text-incite-blue">
                   {filteredCourses.length} Courses
                 </Badge>
                 <Badge variant="outline" className="px-4 py-2 text-base font-medium border-incite-orange text-incite-orange">
                   8 Categories
                 </Badge>
-              </div>
+              </motion.div>
             </div>
-            <div className="relative">
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
               <img 
                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                 alt="Students in classroom" 
                 className="rounded-xl shadow-blue image-hover"
               />
-              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg animate-float">
+              <motion.div 
+                className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <div className="flex items-center space-x-2">
                   <div className="text-3xl">🎓</div>
                   <div className="text-left">
@@ -537,18 +646,25 @@ const CoursesPage = () => {
                     <p className="font-bold">15,000+ Students</p>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Course Categories */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-gray-50 relative">
+        <div className="container mx-auto px-4 relative z-10">
           <Tabs defaultValue="All Courses" className="w-full" onValueChange={setActiveCategory}>
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold">Course <span className="gradient-text">Categories</span></h2>
+              <motion.h2 
+                className="text-2xl md:text-3xl font-bold"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                Course <span className="gradient-text">Categories</span>
+              </motion.h2>
               <div className="relative md:hidden">
                 <select 
                   className="appearance-none bg-white border border-gray-300 rounded-md py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-incite-blue"
@@ -566,24 +682,35 @@ const CoursesPage = () => {
             </div>
             
             <TabsList className="hidden md:flex mb-8 bg-transparent space-x-2 overflow-x-auto pb-2">
-              {countByCategory.map((category) => (
-                <TabsTrigger 
-                  key={category.name} 
-                  value={category.name}
-                  className="px-4 py-2 rounded-md text-sm font-medium data-[state=active]:bg-incite-blue data-[state=active]:text-white"
+              {countByCategory.map((category, index) => (
+                <motion.div
+                  key={category.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05, duration: 0.5 }}
                 >
-                  {category.name} ({category.count})
-                </TabsTrigger>
+                  <TabsTrigger 
+                    value={category.name}
+                    className="px-4 py-2 rounded-md text-sm font-medium data-[state=active]:bg-incite-blue data-[state=active]:text-white"
+                  >
+                    {category.name} ({category.count})
+                  </TabsTrigger>
+                </motion.div>
               ))}
             </TabsList>
             
             {categories.map((category) => (
               <TabsContent key={category} value={category} className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredCourses.map((course) => (
-                    <CourseCard key={course.id} course={course} />
+                <motion.div 
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {filteredCourses.map((course, index) => (
+                    <CourseCard key={course.id} course={course} index={index} />
                   ))}
-                </div>
+                </motion.div>
                 
                 {filteredCourses.length === 0 && (
                   <div className="text-center py-20">
@@ -601,51 +728,82 @@ const CoursesPage = () => {
       </section>
 
       {/* Why Choose Our Courses */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Our <span className="gradient-text">Courses</span>?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Why Choose Our <span className="gradient-text">Courses</span>?
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-gray-600 max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
               Our courses are designed to provide you with relevant skills that are in demand in today's job market.
-            </p>
+            </motion.p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-blue transition-all duration-300">
-              <div className="w-16 h-16 rounded-full bg-incite-blue/10 flex items-center justify-center text-incite-blue mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Industry-Recognized Certifications</h3>
-              <p className="text-gray-600">
-                Our courses lead to certifications that are recognized by employers across industries, giving you a competitive edge in the job market.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-blue transition-all duration-300">
-              <div className="w-16 h-16 rounded-full bg-incite-blue/10 flex items-center justify-center text-incite-blue mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Practical Learning Approach</h3>
-              <p className="text-gray-600">
-                Our courses focus on hands-on learning, giving you practical experience that you can apply immediately in real-world situations.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-blue transition-all duration-300">
-              <div className="w-16 h-16 rounded-full bg-incite-blue/10 flex items-center justify-center text-incite-blue mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-3">Comprehensive Curriculum</h3>
-              <p className="text-gray-600">
-                Our courses are regularly updated to include the latest advancements and technologies, ensuring you learn skills that are relevant today.
-              </p>
-            </div>
+            {[
+              {
+                icon: "shield-check",
+                title: "Industry-Recognized Certifications",
+                description: "Our courses lead to certifications that are recognized by employers across industries, giving you a competitive edge in the job market.",
+                gradient: "gradient-blue"
+              },
+              {
+                icon: "book-open",
+                title: "Practical Learning Approach",
+                description: "Our courses focus on hands-on learning, giving you practical experience that you can apply immediately in real-world situations.",
+                gradient: "gradient-orange"
+              },
+              {
+                icon: "clipboard-list",
+                title: "Comprehensive Curriculum",
+                description: "Our courses are regularly updated to include the latest advancements and technologies, ensuring you learn skills that are relevant today.",
+                gradient: "gradient-purple"
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={index}
+                className="bg-white rounded-xl p-8 shadow-md hover:shadow-blue transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.3, duration: 0.6 }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              >
+                <motion.div 
+                  className={`w-16 h-16 rounded-full ${feature.gradient}/10 flex items-center justify-center text-incite-blue mb-6`}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    transition: { duration: 0.3 } 
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    {feature.icon === "shield-check" && (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    )}
+                    {feature.icon === "book-open" && (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    )}
+                    {feature.icon === "clipboard-list" && (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    )}
+                  </svg>
+                </motion.div>
+                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <p className="text-gray-600">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -653,17 +811,33 @@ const CoursesPage = () => {
       {/* CTA Section */}
       <section className="py-16 gradient-blue-to-orange">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <motion.h2 
+            className="text-3xl md:text-4xl font-bold text-white mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             Ready to Start Your Learning Journey?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-white/90 mb-8 max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             Contact us today to enroll in any of our courses or to get more information.
-          </p>
-          <Button size="lg" className="bg-white text-incite-blue hover:bg-gray-100 btn-hover">
-            <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="flex items-center">
-              <MessageSquare className="mr-2 w-5 h-5" /> Chat with Us on WhatsApp
-            </a>
-          </Button>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <Button size="lg" className="bg-white text-incite-blue hover:bg-gray-100 btn-hover">
+              <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <Users className="mr-2 w-5 h-5" /> Chat with Us on WhatsApp
+              </a>
+            </Button>
+          </motion.div>
         </div>
       </section>
     </div>
