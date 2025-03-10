@@ -110,11 +110,11 @@ const HomePage = () => {
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 text-left mb-8 md:mb-0">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              <span className="gradient-text">Empowering Rural India</span>
-              <br /> with Digital Skills!
+              <span className="gradient-text">इथे शिकाल, </span>
+              <br /> जगभर चमकाल!
             </h1>
             <p className="text-base md:text-lg text-gray-700 mb-6">
-              Since 2001, Incite Computers has been transforming lives through quality computer education in Radhanagari.
+            २००१ पासून, इन्साइट कॉम्प्यूटर्स राधानगरीमध्ये दर्जेदार संगणक शिक्षणाच्या माध्यमातून अनेकांचे जीवन बदलत आहे.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button size="sm" className="gradient-blue text-white btn-hover">
@@ -374,12 +374,12 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col space-y-4">
               {[
-                "20+ years of experience in computer education",
-                "Specialized courses designed for rural students",
-                "Modern computer labs with latest technology",
-                "Experienced and patient faculty members",
-                "Job placement assistance and career guidance",
-                "Affordable course fees with flexible payment options"
+                "२०+ वर्षांचा शिक्षणाचा अनुभव",
+                "ग्रामीण विद्यार्थ्यांसाठी खास अभ्यासक्रम",
+                "आधुनिक संगणक प्रयोगशाळा आणि अत्याधुनिक सुविधा",
+                "अनुभवी आणि सहनशील शिक्षकवृंद",
+                "नोकरीसाठी मदत आणि करिअर मार्गदर्शन",
+                "परवडणाऱ्या फी आणि लवचिक देयक योजना"
               ].map((item, index) => (
                 <motion.div 
                   key={index} 
