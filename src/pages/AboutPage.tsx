@@ -7,28 +7,28 @@ const AboutPage = () => {
       id: 1,
       name: "राजेंद्र चव्हाण",
       role: "Founder & CEO",
-      bio: "With over 25 years of experience in IT education, Rajesh founded Incite Computers in 2001 with a vision to bring quality computer education to rural India.",
+      bio: "२५ वर्षांचा अनुभव असलेले आयटी शिक्षणतज्ज्ञ, ज्यांनी २००१ मध्ये इन्साइट कॉम्प्यूटर्सची स्थापना केली.",
       image: "/rajendra.png"
     },
     {
       id: 2,
       name: "Sumit Chavan",
       role: "Co-founder & Training Head",
-      bio: "Priya has been instrumental in developing the curriculum and training methodology that has helped thousands of students succeed in their careers.",
+      bio: "अभ्यासक्रम आणि प्रशिक्षण पद्धती विकसित करण्यात महत्त्वाची भूमिका निभावली.",
       image: "https://randomuser.me/api/portraits/women/44.jpg"
     },
     {
       id: 3,
       name: "Prashant Vanjule",
       role: "Technical Director",
-      bio: "Amit oversees all technical aspects of the training programs and ensures students learn the most relevant and up-to-date skills.",
+      bio: "विद्यार्थ्यांना सर्वात अद्ययावत आणि उद्योगास उपयुक्त तांत्रिक कौशल्ये शिकवण्यासाठी जबाबदार.",
       image: "https://randomuser.me/api/portraits/men/68.jpg"
     },
     {
       id: 4,
       name: "Pruthviraj Chavan",
       role: "Placement Officer",
-      bio: "Neha works tirelessly to build industry connections and help our students find suitable job placements after completing their courses.",
+      bio: "विद्यार्थ्यांना योग्य संधी मिळवून देण्यासाठी उद्योगांशी संपर्क साधण्याचे कार्य करतात",
       image: "https://randomuser.me/api/portraits/women/65.jpg"
     }
   ];
@@ -104,10 +104,10 @@ const AboutPage = () => {
 2001 मध्ये राधानगरी या छोट्याशा गावात स्थापन झालेल्या इन्साइट कॉम्प्यूटर्स संस्थेची सुरुवात एका साध्या पण महत्त्वाच्या ध्येयाने झाली – ग्रामीण भारतात दर्जेदार संगणक शिक्षण पोहोचवणे. अवघ्या 5 संगणकांवर आणि मोजक्या विद्यार्थ्यांसोबत सुरू झालेली ही संस्था आज आधुनिक सुविधांनी युक्त एक प्रमुख संगणक प्रशिक्षण केंद्र बनली आहे, ज्यामधून हजारो विद्यार्थी यशस्वीपणे घडून निघाले आहेत.
               </p>
               <p className="text-gray-700 mb-4">
-                Our founder, Mr. Rajesh Patil, recognized the digital divide that existed between urban and rural areas and was determined to bridge this gap by making computer education accessible to everyone, regardless of their background or location.
+                आमचे संस्थापक श्री. राजेंद्र मारुती चव्हाण यांनी शहरी आणि ग्रामीण भागातील डिजिटल दरी ओळखली आणि ती भरून काढण्याचा निर्धार केला. सर्वांसाठी संगणक शिक्षण उपलब्ध करून देणे, त्यांच्या पार्श्वभूमी किंवा स्थळावरून भेद न करता, हे त्यांचे मुख्य उद्दिष्ट होते.
               </p>
               <p className="text-gray-700">
-                Over the past two decades, we have continuously evolved our curriculum and teaching methodology to keep up with the rapidly changing technology landscape, ensuring our students receive relevant and up-to-date knowledge that prepares them for the real world.
+                 गेल्या दोन दशकांपासून, आम्ही आमचा अभ्यासक्रम आणि शिकवण्याच्या पद्धती सातत्याने अद्ययावत करत आहोत. विद्यार्थ्यांना आधुनिक आणि उपयुक्त ज्ञान मिळावे, जे त्यांना वास्तविक जगात यशस्वी होण्यासाठी मदत करेल, हे आमचे ध्येय आहे
               </p>
             </div>
             <div className="order-1 md:order-2 relative">
@@ -151,10 +151,10 @@ const AboutPage = () => {
             <div className="bg-white rounded-xl p-8 shadow-blue">
               <h3 className="text-2xl font-bold mb-6 gradient-text">Our Vision</h3>
               <p className="text-gray-700 mb-4">
-                To be the leading computer education provider in rural India, empowering individuals with digital skills that transform their lives and communities.
+                 ग्रामीण भारतातील आघाडीची संगणक शिक्षण संस्था होण्याचे आमचे ध्येय आहे. डिजिटल कौशल्यांद्वारे व्यक्ती आणि समुदायांना सक्षम करणे, ही आमची दूरदृष्टी आहे.
               </p>
               <p className="text-gray-700">
-                We envision a digitally literate rural India where everyone has access to quality computer education and the opportunity to participate in the digital economy.
+               आम्ही परवडणारे, सुलभ आणि दर्जेदार संगणक शिक्षण देण्यास कटिबद्ध आहोत. डिजिटल क्रांतीत कोणताही विद्यार्थी मागे राहू नये, हे सुनिश्चित करण्याचा आमचा प्रयत्न आहे.
               </p>
             </div>
             <div className="bg-white rounded-xl p-8 shadow-orange">
