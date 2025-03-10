@@ -99,7 +99,9 @@ const AboutPage = () => {
             <div className="order-2 md:order-1">
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <p className="text-gray-700 mb-4">
-                Founded in 2001 in the small town of Radhanagari, Incite Computers began with a simple mission - to bring quality computer education to rural India. What started with just 5 computers and a handful of students has now grown into a premier computer training institute with modern facilities and thousands of successful alumni.
+                इन्साइट कॉम्प्यूटर्स: ग्रामीण भारताच्या डिजिटल भविष्याची पायाभरणी
+
+2001 मध्ये राधानगरी या छोट्याशा गावात स्थापन झालेल्या इन्साइट कॉम्प्यूटर्स संस्थेची सुरुवात एका साध्या पण महत्त्वाच्या ध्येयाने झाली – ग्रामीण भारतात दर्जेदार संगणक शिक्षण पोहोचवणे. अवघ्या 5 संगणकांवर आणि मोजक्या विद्यार्थ्यांसोबत सुरू झालेली ही संस्था आज आधुनिक सुविधांनी युक्त एक प्रमुख संगणक प्रशिक्षण केंद्र बनली आहे, ज्यामधून हजारो विद्यार्थी यशस्वीपणे घडून निघाले आहेत.
               </p>
               <p className="text-gray-700 mb-4">
                 Our founder, Mr. Rajesh Patil, recognized the digital divide that existed between urban and rural areas and was determined to bridge this gap by making computer education accessible to everyone, regardless of their background or location.
