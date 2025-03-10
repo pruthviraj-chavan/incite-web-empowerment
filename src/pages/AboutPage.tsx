@@ -1,5 +1,4 @@
-
-import { Users, Award, Buildings, GraduationCap } from "lucide-react";
+import { Users, Award, Building, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 
 const AboutPage = () => {
@@ -57,7 +56,7 @@ const AboutPage = () => {
       id: 4,
       title: "5+",
       description: "Modern Labs",
-      icon: <Buildings className="w-6 h-6" />
+      icon: <Building className="w-6 h-6" />
     }
   ];
 
@@ -283,28 +282,28 @@ const AboutPage = () => {
               <h3 className="text-2xl font-bold mb-6">Job Placements</h3>
               <ul className="space-y-4">
                 <li className="flex items-start space-x-3">
-                  <Buildings className="w-5 h-5 text-incite-orange mt-1" />
+                  <Building className="w-5 h-5 text-incite-orange mt-1" />
                   <div>
                     <p className="font-medium">400+ placed in Government Sector</p>
                     <p className="text-sm text-gray-600">Various government departments and offices</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <Buildings className="w-5 h-5 text-incite-orange mt-1" />
+                  <Building className="w-5 h-5 text-incite-orange mt-1" />
                   <div>
                     <p className="font-medium">2,000+ placed in Banking Sector</p>
                     <p className="text-sm text-gray-600">National and regional banks across Maharashtra</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <Buildings className="w-5 h-5 text-incite-orange mt-1" />
+                  <Building className="w-5 h-5 text-incite-orange mt-1" />
                   <div>
                     <p className="font-medium">1,500+ placed in IT Companies</p>
                     <p className="text-sm text-gray-600">Software development, support and services</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <Buildings className="w-5 h-5 text-incite-orange mt-1" />
+                  <Building className="w-5 h-5 text-incite-orange mt-1" />
                   <div>
                     <p className="font-medium">3,000+ Self-Employed</p>
                     <p className="text-sm text-gray-600">Started their own businesses or freelancing careers</p>
