@@ -60,14 +60,24 @@ export default {
 				incite: {
 					blue: {
 						light: '#64B5F6',
-						DEFAULT: '#1E88E5',
+						DEFAULT: '#1a73e8',
 						dark: '#1565C0'
+					},
+					purple: {
+						light: '#9FA8DA',
+						DEFAULT: '#5f6ac4',
+						dark: '#3949AB'
 					},
 					orange: {
 						light: '#FFB74D',
-						DEFAULT: '#FF9800',
+						DEFAULT: '#ff7043',
 						dark: '#F57C00'
 					},
+					teal: {
+						light: '#4DB6AC',
+						DEFAULT: '#26a69a',
+						dark: '#00897B'
+					}
 				}
 			},
 			borderRadius: {

@@ -17,11 +17,11 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-incite-blue to-incite-purple bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-incite-blue to-incite-purple/80 bg-clip-text text-transparent;
   }
 
   .gradient-blue {
-    @apply bg-gradient-to-r from-incite-blue to-incite-purple;
+    @apply bg-gradient-to-r from-incite-blue to-incite-purple/80;
   }
 
   .gradient-blue-to-orange {
