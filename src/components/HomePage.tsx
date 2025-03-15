@@ -50,19 +50,19 @@ export const Hero = () => {
             </div>
             <div className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-blue w-48 animate-float">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue">विद्यार्थी</div>
+                <div className="text-sm font-medium text-incite-blue"></div>
                 <Users size={16} className="text-incite-orange" />
               </div>
-              <div className="text-2xl font-bold">५,०००+</div>
-              <div className="text-xs text-gray-500">२००१ पासून प्रशिक्षित</div>
+              <div className="text-2xl font-bold"></div>
+              <div className="text-xs text-gray-500"></div>
             </div>
             <div className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-orange w-52 animate-float">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue">यशस्वी दर</div>
+                <div className="text-sm font-medium text-incite-blue"></div>
                 <Award size={16} className="text-incite-orange" />
               </div>
-              <div className="text-2xl font-bold">९८%</div>
-              <div className="text-xs text-gray-500">प्लेसमेंट आणि प्रमाणीकरण</div>
+              <div className="text-2xl font-bold"></div>
+              <div className="text-xs text-gray-500"></div>
             </div>
           </div>
         </div>
