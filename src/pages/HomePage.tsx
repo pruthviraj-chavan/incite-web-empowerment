@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Star, Users, Clock, ArrowRight, CheckCircle } from "lucide-react";
+import { Star, Users, Clock, ArrowRight, CheckCircle, Youtube } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
@@ -75,7 +74,6 @@ const HomePage = () => {
   const isInView = useInView(coursesRef, { once: false, amount: 0.3 });
   const controls = useAnimation();
 
-  // Efficient carousel for courses that works well on mobile
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
@@ -310,6 +308,67 @@ const HomePage = () => {
                 View All Courses <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Inspiration Section */}
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">Our <span className="gradient-text">Inspiration</span></h2>
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+              Mr. Jitendra Satpute, Founder and CEO of JSAT Automation with branches in 9 countries worldwide.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="order-2 md:order-1">
+              <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-blue">
+                <iframe 
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/P8_CQwmmmhU?si=D3_5P9OqO38IpuUt" 
+                  title="Jitendra Satpute - Inspirational Story" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+            
+            <div className="order-1 md:order-2 mb-6 md:mb-0">
+              <div className="bg-white rounded-xl p-6 shadow-md relative">
+                <div className="absolute -top-3 -right-3 text-4xl">💡</div>
+                <h3 className="text-xl md:text-2xl font-bold mb-4 gradient-text">Mr. Jitendra Satpute</h3>
+                <p className="text-gray-700 mb-4">
+                  A visionary entrepreneur who has revolutionized automation technology across the globe. His journey from a small town to establishing JSAT Automation with branches in 9 countries inspires us daily.
+                </p>
+                <p className="text-gray-700 mb-6">
+                  His commitment to innovation, quality education, and empowering rural communities aligns perfectly with our mission at Incite Computers.
+                </p>
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <Youtube className="w-4 h-4 text-red-600" />
+                  <span>Watch his inspirational story</span>
+                </div>
+              </div>
+              
+              <motion.div 
+                className="mt-8 hidden md:block"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              >
+                <div className="flex flex-col space-y-3">
+                  {["Global Presence in 9 Countries", "Innovative Technology Solutions", "Empowering Rural Communities"].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-2">
+                      <div className="w-2 h-2 rounded-full bg-incite-blue"></div>
+                      <p className="text-gray-700">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
