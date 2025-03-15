@@ -5,9 +5,26 @@
 
 :root {
   --incite-blue: #1a73e8;
+  --incite-blue-dark: #1967d2;
+  --incite-blue-light: #4285f4;
   --incite-purple: #5f6ac4;
+  --incite-purple-dark: #4a55b9;
+  --incite-purple-light: #7c85d1;
   --incite-orange: #ff7043;
+  --incite-orange-dark: #f15a22;
+  --incite-orange-light: #ff9776;
   --incite-teal: #26a69a;
+  --incite-teal-dark: #00897b;
+  --incite-teal-light: #4db6ac;
+  --incite-pink: #ec407a;
+  --incite-pink-dark: #d81b60;
+  --incite-pink-light: #f06292;
+  --incite-green: #66bb6a;
+  --incite-green-dark: #43a047;
+  --incite-green-light: #81c784;
+  --incite-cyan: #26c6da;
+  --incite-cyan-dark: #00acc1;
+  --incite-cyan-light: #4dd0e1;
 }
 
 /* Custom Utility Classes */
@@ -17,60 +34,75 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-incite-blue to-incite-purple/80 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-incite-blue to-incite-purple bg-clip-text text-transparent;
+  }
+  
+  .gradient-text-orange {
+    @apply bg-gradient-to-r from-incite-orange to-incite-pink bg-clip-text text-transparent;
+  }
+  
+  .gradient-text-green {
+    @apply bg-gradient-to-r from-incite-green to-incite-teal bg-clip-text text-transparent;
   }
 
   .gradient-blue {
-    @apply bg-gradient-to-r from-incite-blue to-incite-purple/80;
+    @apply bg-gradient-to-r from-incite-blue to-incite-purple;
+  }
+  
+  .gradient-purple {
+    @apply bg-gradient-to-r from-incite-purple to-incite-blue-dark;
+  }
+  
+  .gradient-orange {
+    @apply bg-gradient-to-r from-incite-orange to-incite-orange-dark;
+  }
+  
+  .gradient-green {
+    @apply bg-gradient-to-r from-incite-green to-incite-teal;
+  }
+  
+  .gradient-pink {
+    @apply bg-gradient-to-r from-incite-pink to-incite-purple;
+  }
+  
+  .gradient-cyan {
+    @apply bg-gradient-to-r from-incite-cyan to-incite-blue;
   }
 
-  .gradient-blue-to-orange {
-    @apply bg-gradient-to-r from-incite-blue to-incite-orange;
+  .gradient-blue-purple {
+    @apply bg-gradient-to-r from-incite-blue to-incite-purple;
   }
 
-  .gradient-orange-to-red {
+  .gradient-orange-red {
     @apply bg-gradient-to-r from-incite-orange to-red-500;
   }
 
-  .gradient-teal-to-blue {
+  .gradient-teal-blue {
     @apply bg-gradient-to-r from-incite-teal to-incite-blue;
   }
   
-  /* New gradients */
-  .gradient-purple-blue {
-    @apply bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent;
-  }
-  
-  .gradient-orange-red {
-    @apply bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent;
-  }
-  
-  .gradient-teal-green {
-    @apply bg-gradient-to-r from-teal-400 to-green-500 bg-clip-text text-transparent;
-  }
-  
-  .gradient-blue-purple {
-    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
-  }
-  
   .gradient-pink-purple {
-    @apply bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-incite-pink to-incite-purple;
   }
   
   .gradient-purple-pink {
-    @apply bg-gradient-to-r from-purple-500 to-pink-500;
-  }
-  
-  .gradient-pink-orange {
-    @apply bg-gradient-to-r from-pink-500 to-orange-500;
+    @apply bg-gradient-to-r from-incite-purple to-incite-pink;
   }
   
   .gradient-orange-pink {
-    @apply bg-gradient-to-r from-orange-400 to-pink-500;
+    @apply bg-gradient-to-r from-incite-orange to-incite-pink;
   }
   
-  .gradient-teal-blue {
-    @apply bg-gradient-to-r from-teal-400 to-blue-500;
+  .gradient-pink-orange {
+    @apply bg-gradient-to-r from-incite-pink to-incite-orange;
+  }
+  
+  .gradient-teal-green {
+    @apply bg-gradient-to-r from-incite-teal to-incite-green;
+  }
+  
+  .gradient-cyan-teal {
+    @apply bg-gradient-to-r from-incite-cyan to-incite-teal;
   }
 
   .shadow-blue {
@@ -79,6 +111,14 @@
   
   .shadow-orange {
     @apply shadow-lg shadow-orange-500/20;
+  }
+  
+  .shadow-purple {
+    @apply shadow-lg shadow-purple-500/20;
+  }
+  
+  .shadow-pink {
+    @apply shadow-lg shadow-pink-500/20;
   }
 
   .hero-gradient {
@@ -89,8 +129,9 @@
     @apply hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1;
   }
   
-  .gradient-text-orange {
-    @apply bg-gradient-to-r from-incite-orange to-amber-500 bg-clip-text text-transparent;
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md;
   }
   
   /* Aspect ratio utilities for responsive video embedding */

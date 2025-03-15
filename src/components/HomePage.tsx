@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { ArrowRight, Star, Users, Clock, BookOpen, Award, ChevronRight, User, Building, Laptop, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -199,12 +198,9 @@ export const CoursesOverview = () => {
                     <Star size={16} className="text-incite-orange mr-1" />
                     <span>{course.rating}/५</span>
                   </div>
-                  <Link 
-                    to="/courses" 
-                    className="text-incite-blue hover:text-incite-blue-dark font-medium flex items-center"
-                  >
-                    तपशील <ChevronRight size={16} className="ml-1" />
-                  </Link>
+                  <div className="text-incite-blue font-medium">
+                    संपर्क: 9423281767
+                  </div>
                 </div>
               </div>
             </div>
@@ -430,7 +426,8 @@ export const CTASection = () => {
             <div className="mb-8 md:mb-0 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">आपला तंत्रज्ञान प्रवास सुरू करण्यास तयार आहात?</h2>
               <p className="text-white/90 max-w-xl">
-                आमच्या कोणत्याही अभ्यासक्रमासाठी आज नोंदणी करा आणि तंत्रज्ञानात उज्वल भविष्याच्या दिशेने पहिले पाऊल टाका.
+                आमच्या कोणत्याही अभ्यासक्रमासाठी आज नोंदणी करा आणि तंत्रज्ञानात उज्वल भविष्याच्या दिशेने पहिले पाऊल टाका.<br />
+                <span className="font-bold mt-2 inline-block">संपर्क: 9423281767</span>
               </p>
             </div>
             <div>

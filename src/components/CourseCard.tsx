@@ -13,7 +13,6 @@ interface CourseProps {
     students: number;
     duration: string;
     rating: number;
-    fee: string;
     icon: string;
   };
   index: number;
@@ -124,14 +123,14 @@ const CourseCard = ({ course, index }: CourseProps) => {
       
       <div className="p-6 border-t border-gray-100 bg-gray-50">
         <div className="flex justify-between items-center">
-          <span className="font-bold text-lg">{course.fee}</span>
+          <span className="font-medium text-gray-700">संपर्क:</span>
           <Button size="sm" className={`text-white btn-hover ${getRandomGradient()}`}>
             <a 
               href={`https://wa.me/919423281767?text=I'm interested in the ${course.title} course. Please provide more information.`} 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Inquire Now
+              9423281767
             </a>
           </Button>
         </div>

@@ -14,7 +14,8 @@ const GalleryPage = () => {
     { id: "seminar", name: "Seminar Sessions" },
     { id: "placement", name: "Placement Area" },
     { id: "lectures", name: "Guest Lectures" },
-    { id: "activities", name: "Student Activities" }
+    { id: "activities", name: "Student Activities" },
+    { id: "advertisements", name: "आमच्या जाहिराती" }
   ];
   
   const galleryImages = {
@@ -57,6 +58,14 @@ const GalleryPage = () => {
       { id: 1, src: "/img-01.jpg", title: "Group Project", date: "May 18, 2023", views: 178 },
       { id: 2, src: "/img-02.jpg", title: "Coding Competition", date: "July 7, 2023", views: 210 },
       { id: 3, src: "/img-03.jpg", title: "Tech Quiz", date: "August 25, 2023", views: 186 }
+    ],
+    advertisements: [
+      { id: 1, src: "/img-04.jpg", title: "नवीन बॅच - २०२३", date: "जानेवारी १०, २०२३", views: 320 },
+      { id: 2, src: "/img-05.jpg", title: "एमएस-सीआयटी प्रवेश सुरू", date: "एप्रिल ५, २०२३", views: 285 },
+      { id: 3, src: "/img-06.jpg", title: "गणेशोत्सव स्पेशल ऑफर", date: "सप्टेंबर १, २०२३", views: 310 },
+      { id: 4, src: "/img-07.jpg", title: "दिवाळी धमाका ऑफर", date: "ऑक्टोबर २०, २०२३", views: 345 },
+      { id: 5, src: "/img-08.jpg", title: "उन्हाळी विशेष बॅच", date: "मे २, २०२३", views: 275 },
+      { id: 6, src: "/img-09.jpg", title: "टॅली विशेष प्रशिक्षण", date: "फेब्रुवारी १५, २०२३", views: 265 }
     ]
   };
   
@@ -72,10 +81,10 @@ const GalleryPage = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Our <span className="gradient-text">Gallery</span>
+              आमची <span className="gradient-text">गॅलरी</span>
             </h1>
             <p className="text-xl text-gray-700">
-              Take a visual tour of our institute, facilities, and student activities
+              आमच्या संस्थेचा, सुविधांचा आणि विद्यार्थी उपक्रमांचा दृश्य आढावा घ्या
             </p>
           </div>
         </div>
@@ -85,7 +94,7 @@ const GalleryPage = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <Tabs defaultValue={selectedTab} onValueChange={setSelectedTab} className="w-full">
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-transparent h-auto mb-8">
+            <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 bg-transparent h-auto mb-8 flex-wrap">
               {galleryCategories.map((category) => (
                 <TabsTrigger 
                   key={category.id}
