@@ -43,7 +43,7 @@ export const Hero = () => {
             <div className="relative overflow-hidden rounded-lg shadow-blue">
               <img 
                 src="/p.jpeg" 
-                alt="विद्यार्थी संगणक कौशल्य शिकत आहे" 
+                alt="mscit,tally, incite,programming,typing,klick,computer" 
                 className="w-full h-auto rounded-lg object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -347,22 +347,22 @@ export const Testimonials = () => {
 export const GalleryPreview = () => {
   const galleryImages = [
     {
-      src: "/img-03.jpg",
+      src: "/img-03.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
       title: "संगणक लॅब",
       views: 324
     },
     {
-      src: "/img-11.jpg",
+      src: "/img-11.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
       title: "प्रोग्रामिंग सेशन",
       views: 219
     },
     {
-      src: "/img-06.jpg",
+      src: "/img-06.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
       title: "विद्यार्थी कार्यशाळा",
       views: 187
     },
     {
-      src: "/img-04.jpg",
+      src: "/img-04.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
       title: "प्लेसमेंट प्रशिक्षण",
       views: 156
     }
