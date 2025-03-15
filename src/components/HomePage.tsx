@@ -42,7 +42,7 @@ export const Hero = () => {
           <div className="md:w-1/2 relative animate-fade-in-right">
             <div className="relative overflow-hidden rounded-lg shadow-blue">
               <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+                src="/p.jpeg" 
                 alt="विद्यार्थी संगणक कौशल्य शिकत आहे" 
                 className="w-full h-auto rounded-lg object-cover"
               />
