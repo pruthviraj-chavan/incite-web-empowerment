@@ -318,7 +318,7 @@ const HomePage = () => {
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl md:text-3xl font-bold mb-3">Our <span className="gradient-text">Inspiration</span></h2>
             <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-              Mr. Jitendra Satpute, Founder and CEO of JSAT Automation with branches in 9 countries worldwide.
+              श्री जितेंद्र सातपुते, JSAT ऑटोमेशनचे संस्थापक आणि सीईओ, ज्यांच्या कंपनीच्या शाखा ९ देशांमध्ये कार्यरत आहेत.
             </p>
           </div>
           
@@ -340,16 +340,18 @@ const HomePage = () => {
             <div className="order-1 md:order-2 mb-6 md:mb-0">
               <div className="bg-white rounded-xl p-6 shadow-md relative">
                 <div className="absolute -top-3 -right-3 text-4xl">💡</div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 gradient-text">Mr. Jitendra Satpute</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-4 gradient-text">श्री. जितेंद्र सातपुते</h3>
                 <p className="text-gray-700 mb-4">
-                  A visionary entrepreneur who has revolutionized automation technology across the globe. His journey from a small town to establishing JSAT Automation with branches in 9 countries inspires us daily.
+                 एक दूरदर्शी उद्योजक ज्यांनी संपूर्ण जगभर ऑटोमेशन तंत्रज्ञानात क्रांती घडवली आहे. छोट्या गावातून सुरू झालेला त्यांचा प्रवास आणि आज ९ देशांमध्ये शाखा असलेल्या JSAT ऑटोमेशन या कंपनीची स्थापना – ही कथा खरंच प्रेरणादायी आहे.
+
+
                 </p>
                 <p className="text-gray-700 mb-6">
-                  His commitment to innovation, quality education, and empowering rural communities aligns perfectly with our mission at Incite Computers.
+                  नाविन्य, दर्जेदार शिक्षण आणि ग्रामीण भागांचा विकास यांसाठी असलेली त्यांची निःस्वार्थ तळमळ Incite Computers च्या उद्दिष्टांशी संपूर्णपणे जुळते.
                 </p>
                 <div className="flex items-center space-x-2 text-sm text-gray-500">
                   <Youtube className="w-4 h-4 text-red-600" />
-                  <span>Watch his inspirational story</span>
+                  <span>त्यांची प्रेरणादायी कहाणी पाहा! 🚀</span>
                 </div>
               </div>
               
@@ -360,7 +362,7 @@ const HomePage = () => {
                 transition={{ delay: 0.5, duration: 0.5 }}
               >
                 <div className="flex flex-col space-y-3">
-                  {["Global Presence in 9 Countries", "Innovative Technology Solutions", "Empowering Rural Communities"].map((item, index) => (
+                  {["🌍 ९ देशांमध्ये जागतिक उपस्थिती", "🚀 नवोन्मेषी तंत्रज्ञान समाधान", "🌱 ग्रामीण भागांचा सशक्तीकरण"].map((item, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <div className="w-2 h-2 rounded-full bg-incite-blue"></div>
                       <p className="text-gray-700">{item}</p>
