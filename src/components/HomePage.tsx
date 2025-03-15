@@ -347,22 +347,22 @@ export const Testimonials = () => {
 export const GalleryPreview = () => {
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      src: "/img-03.jpg",
       title: "संगणक लॅब",
       views: 324
     },
     {
-      src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+      src: "/img-11.jpg",
       title: "प्रोग्रामिंग सेशन",
       views: 219
     },
     {
-      src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      src: "/img-06.jpg",
       title: "विद्यार्थी कार्यशाळा",
       views: 187
     },
     {
-      src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+      src: "/img-04.jpg",
       title: "प्लेसमेंट प्रशिक्षण",
       views: 156
     }
