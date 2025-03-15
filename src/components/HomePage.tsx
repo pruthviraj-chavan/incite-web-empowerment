@@ -19,7 +19,7 @@ export const Hero = () => {
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               <span className="gradient-text">Empowering Rural India</span> <br />
-              <span className="gradient-text-orange">with Digital Skills!</span>
+              <span className="gradient-orange-to-red bg-clip-text text-transparent">with Digital Skills!</span>
             </h1>
             <p className="text-gray-700 mb-8 text-lg max-w-xl">
               Transforming lives through quality computer education, professional training, and certification programs tailored for rural communities.
@@ -110,7 +110,7 @@ export const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="glass p-8 rounded-xl shadow-md hover:shadow-blue transition-all duration-300 animate-fade-in"
+              className="bg-white p-8 rounded-xl shadow-md hover:shadow-blue transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="mb-6">{service.icon}</div>
@@ -218,6 +218,56 @@ export const CoursesOverview = () => {
           >
             View All Courses <ArrowRight size={18} className="ml-2" />
           </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// New Inspiration Section
+export const InspirationSection = () => {
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">Our Inspiration</h2>
+          <p className="text-gray-600 max-w-3xl mx-auto">
+            Meet Mr. Jitendra Satpute, Founder and CEO of JSAT Automation with branches in 9 countries worldwide
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div className="rounded-xl overflow-hidden shadow-blue">
+            <div className="aspect-w-16 aspect-h-9">
+              <iframe 
+                src="https://www.youtube.com/embed/P8_CQwmmmhU?si=D3_5P9OqO38IpuUt" 
+                title="Jitendra Satpute - Inspirational Story" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+          
+          <div className="bg-white p-8 rounded-xl shadow-md">
+            <h3 className="text-2xl font-bold mb-4 gradient-text">Mr. Jitendra Satpute</h3>
+            <p className="text-gray-700 mb-6">
+              A visionary entrepreneur who has revolutionized the automation industry with his innovative approach and dedication. Mr. Satpute started his journey from humble beginnings and has now expanded his business, JSAT Automation, across 9 countries.
+            </p>
+            <p className="text-gray-700 mb-6">
+              His story serves as a powerful inspiration for our students, showing that with the right skills, determination, and education, one can achieve extraordinary success regardless of their background.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="text-xl font-bold text-incite-blue mb-2">9+ Countries</div>
+                <p className="text-sm text-gray-600">Global business presence</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="text-xl font-bold text-incite-orange mb-2">Industry Leader</div>
+                <p className="text-sm text-gray-600">In automation technology</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -400,11 +450,16 @@ export const CTASection = () => {
 
 // Combine all sections
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="page-fade-in">
       <Hero />
       <Services />
       <CoursesOverview />
+      <InspirationSection />
       <Testimonials />
       <GalleryPreview />
       <CTASection />
