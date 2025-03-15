@@ -35,6 +35,43 @@
   .gradient-teal-to-blue {
     @apply bg-gradient-to-r from-incite-teal to-incite-blue;
   }
+  
+  /* New gradients */
+  .gradient-purple-blue {
+    @apply bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-orange-red {
+    @apply bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-teal-green {
+    @apply bg-gradient-to-r from-teal-400 to-green-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-blue-purple {
+    @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-pink-purple {
+    @apply bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .gradient-purple-pink {
+    @apply bg-gradient-to-r from-purple-500 to-pink-500;
+  }
+  
+  .gradient-pink-orange {
+    @apply bg-gradient-to-r from-pink-500 to-orange-500;
+  }
+  
+  .gradient-orange-pink {
+    @apply bg-gradient-to-r from-orange-400 to-pink-500;
+  }
+  
+  .gradient-teal-blue {
+    @apply bg-gradient-to-r from-teal-400 to-blue-500;
+  }
 
   .shadow-blue {
     @apply shadow-lg shadow-blue-500/20;

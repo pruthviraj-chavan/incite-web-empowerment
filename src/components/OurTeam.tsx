@@ -5,28 +5,28 @@ const teamMembers = [
   {
     id: 1,
     name: "राजेंद्र चव्हाण",
-    role: "Founder & CEO",
+    role: "संस्थापक आणि सीईओ",
     bio: "२५ वर्षांचा अनुभव असलेले आयटी शिक्षणतज्ज्ञ, ज्यांनी २००१ मध्ये इन्साइट कॉम्प्यूटर्सची स्थापना केली.",
     image: "/rajendra.png"
   },
   {
     id: 2,
-    name: "Sumit Chavan",
-    role: "Co-founder & Training Head",
+    name: "सुमित चव्हाण",
+    role: "सह-संस्थापक आणि प्रशिक्षण प्रमुख",
     bio: "अभ्यासक्रम आणि प्रशिक्षण पद्धती विकसित करण्यात महत्त्वाची भूमिका निभावली.",
     image: "/sumit.jpg"
   },
   {
     id: 3,
-    name: "Prashant Vanjule",
-    role: "Technical Director",
+    name: "प्रशांत वांजुळे",
+    role: "तांत्रिक संचालक",
     bio: "विद्यार्थ्यांना सर्वात अद्ययावत आणि उद्योगास उपयुक्त तांत्रिक कौशल्ये शिकवण्यासाठी जबाबदार.",
     image: "/prashant.png"
   },
   {
     id: 4,
-    name: "Pruthviraj Chavan",
-    role: "Placement Officer",
+    name: "पृथ्वीराज चव्हाण",
+    role: "प्लेसमेंट अधिकारी",
     bio: "विद्यार्थ्यांना योग्य संधी मिळवून देण्यासाठी उद्योगांशी संपर्क साधण्याचे कार्य करतात",
     image: "/pruthvi.jpg"
   }
@@ -34,14 +34,14 @@ const teamMembers = [
 
 export const OurTeam = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-incite-blue/5 to-white">
+    <section className="py-20 bg-gradient-to-b from-white via-teal-50 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="gradient-text">Team</span>
+            आमचे <span className="gradient-teal-blue">टीम</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Meet the dedicated professionals who are passionate about teaching and empowering students.
+            विद्यार्थ्यांना शिकवण्याविषयी आणि सक्षम करण्याविषयी उत्साही असलेल्या समर्पित व्यावसायिकांची भेट घ्या.
           </p>
         </div>
         
