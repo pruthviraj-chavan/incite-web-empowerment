@@ -39,6 +39,10 @@
   .shadow-blue {
     @apply shadow-lg shadow-blue-500/20;
   }
+  
+  .shadow-orange {
+    @apply shadow-lg shadow-orange-500/20;
+  }
 
   .hero-gradient {
     @apply bg-gradient-to-b from-white via-blue-50 to-white;
@@ -46,6 +50,10 @@
 
   .btn-hover {
     @apply hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1;
+  }
+  
+  .gradient-text-orange {
+    @apply bg-gradient-to-r from-incite-orange to-amber-500 bg-clip-text text-transparent;
   }
   
   /* Aspect ratio utilities for responsive video embedding */
