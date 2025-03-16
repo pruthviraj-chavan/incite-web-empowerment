@@ -46,7 +46,7 @@ export const Hero = () => {
                 alt="mscit,tally, incite,programming,typing,klick,computer" 
                 className="w-full h-auto rounded-lg object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent">No.1 Centre</div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
             <div className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-blue w-48 animate-float">
               <div className="flex items-center justify-between mb-2">
@@ -58,7 +58,7 @@ export const Hero = () => {
             </div>
             <div className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-orange w-52 animate-float">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue"></div>
+                <div className="text-sm font-medium text-incite-blue">No.1 Centre</div>
                 <Award size={16} className="text-incite-orange" />
               </div>
               <div className="text-2xl font-bold"></div>
