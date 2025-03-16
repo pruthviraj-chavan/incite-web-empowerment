@@ -50,7 +50,7 @@ export const Hero = () => {
             </div>
             <div className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-blue w-48 animate-float">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue"></div>
+                <div className="text-sm font-medium text-incite-blue">5000+</div>
                 <Users size={16} className="text-incite-orange" />
               </div>
               <div className="text-2xl font-bold"></div>
