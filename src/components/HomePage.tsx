@@ -53,16 +53,16 @@ export const Hero = () => {
                 <div className="text-sm font-medium text-incite-blue">5000+ Students</div>
                 <Users size={16} className="text-incite-orange" />
               </div>
-              <div className="text-2xl font-bold">No.2 Centre</div>
-              <div className="text-xs text-gray-500">No.3 Centre</div>
+              <div className="text-2xl font-bold"></div>
+              <div className="text-xs text-gray-500"></div>
             </div>
             <div className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-orange w-52 animate-float">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue">No.1 Centre</div>
+                <div className="text-sm font-medium text-incite-blue">No.1 Training Centre</div>
                 <Award size={16} className="text-incite-orange" />
               </div>
-              <div className="text-2xl font-bold">No.4 Centre</div>
-              <div className="text-xs text-gray-500">No.5 Centre</div>
+              <div className="text-2xl font-bold"></div>
+              <div className="text-xs text-gray-500"></div>
             </div>
           </div>
         </div>
