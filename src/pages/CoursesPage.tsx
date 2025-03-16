@@ -19,7 +19,6 @@ const allCourses = [
     students: 3500,
     duration: "3 months",
     rating: 4.8,
-    fee: "₹3,600",
     icon: "💻"
   },
   {
@@ -30,7 +29,6 @@ const allCourses = [
     students: 2200,
     duration: "4 months",
     rating: 4.7,
-    fee: "₹4,500",
     icon: "💻"
   },
   {
@@ -41,7 +39,6 @@ const allCourses = [
     students: 1800,
     duration: "3 months",
     rating: 4.6,
-    fee: "₹3,800",
     icon: "💻"
   },
   {
@@ -52,7 +49,6 @@ const allCourses = [
     students: 1500,
     duration: "4 months",
     rating: 4.9,
-    fee: "₹5,000",
     icon: "💻"
   },
   {
@@ -63,7 +59,6 @@ const allCourses = [
     students: 1200,
     duration: "4 months",
     rating: 4.5,
-    fee: "₹3,600",
     icon: "💻"
   },
   {
@@ -74,7 +69,6 @@ const allCourses = [
     students: 800,
     duration: "4 months",
     rating: 4.8,
-    fee: "₹3,200",
     icon: "💻"
   },
   
@@ -87,7 +81,6 @@ const allCourses = [
     students: 2800,
     duration: "2 months",
     rating: 4.7,
-    fee: "₹2,500",
     icon: "🖥️"
   },
   {
@@ -98,7 +91,6 @@ const allCourses = [
     students: 1900,
     duration: "3 months",
     rating: 4.8,
-    fee: "₹3,200",
     icon: "🖥️"
   },
   {
@@ -109,7 +101,6 @@ const allCourses = [
     students: 2100,
     duration: "2 months",
     rating: 4.6,
-    fee: "₹2,800",
     icon: "🖥️"
   },
   {
@@ -120,7 +111,6 @@ const allCourses = [
     students: 1700,
     duration: "1 month",
     rating: 4.5,
-    fee: "₹1,800",
     icon: "🖥️"
   },
   {
@@ -131,7 +121,6 @@ const allCourses = [
     students: 1100,
     duration: "2 months",
     rating: 4.9,
-    fee: "₹3,000",
     icon: "🖥️"
   },
   {
@@ -142,7 +131,6 @@ const allCourses = [
     students: 2400,
     duration: "2 months",
     rating: 4.8,
-    fee: "₹2,200",
     icon: "🖥️"
   },
   {
@@ -153,7 +141,6 @@ const allCourses = [
     students: 950,
     duration: "3 months",
     rating: 4.7,
-    fee: "₹3,500",
     icon: "🖥️"
   },
   {
@@ -164,7 +151,6 @@ const allCourses = [
     students: 850,
     duration: "2 months",
     rating: 4.6,
-    fee: "₹2,800",
     icon: "🖥️"
   },
   
@@ -177,7 +163,6 @@ const allCourses = [
     students: 1800,
     duration: "6 months",
     rating: 4.8,
-    fee: "₹5,500",
     icon: "🎓"
   },
   {
@@ -188,7 +173,6 @@ const allCourses = [
     students: 1500,
     duration: "8 months",
     rating: 4.9,
-    fee: "₹7,200",
     icon: "🎓"
   },
   {
@@ -199,7 +183,6 @@ const allCourses = [
     students: 1200,
     duration: "6 months",
     rating: 4.7,
-    fee: "₹6,000",
     icon: "🎓"
   },
   {
@@ -210,7 +193,6 @@ const allCourses = [
     students: 980,
     duration: "8 months",
     rating: 4.8,
-    fee: "₹7,500",
     icon: "🎓"
   },
   {
@@ -221,7 +203,6 @@ const allCourses = [
     students: 850,
     duration: "8 months",
     rating: 4.6,
-    fee: "₹7,000",
     icon: "🎓"
   },
   {
@@ -232,7 +213,6 @@ const allCourses = [
     students: 920,
     duration: "6 months",
     rating: 4.7,
-    fee: "₹5,800",
     icon: "🎓"
   },
   {
@@ -243,7 +223,6 @@ const allCourses = [
     students: 780,
     duration: "10 months",
     rating: 4.9,
-    fee: "₹8,500",
     icon: "🎓"
   },
   
@@ -256,7 +235,6 @@ const allCourses = [
     students: 1600,
     duration: "2 months",
     rating: 4.8,
-    fee: "₹3,000",
     icon: "📊"
   },
   {
@@ -267,7 +245,6 @@ const allCourses = [
     students: 1200,
     duration: "3 months",
     rating: 4.7,
-    fee: "₹4,200",
     icon: "📊"
   },
   {
@@ -278,7 +255,6 @@ const allCourses = [
     students: 1450,
     duration: "2 months",
     rating: 4.9,
-    fee: "₹3,500",
     icon: "📊"
   },
   {
@@ -289,7 +265,6 @@ const allCourses = [
     students: 950,
     duration: "2 months",
     rating: 4.6,
-    fee: "₹3,200",
     icon: "📊"
   },
   
@@ -302,7 +277,6 @@ const allCourses = [
     students: 1100,
     duration: "4 months",
     rating: 4.8,
-    fee: "₹6,000",
     icon: "⌨️"
   },
   {
@@ -313,7 +287,6 @@ const allCourses = [
     students: 850,
     duration: "3 months",
     rating: 4.9,
-    fee: "₹5,500",
     icon: "⌨️"
   },
   {
@@ -324,7 +297,6 @@ const allCourses = [
     students: 750,
     duration: "4 months",
     rating: 4.7,
-    fee: "₹6,500",
     icon: "⌨️"
   },
   {
@@ -335,7 +307,6 @@ const allCourses = [
     students: 680,
     duration: "5 months",
     rating: 4.8,
-    fee: "₹7,500",
     icon: "⌨️"
   },
   
@@ -348,7 +319,6 @@ const allCourses = [
     students: 1200,
     duration: "2 months",
     rating: 4.6,
-    fee: "₹3,500",
     icon: "🔧"
   },
   {
@@ -359,7 +329,6 @@ const allCourses = [
     students: 950,
     duration: "3 months",
     rating: 4.7,
-    fee: "₹4,800",
     icon: "🔧"
   },
   {
@@ -370,7 +339,6 @@ const allCourses = [
     students: 680,
     duration: "4 months",
     rating: 4.8,
-    fee: "₹6,000",
     icon: "🔧"
   },
   {
@@ -381,7 +349,6 @@ const allCourses = [
     students: 720,
     duration: "3 months",
     rating: 4.7,
-    fee: "₹4,500",
     icon: "🔧"
   },
   
@@ -394,7 +361,6 @@ const allCourses = [
     students: 1800,
     duration: "1 month",
     rating: 4.6,
-    fee: "₹1,500",
     icon: "⌨️"
   },
   {
@@ -405,7 +371,6 @@ const allCourses = [
     students: 2100,
     duration: "1 month",
     rating: 4.7,
-    fee: "₹1,500",
     icon: "⌨️"
   },
   {
@@ -416,7 +381,6 @@ const allCourses = [
     students: 1500,
     duration: "1 month",
     rating: 4.5,
-    fee: "₹1,500",
     icon: "⌨️"
   },
   
@@ -429,7 +393,6 @@ const allCourses = [
     students: 850,
     duration: "3 months",
     rating: 4.8,
-    fee: "₹4,500",
     icon: "🎨"
   },
   {
@@ -440,7 +403,6 @@ const allCourses = [
     students: 780,
     duration: "2 months",
     rating: 4.9,
-    fee: "₹3,800",
     icon: "🎨"
   },
   {
@@ -451,7 +413,6 @@ const allCourses = [
     students: 650,
     duration: "2 months",
     rating: 4.7,
-    fee: "₹3,500",
     icon: "🎨"
   }
 ];

@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { ArrowRight, Star, Users, Clock, BookOpen, Award, ChevronRight, User, Building, Laptop, Cpu } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -343,22 +344,26 @@ export const Testimonials = () => {
 export const GalleryPreview = () => {
   const galleryImages = [
     {
-      src: "/img-03.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
+      src: "/img-03.jpg",
+      alt: "mscit,tally, incite,programming,typing,klick,computer",
       title: "संगणक लॅब",
       views: 324
     },
     {
-      src: "/img-11.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
+      src: "/img-11.jpg",
+      alt: "mscit,tally, incite,programming,typing,klick,computer",
       title: "प्रोग्रामिंग सेशन",
       views: 219
     },
     {
-      src: "/img-06.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
+      src: "/img-06.jpg",
+      alt: "mscit,tally, incite,programming,typing,klick,computer",
       title: "विद्यार्थी कार्यशाळा",
       views: 187
     },
     {
-      src: "/img-04.jpg" alt="mscit,tally, incite,programming,typing,klick,computer",
+      src: "/img-04.jpg",
+      alt: "mscit,tally, incite,programming,typing,klick,computer",
       title: "प्लेसमेंट प्रशिक्षण",
       views: 156
     }
@@ -383,7 +388,7 @@ export const GalleryPreview = () => {
             >
               <img 
                 src={image.src} 
-                alt={image.title} 
+                alt={image.alt} 
                 className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
