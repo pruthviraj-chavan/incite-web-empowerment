@@ -46,11 +46,11 @@ export const Hero = () => {
                 alt="mscit,tally, incite,programming,typing,klick,computer" 
                 className="w-full h-auto rounded-lg object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent">No.1 Centre</div>
             </div>
             <div className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-blue w-48 animate-float">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue">5000+</div>
+                <div className="text-sm font-medium text-incite-blue">5000+ Students</div>
                 <Users size={16} className="text-incite-orange" />
               </div>
               <div className="text-2xl font-bold"></div>
