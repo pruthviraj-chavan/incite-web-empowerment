@@ -31,7 +31,7 @@ const AdPopup = () => {
           <div className="text-center">
             <div className="relative">
               <img 
-                src="/img-04.jpg" 
+                src="/m (1).jpeg" 
                 alt="Incite Computers Special Offer" 
                 className="w-full object-cover"
               />
