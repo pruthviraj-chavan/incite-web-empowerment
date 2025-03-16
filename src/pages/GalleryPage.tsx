@@ -60,12 +60,12 @@ const GalleryPage = () => {
       { id: 3, src: "/img-03.jpg", title: "Tech Quiz", date: "August 25, 2023", views: 186 }
     ],
     advertisements: [
-      { id: 1, src: "/img-04.jpg", title: "नवीन बॅच - २०२३", date: "जानेवारी १०, २०२३", views: 320 },
-      { id: 2, src: "/img-05.jpg", title: "एमएस-सीआयटी प्रवेश सुरू", date: "एप्रिल ५, २०२३", views: 285 },
-      { id: 3, src: "/img-06.jpg", title: "गणेशोत्सव स्पेशल ऑफर", date: "सप्टेंबर १, २०२३", views: 310 },
-      { id: 4, src: "/img-07.jpg", title: "दिवाळी धमाका ऑफर", date: "ऑक्टोबर २०, २०२३", views: 345 },
-      { id: 5, src: "/img-08.jpg", title: "उन्हाळी विशेष बॅच", date: "मे २, २०२३", views: 275 },
-      { id: 6, src: "/img-09.jpg", title: "टॅली विशेष प्रशिक्षण", date: "फेब्रुवारी १५, २०२३", views: 265 }
+      { id: 1, src: "/m1.jpeg", title: "नवीन बॅच - २०२३", date: "जानेवारी १०, २०२३", views: 320 },
+      { id: 2, src: "/m2.jpeg", title: "एमएस-सीआयटी प्रवेश सुरू", date: "एप्रिल ५, २०२३", views: 285 },
+      { id: 3, src: "/m3.jpeg", title: "गणेशोत्सव स्पेशल ऑफर", date: "सप्टेंबर १, २०२३", views: 310 },
+      { id: 4, src: "/m4.jpeg", title: "दिवाळी धमाका ऑफर", date: "ऑक्टोबर २०, २०२३", views: 345 },
+      { id: 5, src: "/m5.jpeg", title: "उन्हाळी विशेष बॅच", date: "मे २, २०२३", views: 275 },
+      { id: 6, src: "/m1.jpeg", title: "टॅली विशेष प्रशिक्षण", date: "फेब्रुवारी १५, २०२३", views: 265 }
     ]
   };
   
