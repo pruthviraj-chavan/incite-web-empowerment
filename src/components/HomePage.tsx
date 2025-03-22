@@ -131,7 +131,7 @@ export const CoursesOverview = () => {
       icon: <Laptop size={32} className="text-white" />,
       title: "एमएस-सीआयटी",
       description: "महाराष्ट्र स्टेट सर्टिफिकेट इन इन्फॉर्मेशन टेक्नॉलॉजी",
-      students: Incite,
+      students: 200,
       duration: "३ महिने",
       rating: 4.9
     },
@@ -139,7 +139,7 @@ export const CoursesOverview = () => {
       icon: <Cpu size={32} className="text-white" />,
       title: "के-लिक कोर्सेस",
       description: "नॉलेज ऑफ लिटरसी फॉर कंप्युटर्स इन कीस्टोन्स",
-      students: Incite,
+      students: 200,
       duration: "२-६ महिने",
       rating: 4.8
     },
@@ -147,7 +147,7 @@ export const CoursesOverview = () => {
       icon: <BookOpen size={32} className="text-white" />,
       title: "टॅली",
       description: "अकाउंटिंग आणि वित्तीय व्यवस्थापन सॉफ्टवेअर प्रशिक्षण",
-      students: Incite,
+      students: 200,
       duration: "२ महिने",
       rating: 4.7
     },
@@ -155,7 +155,7 @@ export const CoursesOverview = () => {
       icon: <Award size={32} className="text-white" />,
       title: "प्रोग्रामिंग",
       description: "सी, सी++, जावा आणि इतर प्रोग्रामिंग भाषा",
-      students: Incite,
+      students: 200,
       duration: "३-६ महिने",
       rating: 4.8
     },
