@@ -155,76 +155,38 @@ const allCourses = [
   },
   
   // KLiCK Diploma
-  {
-    id: "klickd-1",
-    category: "KLiCK Diploma",
-    title: "KLiCK Office Diploma",
-    description: "Comprehensive MS Office applications diploma",
-    students: 1800,
-    duration: "6 months",
-    rating: 4.8,
-    icon: "🎓"
-  },
-  {
-    id: "klickd-2",
-    category: "KLiCK Diploma",
-    title: "KLiCK IT Diploma",
-    description: "Complete information technology knowledge diploma",
-    students: 1500,
-    duration: "8 months",
-    rating: 4.9,
-    icon: "🎓"
-  },
-  {
-    id: "klickd-3",
-    category: "KLiCK Diploma",
-    title: "KLiCK Financial Accounting",
-    description: "Accounting software and financial management diploma",
-    students: 1200,
-    duration: "6 months",
-    rating: 4.7,
-    icon: "🎓"
-  },
-  {
-    id: "klickd-4",
-    category: "KLiCK Diploma",
-    title: "KLiCK Web Technologies",
-    description: "Web design, development and management diploma",
-    students: 980,
-    duration: "8 months",
-    rating: 4.8,
-    icon: "🎓"
-  },
-  {
-    id: "klickd-5",
-    category: "KLiCK Diploma",
-    title: "KLiCK Hardware & Networking",
-    description: "Computer hardware, networking and maintenance diploma",
-    students: 850,
-    duration: "8 months",
-    rating: 4.6,
-    icon: "🎓"
-  },
-  {
-    id: "klickd-6",
-    category: "KLiCK Diploma",
-    title: "KLiCK Advanced Office Management",
-    description: "Office management and advanced productivity tools",
-    students: 920,
-    duration: "6 months",
-    rating: 4.7,
-    icon: "🎓"
-  },
-  {
-    id: "klickd-7",
-    category: "KLiCK Diploma",
-    title: "KLiCK Multimedia & Design",
-    description: "Graphic design, animation and multimedia diploma",
-    students: 780,
-    duration: "10 months",
-    rating: 4.9,
-    icon: "🎓"
-  },
+  
+    {
+      "id": "klickd-1",
+      "category": "GCC-TBC Govt Typing",
+      "title": "Marathi 30, 40 , 50",
+      "description": "GCC-TBC Govt typing",
+      "students": 1800,
+      "duration": "6 months",
+      "rating": 4.8,
+      "icon": "🎓"
+    },
+    {
+      "id": "klickd-2",
+      "category": "GCC-TBC Govt Typing",
+      "title": "English 30 , 40 , 50",
+      "description": "GCC-TBC Govt typing",
+      "students": 1500,
+      "duration": "8 months",
+      "rating": 4.9,
+      "icon": "🎓"
+    },
+    {
+      "id": "klickd-3",
+      "category": "GCC-TBC Govt Typing",
+      "title": "Hindi 30, 40 , 50",
+      "description": "GCC-TBC Govt typing",
+      "students": 1200,
+      "duration": "6 months",
+      "rating": 4.7,
+      "icon": "🎓"
+    },
+    
   
   // KLiCK Tally
   {
@@ -355,34 +317,15 @@ const allCourses = [
   // MKCL Typing
   {
     id: "type-1",
-    category: "MKCL Typing",
-    title: "English Typing",
+    category: "Sarthi",
+    title: "Sarthi Govt Schemes",
     description: "English typing speed and accuracy training",
     students: 1800,
     duration: "1 month",
     rating: 4.6,
     icon: "⌨️"
   },
-  {
-    id: "type-2",
-    category: "MKCL Typing",
-    title: "Marathi Typing",
-    description: "Marathi typing training with regional keyboard layout",
-    students: 2100,
-    duration: "1 month",
-    rating: 4.7,
-    icon: "⌨️"
-  },
-  {
-    id: "type-3",
-    category: "MKCL Typing",
-    title: "Hindi Typing",
-    description: "Hindi typing training with Devnagari keyboard layout",
-    students: 1500,
-    duration: "1 month",
-    rating: 4.5,
-    icon: "⌨️"
-  },
+  
   
   // Designing
   {
@@ -421,11 +364,11 @@ const categories = [
   "All Courses",
   "MS-CIT",
   "KLiCK Courses",
-  "KLiCK Diploma",
+  "GCC-TBC Govt Typing",
   "KLiCK Tally",
   "Programming",
   "IT Hardware",
-  "MKCL Typing",
+  "Sarthi",
   "Designing"
 ];
 
