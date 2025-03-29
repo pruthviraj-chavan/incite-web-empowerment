@@ -4,6 +4,7 @@ import { Hero, Services, CoursesOverview, InspirationSection, Testimonials, Gall
 import OurTeam from '../components/OurTeam';
 import AdPopup from '../components/AdPopup';
 import MarketingPostersSection from '../components/MarketingPostersSection';
+import OurStaff from '../components/OurStaff';
 
 const HomePage = () => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const HomePage = () => {
       <MarketingPostersSection/>
       <InspirationSection />
       <OurTeam />
+      <OurStaff />
       <Testimonials />
       <GalleryPreview />
       <CTASection />
