@@ -4,42 +4,42 @@ const staffMembers = [
   {
     id: 1,
     name: "माधुरी कांबळे",
-    image: "/m1.jpg"
+    image: "/m1.png"
   },
   {
     id: 2,
     name: "सावित्री कांबळे",
-    image: "/m2.jpg"
+    image: "/m2.png"
   },
   {
     id: 3,
     name: "तैजैन तांबोली",
-    image: "/m3.jpg"
+    image: "/m3.png"
   },
   {
     id: 4,
     name: "श्रुति सुतार",
-    image: "/m4.jpg"
+    image: "/m4.png"
   },
   {
     id: 5,
     name: "मनाली पोवार",
-    image: "/m5.jpg"
+    image: "/m5.png"
   },
   {
     id: 6,
     name: "सानिका टेपुगडे",
-    image: "/m6.jpg"
+    image: "/m6.png"
   },
   {
     id: 7,
     name: "नाज ढोले",
-    image: "/m7.jpg"
+    image: "/m7.png"
   },
   {
     id: 8,
     name: "धनश्री चौगले",
-    image: "/m8.jpg"
+    image: "/m8.png"
   }
 ];
 
