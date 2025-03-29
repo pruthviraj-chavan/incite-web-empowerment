@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 const staffMembers = [
   {
     id: 1,
-    name: "माधुरी कामबळे",
+    name: "माधुरी कांबळे",
     image: "/madhuri.jpg"
   },
   {
     id: 2,
-    name: "सावित्री कामबळे",
+    name: "सावित्री कांबळे",
     image: "/savitri.jpg"
   },
   {
@@ -28,7 +28,7 @@ const staffMembers = [
   },
   {
     id: 6,
-    name: "सणीका टेपुगडे",
+    name: "सानिका टेपुगडे",
     image: "/sanika.jpg"
   },
   {
@@ -38,7 +38,7 @@ const staffMembers = [
   },
   {
     id: 8,
-    name: "धनश्री चौगुळे",
+    name: "धनश्री चौगले",
     image: "/dhanshree.jpg"
   }
 ];
