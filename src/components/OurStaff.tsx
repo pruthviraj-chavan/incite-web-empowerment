@@ -3,33 +3,43 @@ import { motion } from "framer-motion";
 const staffMembers = [
   {
     id: 1,
-    name: "सुधा पाटील",
-    image: "/sudha.jpg"
+    name: "माधुरी कामबळे",
+    image: "/madhuri.jpg"
   },
   {
     id: 2,
-    name: "रवींद्र शिंदे",
-    image: "/ravindra.jpg"
+    name: "सावित्री कामबळे",
+    image: "/savitri.jpg"
   },
   {
     id: 3,
-    name: "मीना कुलकर्णी",
-    image: "/meena.jpg"
+    name: "तैजैन तांबोली",
+    image: "/taijain.jpg"
   },
   {
     id: 4,
-    name: "अनिल देशपांडे",
-    image: "/anil.jpg"
+    name: "श्रुति सुतार",
+    image: "/shruti.jpg"
   },
   {
     id: 5,
-    name: "सुनीता जोशी",
-    image: "/sunita.jpg"
+    name: "मनाली पोवार",
+    image: "/manali.jpg"
   },
   {
     id: 6,
-    name: "सचिन गायकवाड",
-    image: "/sachin.jpg"
+    name: "सणीका टेपुगडे",
+    image: "/sanika.jpg"
+  },
+  {
+    id: 7,
+    name: "नाज ढोले",
+    image: "/naaj.jpg"
+  },
+  {
+    id: 8,
+    name: "धनश्री चौगुळे",
+    image: "/dhanshree.jpg"
   }
 ];
 
@@ -46,7 +56,7 @@ export const OurStaff = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {staffMembers.map((staff, index) => (
             <motion.div
               key={staff.id}
