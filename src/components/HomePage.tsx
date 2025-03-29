@@ -229,7 +229,7 @@ export const InspirationSection = () => {
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-teal-green">आमची प्रेरणा</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            श्री. जितेंद्र सातपुते यांची भेट घ्या, जगभरातील ९ देशांमध्ये शाखा असलेल्या जेएसएटी ऑटोमेशनचे संस्थापक आणि सीईओ
+            श्री. जितेंद्र सातपुते यांची भेट घ्या, जगभरातील ९ देशांमध्ये शाखा असलेल्या jsatautomation.com संस्थापक आणि सीईओ
           </p>
         </div>
         
@@ -275,19 +275,19 @@ export const InspirationSection = () => {
 export const Testimonials = () => {
   const testimonials = [
     {
-      name: "रोहित शर्मा",
+      name: "Sushant Vanjule",
       role: "एमएस-सीआयटी पदवीधर",
       image: "https://randomuser.me/api/portraits/men/32.jpg",
       quote: "इन्साइट कॉम्प्युटर्समधील एमएस-सीआयटी अभ्यासक्रमाने माझ्या करिअरच्या संभावनांचे पूर्णपणे परिवर्तन केले. मी शून्य संगणक ज्ञानापासून स्थानिक बँकेत नोकरी मिळवेपर्यंत पोहोचलो."
     },
     {
-      name: "प्रिया देसाई",
+      name: "Priya Powar",
       role: "टॅली कोर्स विद्यार्थिनी",
       image: "https://randomuser.me/api/portraits/women/44.jpg",
       quote: "इन्साइट कॉम्प्युटर्समध्ये टॅली शिकणे मी घेतलेल्या सर्वोत्तम निर्णयांपैकी एक होते. व्यावहारिक दृष्टिकोनामुळे मला पूर्ण झाल्यानंतर लगेच अकाउंट्स अॅसिस्टंट म्हणून नोकरी मिळवण्यात मदत झाली."
     },
     {
-      name: "सुनील पाटील",
+      name: "Mangesh Patil",
       role: "आयटी हार्डवेअर पदवीधर",
       image: "https://randomuser.me/api/portraits/men/67.jpg",
       quote: "प्रशिक्षक अत्यंत ज्ञानवान आणि धीर धरणारे आहेत. त्यांनी मला आयटी हार्डवेअरमध्ये एक मजबूत पाया तयार करण्यात मदत केली जो मी माझ्या दुरुस्ती व्यवसायात दररोज वापरतो."
