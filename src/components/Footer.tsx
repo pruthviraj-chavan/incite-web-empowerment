@@ -62,7 +62,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-200 mt-8 pt-6">
           <p className="text-center text-gray-500 text-sm">
-            © {currentYear} Incite Computers, Radhanagari. All rights reserved.
+            © {currentYear} Made By dieVektor.tech , Powered By Incite Computers, Radhanagari. All rights reserved.
           </p>
         </div>
       </div>
