@@ -1,12 +1,11 @@
-// src/components/MarketingPostersSection.jsx
+
 import React from "react";
 
 const MarketingPostersSection = () => {
   const posters = [
-    { id: 1, image: "/1.jpg", alt: "Artificial Intelligence" },
-    { id: 2, image: "/2.jpg", alt: "Batch 2024" },
-    { id: 3, image: "/3.jpg", alt: "Past Students" },
-   
+    { id: 1, image: "/1.jpg", alt: "Artificial Intelligence", width: 800, height: 1066 },
+    { id: 2, image: "/2.jpg", alt: "Batch 2024", width: 800, height: 1066 },
+    { id: 3, image: "/3.jpg", alt: "Past Students", width: 800, height: 1066 },
   ];
 
   return (
@@ -15,12 +14,17 @@ const MarketingPostersSection = () => {
         <h2 className="text-3xl font-bold text-center mb-8">Our Students</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {posters.map((poster) => (
-            <div key={poster.id} className="poster-card bg-white shadow-lg rounded-lg overflow-hidden">
-              <div className="aspect-[3/4]">
+            <div key={poster.id} className="poster-card bg-white shadow-lg rounded-lg overflow-hidden h-full">
+              <div className="aspect-[3/4] relative">
                 <img
                   src={poster.image}
                   alt={poster.alt}
+                  width={poster.width}
+                  height={poster.height}
+                  loading={poster.id === 1 ? "eager" : "lazy"}
+                  decoding={poster.id === 1 ? "sync" : "async"}
                   className="w-full h-full object-cover"
+                  fetchpriority={poster.id === 1 ? "high" : "auto"}
                 />
               </div>
               <div className="p-4">

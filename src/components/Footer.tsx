@@ -1,6 +1,7 @@
 
 import { MapPin, Phone, Mail, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
+import { lazy, Suspense } from "react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,7 +16,13 @@ const Footer = () => {
               Empowering Rural India with Digital Skills since 2001.
             </p>
             <div className="flex items-center space-x-4">
-              <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-incite-blue transition-colors">
+              <a 
+                href="https://wa.me/919423281767" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-600 hover:text-incite-blue transition-colors"
+                aria-label="WhatsApp contact"
+              >
                 <MessageSquare size={20} />
               </a>
             </div>
@@ -45,15 +52,15 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
-                <MapPin size={18} className="text-incite-blue mt-1 flex-shrink-0" />
+                <MapPin size={18} className="text-incite-blue mt-1 flex-shrink-0" aria-hidden="true" />
                 <span className="text-gray-600">Radhanagari, Maharashtra, India</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone size={18} className="text-incite-blue flex-shrink-0" />
+                <Phone size={18} className="text-incite-blue flex-shrink-0" aria-hidden="true" />
                 <span className="text-gray-600">+91 9423281767</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail size={18} className="text-incite-blue flex-shrink-0" />
+                <Mail size={18} className="text-incite-blue flex-shrink-0" aria-hidden="true" />
                 <span className="text-gray-600">contact@incitecomputers.in</span>
               </li>
             </ul>
