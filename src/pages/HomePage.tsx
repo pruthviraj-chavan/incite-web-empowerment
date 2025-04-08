@@ -1,12 +1,9 @@
 
 import { useEffect, lazy, Suspense } from 'react';
-import { Hero, Services, CoursesOverview, InspirationSection } from '../components/HomePage';
+import { Hero, Services, CoursesOverview, InspirationSection, Testimonials, GalleryPreview, CTASection } from '../components/HomePage';
 import AdPopup from '../components/AdPopup';
 
 // Lazy load less critical components
-const Testimonials = lazy(() => import('../components/HomePage/Testimonials'));
-const GalleryPreview = lazy(() => import('../components/HomePage/GalleryPreview'));
-const CTASection = lazy(() => import('../components/HomePage/CTASection'));
 const OurTeam = lazy(() => import('../components/OurTeam'));
 const MarketingPostersSection = lazy(() => import('../components/MarketingPostersSection'));
 const OurStaff = lazy(() => import('../components/OurStaff'));
@@ -27,8 +24,7 @@ const HomePage = () => {
       const viewportHeight = window.innerHeight;
       const prefetchTimeout = setTimeout(async () => {
         // Only prefetch if user stays on the page
-        const testimonialsImport = import('../components/HomePage/Testimonials');
-        const galleryImport = import('../components/HomePage/GalleryPreview');
+        // No need to prefetch components that are already imported directly
       }, 2000);
       
       return () => clearTimeout(prefetchTimeout);
@@ -59,17 +55,11 @@ const HomePage = () => {
         <OurStaff />
       </Suspense>
       
-      <Suspense fallback={<LoadingFallback />}>
-        <Testimonials />
-      </Suspense>
+      <Testimonials />
       
-      <Suspense fallback={<LoadingFallback />}>
-        <GalleryPreview />
-      </Suspense>
+      <GalleryPreview />
       
-      <Suspense fallback={<LoadingFallback />}>
-        <CTASection />
-      </Suspense>
+      <CTASection />
     </div>
   );
 };
