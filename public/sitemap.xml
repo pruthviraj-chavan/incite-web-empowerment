@@ -9,7 +9,13 @@
         <loc>https://incitecomputer.com/courses</loc>
         <loc>https://incitecomputer.com/about</loc>
         <loc>https://incitecomputer.com/contact</loc>
-        <lastmod>2024-07-04</lastmod>
+        <loc>https://incitecomputer.com/blog</loc>
+        <loc>https://incitecomputer.com/gallery</loc>
+        <loc>https://incitecomputer.com/ai-tools</loc>
+        <loc>https://incitecomputer.com/internship</loc>
+        
+        
+        <lastmod>2024-08-06</lastmod>
         <priority>0.8</priority>
     </url>
 </urlset>
