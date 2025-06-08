@@ -109,6 +109,10 @@ const InternshipPage = () => {
               </div>
               <div className="flex items-center bg-white rounded-lg px-4 py-2 shadow-md">
                 <Phone className="text-green-600 mr-2" size={20} />
+                <span className="font-semibold">7276457181</span>
+              </div>
+              <div className="flex items-center bg-white rounded-lg px-4 py-2 shadow-md">
+                <Phone className="text-green-600 mr-2" size={20} />
                 <span className="font-semibold">8263031055</span>
               </div>
             </div>
