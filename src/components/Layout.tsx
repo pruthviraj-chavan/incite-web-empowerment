@@ -32,37 +32,42 @@ const Layout = () => {
     }
   }, [location.pathname]);
 
-  // Animation variants for page transition - simplified
+  // Animation variants for page transition
   const pageVariants = {
     initial: {
       opacity: 0,
+      y: 20,
     },
     in: {
       opacity: 1,
+      y: 0,
     },
     out: {
       opacity: 0,
+      y: -20,
     },
   };
 
   const pageTransition = {
     type: "tween",
-    duration: 0.3,
+    duration: 0.4,
+    ease: "easeInOut",
   };
 
-  // Optimized with useMemo - fewer and more efficient gradient elements
+  // Enhanced gradient elements with more dynamic animations
   const gradientElements = useMemo(() => [
-    { width: 280, height: 280, top: "5%", left: "-5%", delay: 0, duration: 20 },
-    { width: 230, height: 230, bottom: "15%", right: "-5%", delay: 2, duration: 22 },
+    { width: 320, height: 320, top: "5%", left: "-8%", delay: 0, duration: 25 },
+    { width: 280, height: 280, bottom: "10%", right: "-6%", delay: 3, duration: 28 },
+    { width: 200, height: 200, top: "50%", left: "80%", delay: 6, duration: 22 },
   ], []);
 
   return (
-    <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Background gradient elements - reduced number and simplified animation */}
+    <div className="flex flex-col min-h-screen relative overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20">
+      {/* Enhanced background gradient elements */}
       {gradientElements.map((el, i) => (
         <motion.div
           key={i}
-          className={`fixed blur-[120px] rounded-full opacity-10 z-0 ${gradientType}`}
+          className={`fixed blur-[140px] rounded-full opacity-15 z-0 ${gradientType}`}
           style={{
             width: el.width,
             height: el.height,
@@ -72,18 +77,42 @@ const Layout = () => {
             bottom: el.bottom,
           }}
           animate={{
-            x: [0, 20, 0],
-            y: [0, 10, 0],
+            x: [0, 30, -10, 0],
+            y: [0, -20, 15, 0],
+            scale: [1, 1.1, 0.9, 1],
           }}
           transition={{
             duration: el.duration,
             repeat: Infinity,
             repeatType: "reverse",
-            ease: "linear",
+            ease: "easeInOut",
             delay: el.delay,
           }}
         />
       ))}
+
+      {/* Floating particles animation */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-gradient-to-r from-incite-blue to-incite-purple rounded-full opacity-30"
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${30 + i * 10}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 8 + i * 2,
+              repeat: Infinity,
+              delay: i * 1.5,
+            }}
+          />
+        ))}
+      </div>
 
       <Navbar />
       <motion.main 

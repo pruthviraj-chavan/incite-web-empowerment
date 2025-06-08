@@ -27,22 +27,22 @@
   --incite-cyan-light: #4dd0e1;
 }
 
-/* Custom Utility Classes */
+/* Enhanced Custom Utility Classes */
 @layer components {
   .page-fade-in {
     @apply animate-fadeIn;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-incite-blue to-incite-purple bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-incite-blue via-incite-purple to-incite-blue bg-clip-text text-transparent animate-gradient;
   }
   
   .gradient-text-orange {
-    @apply bg-gradient-to-r from-incite-orange to-incite-pink bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-incite-orange via-incite-pink to-incite-orange bg-clip-text text-transparent animate-gradient;
   }
   
   .gradient-text-green {
-    @apply bg-gradient-to-r from-incite-green to-incite-teal bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-incite-green via-incite-teal to-incite-green bg-clip-text text-transparent animate-gradient;
   }
 
   .gradient-blue {
@@ -105,33 +105,45 @@
     @apply bg-gradient-to-r from-incite-cyan to-incite-teal;
   }
 
+  .gradient-blue-to-orange {
+    @apply bg-gradient-to-br from-incite-blue via-incite-purple to-incite-orange;
+  }
+
+  .gradient-green-blue {
+    @apply bg-gradient-to-br from-incite-green via-incite-teal to-incite-blue;
+  }
+
+  .gradient-purple-blue {
+    @apply bg-gradient-to-r from-incite-purple to-incite-blue;
+  }
+
   .shadow-blue {
-    @apply shadow-lg shadow-blue-500/20;
+    @apply shadow-xl shadow-blue-500/25;
   }
   
   .shadow-orange {
-    @apply shadow-lg shadow-orange-500/20;
+    @apply shadow-xl shadow-orange-500/25;
   }
   
   .shadow-purple {
-    @apply shadow-lg shadow-purple-500/20;
+    @apply shadow-xl shadow-purple-500/25;
   }
   
   .shadow-pink {
-    @apply shadow-lg shadow-pink-500/20;
+    @apply shadow-xl shadow-pink-500/25;
   }
 
   .hero-gradient {
-    @apply bg-gradient-to-b from-white via-blue-50 to-white;
+    @apply bg-gradient-to-br from-white via-blue-50/50 to-purple-50/30;
   }
 
   .btn-hover {
-    @apply hover:shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-1;
+    @apply hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-105;
   }
   
-  /* Glass morphism effect */
+  /* Enhanced Glass morphism effect */
   .glass {
-    @apply bg-white/70 backdrop-blur-md;
+    @apply bg-white/70 backdrop-blur-xl border border-white/30 shadow-2xl;
   }
   
   /* Aspect ratio utilities for responsive video embedding */
@@ -151,25 +163,137 @@
     width: 100%;
     height: 100%;
   }
+
+  /* Enhanced hover effects */
+  .image-hover {
+    @apply transform transition-all duration-500 hover:scale-105 hover:shadow-2xl;
+  }
+
+  .card-hover {
+    @apply transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2;
+  }
+
+  /* Floating animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 3s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }
 
-/* Animation keyframes */
+/* Enhanced Animation keyframes */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(30px);
   }
   to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
 @layer utilities {
   .animate-fadeIn {
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInFromLeft 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInFromRight 0.6s ease-out;
+  }
+
+  .animate-zoom-in {
+    animation: zoomIn 0.5s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: slideInFromRight 0.8s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
   }
 }
 
-/* Add Tailwind colors */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add Tailwind colors and responsive design enhancements */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -232,4 +356,37 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
+}
+
+/* Smooth scrolling and enhanced responsive design */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .hero-gradient {
+    @apply py-16;
+  }
+  
+  .gradient-text {
+    @apply text-3xl;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-incite-blue to-incite-purple rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-incite-purple to-incite-pink;
 }

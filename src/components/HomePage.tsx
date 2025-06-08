@@ -1,9 +1,73 @@
-
 import { useEffect } from 'react';
-import { ArrowRight, Star, Users, Clock, BookOpen, Award, ChevronRight, User, Building, Laptop, Cpu } from 'lucide-react';
+import { ArrowRight, Star, Users, Clock, BookOpen, Award, ChevronRight, User, Building, Laptop, Cpu, Code, Calculator, FileText, Keyboard, Brain, Monitor } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-// Hero Section
+// Animated Course Icons Section
+export const AnimatedCourseIcons = () => {
+  const courseIcons = [
+    { icon: <Monitor size={48} />, name: "MS-CIT", color: "text-blue-500" },
+    { icon: <Keyboard size={48} />, name: "Typing", color: "text-green-500" },
+    { icon: <Calculator size={48} />, name: "Tally", color: "text-orange-500" },
+    { icon: <Code size={48} />, name: "Programming", color: "text-purple-500" },
+    { icon: <Brain size={48} />, name: "AI Tools", color: "text-pink-500" },
+    { icon: <FileText size={48} />, name: "MKCL", color: "text-teal-500" },
+  ];
+
+  return (
+    <section className="py-16 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">आमचे अभ्यासक्रम</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            आधुनिक तंत्रज्ञानातील सर्वोत्तम अभ्यासक्रम आणि प्रशिक्षण
+          </p>
+        </motion.div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          {courseIcons.map((course, index) => (
+            <motion.div
+              key={course.name}
+              initial={{ opacity: 0, scale: 0.5, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ 
+                duration: 0.6,
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ 
+                scale: 1.1,
+                rotateY: 10,
+                z: 50
+              }}
+              className="flex flex-col items-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/50"
+            >
+              <motion.div
+                className={`${course.color} mb-4 group-hover:scale-110 transition-transform duration-300`}
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                {course.icon}
+              </motion.div>
+              <h3 className="text-lg font-semibold text-gray-800 group-hover:gradient-text transition-all duration-300">
+                {course.name}
+              </h3>
+              <div className="mt-2 w-12 h-1 bg-gradient-to-r from-incite-blue to-incite-purple rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Enhanced Hero Section
 export const Hero = () => {
   const handleEnrollNow = () => {
     window.open("https://wa.me/919423281767?text=नमस्कार,%20मला%20इन्साईट%20कंप्युटर्स%20कोर्सेसमध्ये%20रुची%20आहे.%20कृपया%20अधिक%20माहिती%20द्या.", "_blank");
@@ -11,67 +75,144 @@ export const Hero = () => {
 
   return (
     <section className="hero-gradient relative overflow-hidden py-20 md:py-28">
+      {/* Floating elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-20 h-20 opacity-10"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 15, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 10 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 1.5,
+            }}
+          >
+            <div className="w-full h-full rounded-full bg-gradient-to-r from-incite-blue to-incite-purple"></div>
+          </motion.div>
+        ))}
+      </div>
+
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 text-left mb-12 md:mb-0 animate-fade-in">
-            <div className="inline-block mb-4 px-4 py-1 bg-incite-blue-light/10 text-incite-blue rounded-full text-sm font-medium">
-              २००१ पासून
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">ग्रामीण भारताला</span> <br />
-              <span className="gradient-text-orange">डिजिटल कौशल्यांसह सक्षम करणे!</span>
-            </h1>
-            <p className="text-gray-700 mb-8 text-lg max-w-xl">
-             Incite Computers, सन 2001 मध्ये राधानगरी येथे सुरू झालेले एक प्रतिष्ठित संस्थान, जे ग्रामीण भागातील विद्यार्थ्यांसाठी तंत्रज्ञानाच्या संधी निर्माण करत आहे.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button 
-                onClick={handleEnrollNow}
-                className="gradient-purple-pink text-white rounded-full px-8 py-3 font-medium shadow-blue flex items-center btn-hover"
-              >
-                आता नोंदणी करा <ArrowRight size={18} className="ml-2" />
-              </button>
+        <motion.div 
+          className="md:w-1/2 text-left mb-12 md:mb-0"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="inline-block mb-4 px-4 py-1 bg-incite-blue-light/10 text-incite-blue rounded-full text-sm font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            २००१ पासून
+          </motion.div>
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <span className="gradient-text">ग्रामीण भारताला</span> <br />
+            <span className="gradient-text-orange">डिजिटल कौशल्यांसह सक्षम करणे!</span>
+          </motion.h1>
+          <motion.p 
+            className="text-gray-700 mb-8 text-lg max-w-xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+          >
+           Incite Computers, सन 2001 मध्ये राधानगरी येथे सुरू झालेले एक प्रतिष्ठित संस्थान, जे ग्रामीण भागातील विद्यार्थ्यांसाठी तंत्रज्ञानाच्या संधी निर्माण करत आहे.
+          </motion.p>
+          <motion.div 
+            className="flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+          >
+            <motion.button 
+              onClick={handleEnrollNow}
+              className="gradient-purple-pink text-white rounded-full px-8 py-3 font-medium shadow-lg flex items-center btn-hover"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              आता नोंदणी करा <ArrowRight size={18} className="ml-2" />
+            </motion.button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <Link 
                 to="/courses" 
-                className="bg-white text-incite-blue border border-incite-blue rounded-full px-8 py-3 font-medium flex items-center btn-hover"
+                className="bg-white text-incite-blue border border-incite-blue rounded-full px-8 py-3 font-medium flex items-center btn-hover shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 अभ्यासक्रम शोधा <ChevronRight size={18} className="ml-2" />
               </Link>
-            </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+        <motion.div 
+          className="md:w-1/2 relative"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="relative overflow-hidden rounded-lg shadow-2xl shadow-blue-500/30">
+            <motion.img 
+              src="/p.jpeg" 
+              alt="mscit,tally, incite,programming,typing,klick,computer" 
+              className="w-full h-auto rounded-lg object-cover"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
           </div>
-          <div className="md:w-1/2 relative animate-fade-in-right">
-            <div className="relative overflow-hidden rounded-lg shadow-blue">
-              <img 
-                src="/p.jpeg" 
-                alt="mscit,tally, incite,programming,typing,klick,computer" 
-                className="w-full h-auto rounded-lg object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          
+          {/* Floating stats cards */}
+          <motion.div 
+            className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-2xl shadow-blue-500/30 w-48"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+            whileHover={{ scale: 1.05, rotateY: 5 }}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-sm font-medium text-incite-blue">5000+ Students</div>
+              <Users size={16} className="text-incite-orange" />
             </div>
-            <div className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-blue w-48 animate-float">
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue">5000+ Students</div>
-                <Users size={16} className="text-incite-orange" />
-              </div>
-              <div className="text-2xl font-bold"></div>
-              <div className="text-xs text-gray-500"></div>
+            <div className="text-2xl font-bold gradient-text">Success Stories</div>
+          </motion.div>
+          
+          <motion.div 
+            className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-2xl shadow-orange-500/30 w-52"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4 }}
+            whileHover={{ scale: 1.05, rotateY: -5 }}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-sm font-medium text-incite-blue">No.1 Training Centre</div>
+              <Award size={16} className="text-incite-orange" />
             </div>
-            <div className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-orange w-52 animate-float">
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-medium text-incite-blue">No.1 Training Centre</div>
-                <Award size={16} className="text-incite-orange" />
-              </div>
-              <div className="text-2xl font-bold"></div>
-              <div className="text-xs text-gray-500"></div>
-            </div>
-          </div>
-        </div>
+            <div className="text-2xl font-bold gradient-text-orange">Excellence</div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-// Services Section
+// Services Section with enhanced animations
 export const Services = () => {
   const services = [
     {
@@ -99,24 +240,40 @@ export const Services = () => {
   return (
     <section className="py-20 bg-gradient-to-b from-white via-purple-50 to-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-purple-blue">आमच्या सेवा</h2>
           <p className="text-gray-600 max-w-3xl mx-auto">
             इन्साइट कॉम्प्युटर्समध्ये दिल्या जाणाऱ्या संगणक प्रशिक्षण आणि शैक्षणिक सेवांची व्यापक श्रेणी शोधा
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div 
+            <motion.div 
               key={index} 
-              className="bg-white p-8 rounded-xl shadow-md hover:shadow-blue transition-all duration-300 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/50"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, rotateY: 5 }}
             >
-              <div className="mb-6">{service.icon}</div>
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+              <motion.div 
+                className="mb-6 group-hover:scale-110 transition-transform duration-300"
+                whileHover={{ rotate: 10 }}
+              >
+                {service.icon}
+              </motion.div>
+              <h3 className="text-xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>
-            </div>
+              <div className="mt-4 w-12 h-1 bg-gradient-to-r from-incite-blue to-incite-purple rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -459,10 +616,10 @@ const HomePage = () => {
   return (
     <div className="page-fade-in">
       <Hero />
+      <AnimatedCourseIcons />
       <Services />
       <CoursesOverview />
       <InspirationSection />
-      {/* OurTeam component is imported and used in HomePage.tsx */}
       <Testimonials />
       <GalleryPreview />
       <CTASection />
