@@ -8,33 +8,20 @@ const OurTeam = lazy(() => import('../components/OurTeam'));
 const MarketingPostersSection = lazy(() => import('../components/MarketingPostersSection'));
 const OurStaff = lazy(() => import('../components/OurStaff'));
 
-// Loading fallback
+// Simplified loading fallback
 const LoadingFallback = () => (
-  <div className="w-full py-8 flex justify-center">
-    <div className="animate-pulse bg-gray-200 rounded-lg w-full max-w-4xl h-64"></div>
+  <div className="w-full py-6 flex justify-center">
+    <div className="bg-gray-100 rounded-lg w-full max-w-4xl h-32"></div>
   </div>
 );
 
 const HomePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-    // Prefetch some components that are likely to be viewed
-    const prefetchComponents = async () => {
-      const viewportHeight = window.innerHeight;
-      const prefetchTimeout = setTimeout(async () => {
-        // Only prefetch if user stays on the page
-        // No need to prefetch components that are already imported directly
-      }, 2000);
-      
-      return () => clearTimeout(prefetchTimeout);
-    };
-    
-    prefetchComponents();
   }, []);
 
   return (
-    <div className="page-fade-in">
+    <div>
       <AdPopup />
       <Hero />
       <Services />
