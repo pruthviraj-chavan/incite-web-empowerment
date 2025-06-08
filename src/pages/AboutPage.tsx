@@ -13,7 +13,7 @@ const AboutPage = () => {
     {
       id: 2,
       name: "Sumit Chavan",
-      role: "Co-founder & Training Head",
+      role: "Management Head",
       bio: "अभ्यासक्रम आणि प्रशिक्षण पद्धती विकसित करण्यात महत्त्वाची भूमिका निभावली.",
       image: "/sumit.jpg"
     },
