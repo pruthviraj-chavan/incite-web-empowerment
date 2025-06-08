@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +22,23 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
@@ -35,47 +51,36 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={cn(
-        "fixed w-full z-50 transition-all duration-500",
-        scrolled
-          ? "glass py-2 shadow-2xl shadow-blue-500/20 backdrop-blur-xl border-b border-white/20"
-          : "bg-white/80 backdrop-blur-sm py-4 shadow-lg shadow-blue-500/10"
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <NavLink to="/" className="flex items-center gap-3 group">
-          <motion.img
-            src="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png"
-            alt="Incite Computers Logo"
-            className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110"
-            whileHover={{ rotate: 5 }}
-          />
-          <motion.span 
-            className="text-2xl font-bold gradient-text transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-          >
-            Incite Computers
-          </motion.span>
-        </NavLink>
+    <>
+      <nav
+        className={cn(
+          "fixed w-full z-50 transition-all duration-300",
+          scrolled
+            ? "glass py-2 shadow-xl shadow-blue-500/10 backdrop-blur-xl border-b border-white/20"
+            : "bg-white/90 backdrop-blur-sm py-3 shadow-lg shadow-blue-500/5"
+        )}
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <NavLink to="/" className="flex items-center gap-2 group z-10">
+            <img
+              src="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png"
+              alt="Incite Computers Logo"
+              className="h-10 w-10 sm:h-12 sm:w-12 object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="text-lg sm:text-xl lg:text-2xl font-bold gradient-text">
+              Incite Computers
+            </span>
+          </NavLink>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex space-x-8">
-          {navLinks.map((link, index) => (
-            <motion.div
-              key={link.name}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-6">
+            {navLinks.map((link) => (
               <NavLink
+                key={link.name}
                 to={link.to}
                 className={({ isActive }) =>
                   cn(
-                    "font-medium transition-all duration-300 hover:text-incite-blue-dark relative group px-3 py-2 rounded-lg",
+                    "font-medium transition-all duration-300 hover:text-incite-blue-dark relative group px-3 py-2 rounded-lg text-sm",
                     isActive
                       ? "gradient-text font-semibold bg-gradient-to-r from-incite-blue/10 to-incite-purple/10"
                       : "text-gray-700 hover:bg-gradient-to-r hover:from-incite-blue/5 hover:to-incite-purple/5"
@@ -85,88 +90,89 @@ const Navbar = () => {
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-incite-blue to-incite-purple transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></span>
               </NavLink>
-            </motion.div>
-          ))}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            <Button className="gradient-blue text-white ml-4 btn-hover shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+            ))}
+            <Button className="gradient-blue text-white ml-4 shadow-lg hover:shadow-xl transition-all duration-300 text-sm">
               <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer">
                 Enroll Now
               </a>
             </Button>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Mobile Navigation Toggle */}
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          className="lg:hidden text-gray-700 focus:outline-none p-2 rounded-lg hover:bg-incite-blue/10 transition-colors duration-300"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
+          {/* Mobile Navigation Toggle */}
+          <button
+            className="lg:hidden text-gray-700 focus:outline-none p-2 rounded-lg hover:bg-incite-blue/10 transition-colors duration-300 z-10"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+            aria-label="Toggle navigation menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.div>
-        </motion.button>
-      </div>
+          </button>
+        </div>
 
-      {/* Mobile Menu */}
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ 
-          opacity: isOpen ? 1 : 0, 
-          height: isOpen ? "auto" : 0 
-        }}
-        transition={{ duration: 0.3 }}
-        className="lg:hidden overflow-hidden"
-      >
+        {/* Mobile Menu Overlay */}
         {isOpen && (
-          <div className="glass shadow-2xl shadow-blue-500/20 border-t border-white/20 backdrop-blur-xl">
-            <div className="container mx-auto px-4 py-6 flex flex-col space-y-4">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <NavLink
-                    to={link.to}
-                    className={({ isActive }) =>
-                      cn(
-                        "px-4 py-3 rounded-xl font-medium transition-all duration-300 block",
-                        isActive
-                          ? "gradient-text font-semibold bg-gradient-to-r from-incite-blue/20 to-incite-purple/20"
-                          : "text-gray-700 hover:bg-gradient-to-r hover:from-incite-blue/10 hover:to-incite-purple/10"
-                      )
-                    }
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </NavLink>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden" />
+        )}
+
+        {/* Mobile Menu */}
+        <div
+          className={cn(
+            "fixed top-0 right-0 h-full w-80 max-w-[85vw] glass shadow-2xl transform transition-transform duration-300 z-50 lg:hidden",
+            isOpen ? "translate-x-0" : "translate-x-full"
+          )}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex flex-col h-full">
+            <div className="flex justify-between items-center p-4 border-b border-white/20">
+              <span className="text-lg font-bold gradient-text">Menu</span>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-2 rounded-lg hover:bg-incite-blue/10 transition-colors duration-300"
+                aria-label="Close menu"
               >
-                <Button className="gradient-blue text-white btn-hover w-full shadow-lg hover:shadow-xl transition-all duration-300">
-                  <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="w-full">
-                    Enroll Now
-                  </a>
-                </Button>
-              </motion.div>
+                <X size={20} />
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto py-4">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.to}
+                  className={({ isActive }) =>
+                    cn(
+                      "block px-6 py-4 font-medium transition-all duration-300 border-b border-white/10",
+                      isActive
+                        ? "gradient-text font-semibold bg-gradient-to-r from-incite-blue/20 to-incite-purple/20"
+                        : "text-gray-700 hover:bg-gradient-to-r hover:from-incite-blue/10 hover:to-incite-purple/10"
+                    )
+                  }
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+            
+            <div className="p-4 border-t border-white/20">
+              <Button 
+                className="gradient-blue text-white w-full shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="w-full">
+                  Enroll Now
+                </a>
+              </Button>
             </div>
           </div>
-        )}
-      </motion.div>
-    </motion.nav>
+        </div>
+      </nav>
+      
+      {/* Spacer to prevent content overlap */}
+      <div className="h-16 sm:h-20"></div>
+    </>
   );
 };
 
