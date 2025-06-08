@@ -211,7 +211,7 @@ export const Hero = () => {
                   <div className="text-sm font-medium text-incite-blue">No.1 Training Centre</div>
                   <Award size={16} className="text-incite-orange" />
                 </div>
-                <div className="text-2xl font-bold gradient-text-orange">Excellence</div>
+{/*                 <div className="text-2xl font-bold gradient-text-orange">Excellence</div> */}
               </motion.div>
             </div>
           </motion.div>
