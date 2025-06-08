@@ -199,7 +199,7 @@ const InternshipPage = () => {
               <h3 className="font-semibold mb-2">Call Us</h3>
               <p className="text-gray-600">
                 <a href="tel:+919423281767" className="hover:text-blue-600">9423281767</a><br />
-                <a href="tel:+918263031055" className="hover:text-blue-600">8263031055</a>
+                <a href="tel:+918263031055" className="hover:text-blue-600">7276457181</a>
               </p>
             </div>
             
@@ -231,7 +231,7 @@ const InternshipPage = () => {
             </Button>
             <Button variant="outline">
               <a href="https://wa.me/918263031055" target="_blank" rel="noopener noreferrer">
-                WhatsApp - 8263031055
+                WhatsApp - 7276457181
               </a>
             </Button>
           </div>
