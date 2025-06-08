@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { ArrowRight, Star, Users, Clock, BookOpen, Award, ChevronRight, User, Building, Laptop, Cpu, Code, Calculator, FileText, Keyboard, Brain, Monitor } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -67,7 +67,7 @@ export const AnimatedCourseIcons = () => {
   );
 };
 
-// Enhanced Hero Section
+// Enhanced Hero Section with Two-Column Layout
 export const Hero = () => {
   const handleEnrollNow = () => {
     window.open("https://wa.me/919423281767?text=नमस्कार,%20मला%20इन्साईट%20कंप्युटर्स%20कोर्सेसमध्ये%20रुची%20आहे.%20कृपया%20अधिक%20माहिती%20द्या.", "_blank");
@@ -103,110 +103,119 @@ export const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4">
-        <motion.div 
-          className="md:w-1/2 text-left mb-12 md:mb-0"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Text Content */}
           <motion.div 
-            className="inline-block mb-4 px-4 py-1 bg-incite-blue-light/10 text-incite-blue rounded-full text-sm font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            className="text-left order-2 lg:order-1"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            २००१ पासून
-          </motion.div>
-          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <span className="gradient-text">ग्रामीण भारताला</span> <br />
-            <span className="gradient-text-orange">डिजिटल कौशल्यांसह सक्षम करणे!</span>
-          </motion.h1>
-          <motion.p 
-            className="text-gray-700 mb-8 text-lg max-w-xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-           Incite Computers, सन 2001 मध्ये राधानगरी येथे सुरू झालेले एक प्रतिष्ठित संस्थान, जे ग्रामीण भागातील विद्यार्थ्यांसाठी तंत्रज्ञानाच्या संधी निर्माण करत आहे.
-          </motion.p>
-          <motion.div 
-            className="flex flex-wrap gap-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-          >
-            <motion.button 
-              onClick={handleEnrollNow}
-              className="gradient-purple-pink text-white rounded-full px-8 py-3 font-medium shadow-lg flex items-center btn-hover"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <motion.div 
+              className="inline-block mb-4 px-4 py-1 bg-incite-blue-light/10 text-incite-blue rounded-full text-sm font-medium"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
             >
-              आता नोंदणी करा <ArrowRight size={18} className="ml-2" />
-            </motion.button>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              २००१ पासून
+            </motion.div>
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
             >
-              <Link 
-                to="/courses" 
-                className="bg-white text-incite-blue border border-incite-blue rounded-full px-8 py-3 font-medium flex items-center btn-hover shadow-lg hover:shadow-xl transition-all duration-300"
+              <span className="gradient-text">ग्रामीण भारताला</span> <br />
+              <span className="gradient-text-orange">डिजिटल कौशल्यांसह सक्षम करणे!</span>
+            </motion.h1>
+            <motion.p 
+              className="text-gray-700 mb-8 text-lg max-w-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
+             Incite Computers, सन 2001 मध्ये राधानगरी येथे सुरू झालेले एक प्रतिष्ठित संस्थान, जे ग्रामीण भागातील विद्यार्थ्यांसाठी तंत्रज्ञानाच्या संधी निर्माण करत आहे.
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+            >
+              <motion.button 
+                onClick={handleEnrollNow}
+                className="gradient-purple-pink text-white rounded-full px-8 py-3 font-medium shadow-lg flex items-center justify-center btn-hover"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                अभ्यासक्रम शोधा <ChevronRight size={18} className="ml-2" />
-              </Link>
+                आता नोंदणी करा <ArrowRight size={18} className="ml-2" />
+              </motion.button>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link 
+                  to="/courses" 
+                  className="bg-white text-incite-blue border border-incite-blue rounded-full px-8 py-3 font-medium flex items-center justify-center btn-hover shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  अभ्यासक्रम शोधा <ChevronRight size={18} className="ml-2" />
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
-        <motion.div 
-          className="md:w-1/2 relative"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="relative overflow-hidden rounded-lg shadow-2xl shadow-blue-500/30">
-            <motion.img 
-              src="/p.jpeg" 
-              alt="mscit,tally, incite,programming,typing,klick,computer" 
-              className="w-full h-auto rounded-lg object-cover"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
-          
-          {/* Floating stats cards */}
+
+          {/* Right Column - Image */}
           <motion.div 
-            className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-2xl shadow-blue-500/30 w-48"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-            whileHover={{ scale: 1.05, rotateY: 5 }}
+            className="relative order-1 lg:order-2"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-sm font-medium text-incite-blue">5000+ Students</div>
-              <Users size={16} className="text-incite-orange" />
+            <div className="relative">
+              <motion.div
+                className="relative overflow-hidden rounded-2xl shadow-2xl shadow-blue-500/30"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img 
+                  src="/p.jpeg" 
+                  alt="mscit,tally, incite,programming,typing,klick,computer" 
+                  className="w-full h-auto object-cover rounded-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+              </motion.div>
+              
+              {/* Floating stats cards */}
+              <motion.div 
+                className="absolute -bottom-6 -left-6 glass rounded-lg p-4 shadow-2xl shadow-blue-500/30 w-48"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 }}
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-sm font-medium text-incite-blue">5000+ Students</div>
+                  <Users size={16} className="text-incite-orange" />
+                </div>
+                <div className="text-2xl font-bold gradient-text">Success Stories</div>
+              </motion.div>
+              
+              <motion.div 
+                className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-2xl shadow-orange-500/30 w-52"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4 }}
+                whileHover={{ scale: 1.05, rotateY: -5 }}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-sm font-medium text-incite-blue">No.1 Training Centre</div>
+                  <Award size={16} className="text-incite-orange" />
+                </div>
+                <div className="text-2xl font-bold gradient-text-orange">Excellence</div>
+              </motion.div>
             </div>
-            <div className="text-2xl font-bold gradient-text">Success Stories</div>
           </motion.div>
-          
-          <motion.div 
-            className="absolute -top-8 -right-4 glass rounded-lg p-4 shadow-2xl shadow-orange-500/30 w-52"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4 }}
-            whileHover={{ scale: 1.05, rotateY: -5 }}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-sm font-medium text-incite-blue">No.1 Training Centre</div>
-              <Award size={16} className="text-incite-orange" />
-            </div>
-            <div className="text-2xl font-bold gradient-text-orange">Excellence</div>
-          </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
