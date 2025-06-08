@@ -19,8 +19,12 @@ const Layout = () => {
       setGradientType("gradient-orange-pink");
     } else if (location.pathname === "/gallery") {
       setGradientType("gradient-green-blue");
-    } else if (location.pathname === "/vishwakarma") {
-      setGradientType("gradient-yellow-orange");
+    } else if (location.pathname === "/blog" || location.pathname.startsWith("/blog/")) {
+      setGradientType("gradient-blue-purple");
+    } else if (location.pathname === "/ai-tools") {
+      setGradientType("gradient-purple-pink");
+    } else if (location.pathname === "/internship") {
+      setGradientType("gradient-green-blue");
     } else if (location.pathname === "/contact") {
       setGradientType("gradient-cyan");
     } else {

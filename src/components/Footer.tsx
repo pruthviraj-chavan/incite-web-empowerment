@@ -1,7 +1,6 @@
 
 import { MapPin, Phone, Mail, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
-import { lazy, Suspense } from "react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -35,16 +34,18 @@ const Footer = () => {
               <li><Link to="/about" className="text-gray-600 hover:text-incite-blue transition-colors">About Us</Link></li>
               <li><Link to="/courses" className="text-gray-600 hover:text-incite-blue transition-colors">Courses</Link></li>
               <li><Link to="/gallery" className="text-gray-600 hover:text-incite-blue transition-colors">Gallery</Link></li>
+              <li><Link to="/blog" className="text-gray-600 hover:text-incite-blue transition-colors">Blog</Link></li>
             </ul>
           </div>
           
           <div className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4">Our Courses</h3>
+            <h3 className="text-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
+              <li><Link to="/ai-tools" className="text-gray-600 hover:text-incite-blue transition-colors">AI Tools</Link></li>
+              <li><Link to="/internship" className="text-gray-600 hover:text-incite-blue transition-colors">Internships</Link></li>
               <li><Link to="/courses" className="text-gray-600 hover:text-incite-blue transition-colors">MS-CIT</Link></li>
-              <li><Link to="/courses" className="text-gray-600 hover:text-incite-blue transition-colors">KLiCK Courses</Link></li>
+              <li><Link to="/courses" className="text-gray-600 hover:text-incite-blue transition-colors">Tally Classes</Link></li>
               <li><Link to="/courses" className="text-gray-600 hover:text-incite-blue transition-colors">Programming</Link></li>
-              <li><Link to="/vishwakarma" className="text-gray-600 hover:text-incite-blue transition-colors">PM Vishwakarma</Link></li>
             </ul>
           </div>
           
@@ -58,6 +59,10 @@ const Footer = () => {
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-incite-blue flex-shrink-0" aria-hidden="true" />
                 <span className="text-gray-600">+91 9423281767</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Phone size={18} className="text-incite-blue flex-shrink-0" aria-hidden="true" />
+                <span className="text-gray-600">+91 8263031055</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-incite-blue flex-shrink-0" aria-hidden="true" />

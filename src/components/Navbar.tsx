@@ -27,7 +27,9 @@ const Navbar = () => {
     { name: "About Us", to: "/about" },
     { name: "Courses", to: "/courses" },
     { name: "Gallery", to: "/gallery" },
-    { name: "PM Vishwakarma", to: "/vishwakarma" },
+    { name: "Blog", to: "/blog" },
+    { name: "AI Tools", to: "/ai-tools" },
+    { name: "Internship", to: "/internship" },
     { name: "Contact", to: "/contact" },
   ];
 
@@ -46,7 +48,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden lg:flex space-x-6">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
@@ -72,7 +74,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Toggle */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="lg:hidden text-gray-700 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -81,7 +83,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden glass shadow-md animate-slide-down">
+        <div className="lg:hidden glass shadow-md animate-slide-down">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
             {navLinks.map((link) => (
               <NavLink

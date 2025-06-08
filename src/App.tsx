@@ -8,7 +8,10 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import CoursesPage from "./pages/CoursesPage";
 import GalleryPage from "./pages/GalleryPage";
-import VishwakarmaPage from "./pages/VishwakarmaPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
+import AIToolsPage from "./pages/AIToolsPage";
+import InternshipPage from "./pages/InternshipPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
@@ -27,7 +30,10 @@ const App = () => (
             <Route path="about" element={<AboutPage />} />
             <Route path="courses" element={<CoursesPage />} />
             <Route path="gallery" element={<GalleryPage />} />
-            <Route path="vishwakarma" element={<VishwakarmaPage />} />
+            <Route path="blog" element={<BlogPage />} />
+            <Route path="blog/:slug" element={<BlogPostPage />} />
+            <Route path="ai-tools" element={<AIToolsPage />} />
+            <Route path="internship" element={<InternshipPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
