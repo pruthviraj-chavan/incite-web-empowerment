@@ -760,7 +760,7 @@ export const EnhancedAbout = () => {
           >
             <div className="relative">
               <img 
-                src="/p1.png" 
+                src="/digit.jpg" 
                 alt="Student learning at computer"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
