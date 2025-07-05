@@ -1,6 +1,6 @@
 
 import { useEffect, lazy, Suspense } from 'react';
-import { Hero, Services, CoursesOverview, InspirationSection, Testimonials, GalleryPreview, CTASection } from '../components/HomePage';
+import { Hero, Services, CoursesOverview, InspirationSection, Testimonials, GalleryPreview, CTASection, TopCategories, EnhancedAbout, AnimatedCourseIcons } from '../components/HomePage';
 import AdPopup from '../components/AdPopup';
 
 // Lazy load less critical components
@@ -24,8 +24,11 @@ const HomePage = () => {
     <div>
       <AdPopup />
       <Hero />
+      <AnimatedCourseIcons />
+      <TopCategories />
       <Services />
       <CoursesOverview />
+      <EnhancedAbout />
       
       {/* Lazy loaded components */}
       <Suspense fallback={<LoadingFallback />}>
