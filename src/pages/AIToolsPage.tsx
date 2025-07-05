@@ -8,295 +8,720 @@ const AIToolsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", "Content Creation", "Productivity", "Interactive Learning", "Accessibility"];
+  const categories = ["All", "Infrastructure", "Agent Builders", "Code", "Marketing", "Sales", "Automations", "Support", "Operations", "Consumer", "Personal AI"];
 
   const aiTools = [
-    // Content Creation
+    // Infrastructure
     {
       id: 1,
-      name: "Canva Magic Media",
-      description: "Creates fun posters and videos for MSCIT projects with easy templates.",
-      url: "https://www.canva.com/magic-media/",
-      category: "Content Creation"
+      name: "OpenAI",
+      description: "Powerful AI platform for building intelligent applications and services.",
+      url: "https://openai.com/",
+      category: "Infrastructure"
     },
     {
       id: 2,
-      name: "Vidnoz AI",
-      description: "Generates funny avatar videos to practice computer basics creatively.",
-      url: "https://www.vidnoz.com/",
-      category: "Content Creation"
+      name: "Anthropic",
+      description: "Ethical AI models focused on safety and responsible AI development.",
+      url: "https://anthropic.com/",
+      category: "Infrastructure"
     },
     {
       id: 3,
-      name: "Picsart AI",
-      description: "Edits photos with filters for engaging Tally report visuals.",
-      url: "https://picsart.com/",
-      category: "Content Creation"
+      name: "Gemini",
+      description: "Google's advanced AI suite for multimodal AI applications.",
+      url: "https://gemini.google.com/",
+      category: "Infrastructure"
     },
     {
       id: 4,
-      name: "Photopea",
-      description: "Free tool for editing images to create MSCIT presentations.",
-      url: "https://www.photopea.com/",
-      category: "Content Creation"
+      name: "Mistral",
+      description: "Open-source AI models for developers and enterprises.",
+      url: "https://mistral.ai/",
+      category: "Infrastructure"
     },
     {
       id: 5,
-      name: "Clipchamp",
-      description: "Simplifies video creation for computer basics tutorials.",
-      url: "https://clipchamp.com/",
-      category: "Content Creation"
+      name: "Meta AI",
+      description: "Meta's powerful AI engine for various applications.",
+      url: "https://ai.meta.com/",
+      category: "Infrastructure"
     },
     {
       id: 6,
-      name: "Kapwing",
-      description: "Creates memes to make typing lessons fun and relatable.",
-      url: "https://www.kapwing.com/",
-      category: "Content Creation"
+      name: "LangChain",
+      description: "Framework for building AI applications with language models.",
+      url: "https://langchain.com/",
+      category: "Infrastructure"
     },
     {
       id: 7,
-      name: "Fotor AI",
-      description: "Designs vibrant graphics for Saarthi course certificates.",
-      url: "https://www.fotor.com/",
-      category: "Content Creation"
+      name: "ElevenLabs",
+      description: "Advanced voice AI tools for realistic speech synthesis.",
+      url: "https://elevenlabs.io/",
+      category: "Infrastructure"
     },
     {
       id: 8,
-      name: "Pixlr",
-      description: "Offers AI-enhanced photo editing for MSCIT project visuals.",
-      url: "https://pixlr.com/",
-      category: "Content Creation"
+      name: "HeyGen",
+      description: "AI-powered video creation platform for engaging content.",
+      url: "https://heygen.com/",
+      category: "Infrastructure"
     },
     {
       id: 9,
-      name: "Remove.bg",
-      description: "Removes image backgrounds for clean Tally chart designs.",
-      url: "https://www.remove.bg/",
-      category: "Content Creation"
+      name: "Factory",
+      description: "AI development platform for building smart applications.",
+      url: "https://factory.ai/",
+      category: "Infrastructure"
     },
     {
       id: 10,
-      name: "Lumen5",
-      description: "Turns text into videos for engaging computer basics lessons.",
-      url: "https://lumen5.com/",
-      category: "Content Creation"
+      name: "Letta",
+      description: "Creative writing AI for content generation and storytelling.",
+      url: "https://letta.com/",
+      category: "Infrastructure"
     },
 
-    // Productivity
+    // Agent Builders
     {
       id: 11,
-      name: "Notion AI",
-      description: "Organizes notes for MSCIT and Tally with AI summaries.",
-      url: "https://www.notion.so/product/ai",
-      category: "Productivity"
+      name: "Wordware",
+      description: "AI workflow builder for creating intelligent automation.",
+      url: "https://wordware.ai/",
+      category: "Agent Builders"
     },
     {
       id: 12,
-      name: "Otter.ai",
-      description: "Transcribes typing practice audio for review and accuracy.",
-      url: "https://otter.ai/",
-      category: "Productivity"
+      name: "CrewAI",
+      description: "Multi-agent platform for collaborative AI systems.",
+      url: "https://crewai.com/",
+      category: "Agent Builders"
     },
     {
       id: 13,
-      name: "Grammarly",
-      description: "Improves typing assignments with grammar and style checks.",
-      url: "https://www.grammarly.com/",
-      category: "Productivity"
+      name: "Writer",
+      description: "Enterprise writing AI for business content creation.",
+      url: "https://writer.com/",
+      category: "Agent Builders"
     },
     {
       id: 14,
-      name: "Quillbot",
-      description: "Paraphrases text to simplify Tally notes for students.",
-      url: "https://quillbot.com/",
-      category: "Productivity"
+      name: "You",
+      description: "Personal AI assistant for everyday tasks and queries.",
+      url: "https://you.com/",
+      category: "Agent Builders"
     },
     {
       id: 15,
-      name: "Trello AI",
-      description: "Manages MSCIT study tasks with AI-suggested schedules.",
-      url: "https://trello.com/",
-      category: "Productivity"
+      name: "Lyzr",
+      description: "AI orchestration agent for complex workflows.",
+      url: "https://lyzr.ai/",
+      category: "Agent Builders"
     },
     {
       id: 16,
-      name: "Notedly.ai",
-      description: "Summarizes Tally and MSCIT notes for quick revision.",
-      url: "https://notedly.ai/",
-      category: "Productivity"
+      name: "Relevance",
+      description: "Search relevance agent for better information retrieval.",
+      url: "https://relevanceai.com/",
+      category: "Agent Builders"
     },
     {
       id: 17,
-      name: "Gptionary",
-      description: "Finds simple synonyms for MSCIT and Tally terminology.",
-      url: "https://gptionary.com/",
-      category: "Productivity"
+      name: "Runner H",
+      description: "AI agent trainer for custom assistant development.",
+      url: "https://runner.ai/",
+      category: "Agent Builders"
     },
     {
       id: 18,
-      name: "Todoist AI",
-      description: "Creates prioritized task lists for Saarthi course progress.",
-      url: "https://todoist.com/",
-      category: "Productivity"
+      name: "Sema4",
+      description: "Developer copilot AI for coding assistance.",
+      url: "https://sema4.ai/",
+      category: "Agent Builders"
     },
     {
       id: 19,
-      name: "Evernote AI",
-      description: "Organizes computer basics notes with AI-powered search.",
-      url: "https://evernote.com/",
-      category: "Productivity"
+      name: "Copilot Studio",
+      description: "Microsoft's platform for building AI agents.",
+      url: "https://copilotstudio.microsoft.com/",
+      category: "Agent Builders"
     },
     {
       id: 20,
-      name: "ClickUp Brain",
-      description: "Suggests tasks for managing typing practice schedules.",
-      url: "https://clickup.com/",
-      category: "Productivity"
+      name: "Agentforce",
+      description: "Platform for building smart AI agents for business.",
+      url: "https://agentforce.com/",
+      category: "Agent Builders"
     },
 
-    // Interactive Learning
+    // Code
     {
       id: 21,
-      name: "Socratic by Google",
-      description: "Solves MSCIT and Tally queries with visual explanations.",
-      url: "https://socratic.org/",
-      category: "Interactive Learning"
+      name: "Cursor",
+      description: "AI-powered coding editor for enhanced development.",
+      url: "https://cursor.sh/",
+      category: "Code"
     },
     {
       id: 22,
-      name: "Brainly",
-      description: "Connects students for quick MSCIT and Tally Q&A.",
-      url: "https://brainly.com/",
-      category: "Interactive Learning"
+      name: "Replit",
+      description: "Cloud-based coding IDE with AI assistance.",
+      url: "https://replit.com/",
+      category: "Code"
     },
     {
       id: 23,
-      name: "Duolingo",
-      description: "Gamifies English typing practice with fun lessons.",
-      url: "https://www.duolingo.com/",
-      category: "Interactive Learning"
+      name: "Windsurf",
+      description: "AI coding platform for streamlined development.",
+      url: "https://windsurf.ai/",
+      category: "Code"
     },
     {
       id: 24,
-      name: "Scratch",
-      description: "Teaches coding basics through interactive MSCIT games.",
-      url: "https://scratch.mit.edu/",
-      category: "Interactive Learning"
+      name: "Bolt",
+      description: "Lightweight AI code assistant for quick development.",
+      url: "https://bolt.new/",
+      category: "Code"
     },
     {
       id: 25,
-      name: "Quick Draw",
-      description: "Fun AI game to practice mouse skills for computer basics.",
-      url: "https://quickdraw.withgoogle.com/",
-      category: "Interactive Learning"
+      name: "Lovable",
+      description: "AI UX designer for creating beautiful interfaces.",
+      url: "https://lovable.dev/",
+      category: "Code"
     },
     {
       id: 26,
-      name: "Khanmigo",
-      description: "Offers interactive MSCIT and Tally tutoring with prompts.",
-      url: "https://www.khanmigo.ai/",
-      category: "Interactive Learning"
+      name: "Poolside",
+      description: "Instant code assistant for rapid development.",
+      url: "https://poolside.ai/",
+      category: "Code"
     },
     {
       id: 27,
-      name: "Curipod",
-      description: "Creates gamified MSCIT quizzes with AI polls and drawings.",
-      url: "https://curipod.com/",
-      category: "Interactive Learning"
+      name: "Devin",
+      description: "Autonomous development agent for complex projects.",
+      url: "https://devin.ai/",
+      category: "Code"
     },
     {
       id: 28,
-      name: "ClassPoint AI",
-      description: "Turns Tally slides into engaging quizzes for practice.",
-      url: "https://www.classpoint.io/",
-      category: "Interactive Learning"
+      name: "All Hands",
+      description: "Comprehensive AI development tool suite.",
+      url: "https://allhands.dev/",
+      category: "Code"
     },
     {
       id: 29,
-      name: "Conker.ai",
-      description: "Builds arcade-style games for MSCIT and Tally reviews.",
-      url: "https://www.conker.ai/",
-      category: "Interactive Learning"
-    },
-    {
-      id: 30,
-      name: "Hello History",
-      description: "Chats with figures to make computer history lessons fun.",
-      url: "https://www.hellohistory.ai/",
-      category: "Interactive Learning"
+      name: "Codev",
+      description: "Low-code AI builder for rapid application development.",
+      url: "https://codev.com/",
+      category: "Code"
     },
 
-    // Accessibility
+    // Marketing
+    {
+      id: 30,
+      name: "Averi",
+      description: "AI-powered marketing content creation and optimization.",
+      url: "https://averi.ai/",
+      category: "Marketing"
+    },
     {
       id: 31,
-      name: "Speechify",
-      description: "Reads MSCIT and Tally notes aloud for better understanding.",
-      url: "https://speechify.com/",
-      category: "Accessibility"
+      name: "Jasper",
+      description: "AI copywriting assistant for marketing content.",
+      url: "https://jasper.ai/",
+      category: "Marketing"
     },
     {
       id: 32,
-      name: "AudioPen",
-      description: "Converts speech to text for typing practice notes.",
-      url: "https://audiopen.ai/",
-      category: "Accessibility"
+      name: "Coframe",
+      description: "AI design assistant for marketing materials.",
+      url: "https://coframe.co/",
+      category: "Marketing"
     },
     {
       id: 33,
-      name: "Lexia Core5 Reading",
-      description: "Enhances English typing with adaptive reading tasks.",
-      url: "https://www.lexialearning.com/core5",
-      category: "Accessibility"
+      name: "Rankar",
+      description: "SEO optimization agent for better search rankings.",
+      url: "https://rankar.com/",
+      category: "Marketing"
     },
     {
       id: 34,
-      name: "Magic Padlet",
-      description: "Organizes collaborative MSCIT projects visually.",
-      url: "https://padlet.com/",
-      category: "Accessibility"
+      name: "Seobot",
+      description: "AI SEO crawler for website optimization.",
+      url: "https://seobot.ai/",
+      category: "Marketing"
     },
     {
       id: 35,
-      name: "Google's AI Classes",
-      description: "Teaches AI basics with fun, interactive modules.",
-      url: "https://edu.google.com/ai/",
-      category: "Accessibility"
+      name: "Argil",
+      description: "AI image generation tool for marketing visuals.",
+      url: "https://argil.ai/",
+      category: "Marketing"
     },
     {
       id: 36,
-      name: "Snorkl",
-      description: "Analyzes drawings for visual Tally and math feedback.",
-      url: "https://www.snorkl.app/",
-      category: "Accessibility"
+      name: "Quso",
+      description: "Marketing data AI for analytics and insights.",
+      url: "https://quso.ai/",
+      category: "Marketing"
     },
     {
       id: 37,
-      name: "Buddy.ai",
-      description: "Virtual tutor for English typing with fun games.",
-      url: "https://www.buddy.ai/",
-      category: "Accessibility"
+      name: "Captions",
+      description: "Auto video captions for social media content.",
+      url: "https://captions.ai/",
+      category: "Marketing"
     },
     {
       id: 38,
-      name: "Trellis",
-      description: "Simplifies MSCIT concepts with interactive quizzes.",
-      url: "https://trellis.education/",
-      category: "Accessibility"
+      name: "Fix AI",
+      description: "Ad performance booster for better campaign results.",
+      url: "https://fix.ai/",
+      category: "Marketing"
     },
     {
       id: 39,
-      name: "Aistote",
-      description: "Creates flashcards for MSCIT and Tally terminology.",
-      url: "https://aistote.com/",
-      category: "Accessibility"
+      name: "Luthor",
+      description: "Smart campaign management and optimization.",
+      url: "https://luthor.ai/",
+      category: "Marketing"
     },
+
+    // Sales
     {
       id: 40,
+      name: "Jason AI",
+      description: "Smart CRM helper for sales team productivity.",
+      url: "https://jason.ai/",
+      category: "Sales"
+    },
+    {
+      id: 41,
+      name: "Godmode",
+      description: "AI sales assistant for enhanced performance.",
+      url: "https://godmode.space/",
+      category: "Sales"
+    },
+    {
+      id: 42,
+      name: "Breeze",
+      description: "Sales content generator for effective outreach.",
+      url: "https://breeze.ai/",
+      category: "Sales"
+    },
+    {
+      id: 43,
+      name: "Claygent",
+      description: "Lead intelligence AI for better prospecting.",
+      url: "https://clay.com/",
+      category: "Sales"
+    },
+    {
+      id: 44,
+      name: "1lx",
+      description: "Lead generation automation for sales teams.",
+      url: "https://1lx.com/",
+      category: "Sales"
+    },
+    {
+      id: 45,
+      name: "Tome",
+      description: "AI presentation builder for sales pitches.",
+      url: "https://tome.app/",
+      category: "Sales"
+    },
+    {
+      id: 46,
+      name: "Kuration",
+      description: "Content curation AI for sales enablement.",
+      url: "https://kuration.ai/",
+      category: "Sales"
+    },
+    {
+      id: 47,
+      name: "Rox",
+      description: "Revenue operations tool for sales optimization.",
+      url: "https://rox.ai/",
+      category: "Sales"
+    },
+    {
+      id: 48,
+      name: "AiSDR",
+      description: "AI sales development representative for outreach.",
+      url: "https://aisdr.com/",
+      category: "Sales"
+    },
+    {
+      id: 49,
+      name: "Rep",
+      description: "Conversational sales bot for customer engagement.",
+      url: "https://rep.ai/",
+      category: "Sales"
+    },
+
+    // Automations
+    {
+      id: 50,
+      name: "Zapier",
+      description: "Workflow automator connecting apps and services.",
+      url: "https://zapier.com/",
+      category: "Automations"
+    },
+    {
+      id: 51,
+      name: "Lindy",
+      description: "AI task manager for personal productivity.",
+      url: "https://lindy.ai/",
+      category: "Automations"
+    },
+    {
+      id: 52,
+      name: "Beam",
+      description: "Workflow AI agent for business process automation.",
+      url: "https://beam.ai/",
+      category: "Automations"
+    },
+    {
+      id: 53,
+      name: "Cassidy",
+      description: "Task automation bot for streamlined workflows.",
+      url: "https://cassidy.ai/",
+      category: "Automations"
+    },
+    {
+      id: 54,
+      name: "Magical",
+      description: "Text expander AI for faster communication.",
+      url: "https://magical.so/",
+      category: "Automations"
+    },
+    {
+      id: 55,
+      name: "Abergen",
+      description: "Custom bot builder for specialized automation.",
+      url: "https://abergen.ai/",
+      category: "Automations"
+    },
+    {
+      id: 56,
+      name: "MindPal",
+      description: "Knowledge base AI for information management.",
+      url: "https://mindpal.space/",
+      category: "Automations"
+    },
+    {
+      id: 57,
+      name: "Tray",
+      description: "Process automation tool for enterprise workflows.",
+      url: "https://tray.io/",
+      category: "Automations"
+    },
+    {
+      id: 58,
+      name: "Respell",
+      description: "Custom AI workflows for business automation.",
+      url: "https://respell.ai/",
+      category: "Automations"
+    },
+    {
+      id: 59,
+      name: "Make",
+      description: "Visual workflow builder for process automation.",
+      url: "https://make.com/",
+      category: "Automations"
+    },
+
+    // Support
+    {
+      id: 60,
+      name: "Fin AI",
+      description: "AI helpdesk tool for customer support excellence.",
+      url: "https://fin.ai/",
+      category: "Support"
+    },
+    {
+      id: 61,
+      name: "Decagon",
+      description: "AI support copilot for enhanced customer service.",
+      url: "https://decagon.ai/",
+      category: "Support"
+    },
+    {
+      id: 62,
+      name: "Duckie",
+      description: "Customer chat AI for instant support responses.",
+      url: "https://duckie.ai/",
+      category: "Support"
+    },
+    {
+      id: 63,
+      name: "Sierra",
+      description: "Human-like support AI for natural conversations.",
+      url: "https://sierra.ai/",
+      category: "Support"
+    },
+    {
+      id: 64,
+      name: "Siena",
+      description: "Email reply automation for support teams.",
+      url: "https://siena.ai/",
+      category: "Support"
+    },
+    {
+      id: 65,
+      name: "Agency",
+      description: "Support AI agent for comprehensive customer care.",
+      url: "https://agency.ai/",
+      category: "Support"
+    },
+    {
+      id: 66,
+      name: "Melodyarc",
+      description: "AI conversation builder for support interactions.",
+      url: "https://melodyarc.com/",
+      category: "Support"
+    },
+    {
+      id: 67,
+      name: "Berry",
+      description: "AI ticket resolver for efficient support management.",
+      url: "https://berry.ai/",
+      category: "Support"
+    },
+    {
+      id: 68,
+      name: "Pylon",
+      description: "Support analytics AI for performance insights.",
+      url: "https://pylon.com/",
+      category: "Support"
+    },
+    {
+      id: 69,
+      name: "Parloa",
+      description: "Voice-based assistant for phone support automation.",
+      url: "https://parloa.com/",
+      category: "Support"
+    },
+
+    // Operations
+    {
+      id: 70,
+      name: "Juicebox",
+      description: "Data operations AI for analytics and insights.",
+      url: "https://juicebox.ai/",
+      category: "Operations"
+    },
+    {
+      id: 71,
+      name: "Sapien",
+      description: "Operations optimization AI for business efficiency.",
+      url: "https://sapien.ai/",
+      category: "Operations"
+    },
+    {
+      id: 72,
+      name: "Perplexity",
+      description: "Answer engine AI for quick information retrieval.",
+      url: "https://perplexity.ai/",
+      category: "Operations"
+    },
+    {
+      id: 73,
+      name: "Harvey",
+      description: "Legal research agent for law professionals.",
+      url: "https://harvey.ai/",
+      category: "Operations"
+    },
+    {
+      id: 74,
+      name: "Dimely",
+      description: "Operations simplifier for streamlined processes.",
+      url: "https://dimely.io/",
+      category: "Operations"
+    },
+    {
+      id: 75,
+      name: "DeepL",
+      description: "AI language translator for global communication.",
+      url: "https://deepl.com/",
+      category: "Operations"
+    },
+    {
+      id: 76,
+      name: "Airtable AI",
+      description: "AI-powered database for organized data management.",
+      url: "https://airtable.com/ai",
+      category: "Operations"
+    },
+    {
+      id: 77,
+      name: "PolyAI",
+      description: "Voice agent builder for customer interactions.",
+      url: "https://poly.ai/",
+      category: "Operations"
+    },
+    {
+      id: 78,
+      name: "Jensys",
+      description: "Workflow insights AI for process optimization.",
+      url: "https://jensys.ai/",
+      category: "Operations"
+    },
+    {
+      id: 79,
+      name: "Hamming",
+      description: "Developer task AI for technical operations.",
+      url: "https://hamming.ai/",
+      category: "Operations"
+    },
+
+    // Consumer
+    {
+      id: 80,
+      name: "Tendi",
+      description: "Shopping assistant AI for better purchasing decisions.",
+      url: "https://tendi.ai/",
+      category: "Consumer"
+    },
+    {
+      id: 81,
+      name: "Mindtrip",
+      description: "Travel planning AI for personalized itineraries.",
+      url: "https://mindtrip.ai/",
+      category: "Consumer"
+    },
+    {
+      id: 82,
+      name: "Rex.fit",
+      description: "Health tracking AI for fitness and wellness.",
+      url: "https://rex.fit/",
+      category: "Consumer"
+    },
+    {
+      id: 83,
+      name: "Ada",
+      description: "Health information bot for medical guidance.",
+      url: "https://ada.com/",
+      category: "Consumer"
+    },
+    {
+      id: 84,
+      name: "Gemini",
+      description: "Google assistant AI for everyday tasks.",
+      url: "https://gemini.google.com/app",
+      category: "Consumer"
+    },
+    {
+      id: 85,
+      name: "Person AI",
+      description: "Personal task AI for daily productivity.",
+      url: "https://person.ai/",
+      category: "Consumer"
+    },
+    {
+      id: 86,
       name: "Pi",
-      description: "Friendly AI for engaging MSCIT and Tally Q&A sessions.",
+      description: "Emotional support AI for mental wellbeing.",
       url: "https://pi.ai/",
-      category: "Accessibility"
+      category: "Consumer"
+    },
+    {
+      id: 87,
+      name: "AI Lawyer",
+      description: "Legal bot assistant for legal questions.",
+      url: "https://ailawyer.pro/",
+      category: "Consumer"
+    },
+    {
+      id: 88,
+      name: "Edna",
+      description: "AI homework helper for students.",
+      url: "https://edna.ai/",
+      category: "Consumer"
+    },
+    {
+      id: 89,
+      name: "TaxGPT",
+      description: "Tax filing bot for simplified tax preparation.",
+      url: "https://taxgpt.com/",
+      category: "Consumer"
+    },
+
+    // Personal AI
+    {
+      id: 90,
+      name: "Character.ai",
+      description: "Chat with AI characters for entertainment and learning.",
+      url: "https://character.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 91,
+      name: "Martin",
+      description: "Daily planner AI for organized scheduling.",
+      url: "https://martin.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 92,
+      name: "Delphi",
+      description: "Ethical decision AI for moral guidance.",
+      url: "https://delphi.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 93,
+      name: "Kin",
+      description: "Personal companion AI for emotional support.",
+      url: "https://kin.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 94,
+      name: "Jo",
+      description: "AI conversation friend for daily chats.",
+      url: "https://jo.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 95,
+      name: "Summit",
+      description: "Personal growth coach AI for self-improvement.",
+      url: "https://summit.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 96,
+      name: "Nora",
+      description: "Life organizer AI for personal management.",
+      url: "https://nora.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 97,
+      name: "Table",
+      description: "Family assistant AI for household management.",
+      url: "https://table.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 98,
+      name: "Rewind",
+      description: "Memory recall AI for information retrieval.",
+      url: "https://rewind.ai/",
+      category: "Personal AI"
+    },
+    {
+      id: 99,
+      name: "Replika",
+      description: "AI chatbot companion for personal conversations.",
+      url: "https://replika.ai/",
+      category: "Personal AI"
     }
   ];
 
@@ -308,19 +733,19 @@ const AIToolsPage = () => {
   });
 
   return (
-    <div className="min-h-screen pt-20 pb-12">
+    <div className="min-h-screen pt-16 md:pt-20 pb-12">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-50 to-blue-50 py-12">
+      <section className="bg-gradient-to-r from-purple-50 to-blue-50 py-8 md:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex items-center justify-center mb-4">
-              <Sparkles className="text-purple-600 mr-2" size={32} />
-              <h1 className="text-4xl md:text-5xl font-bold gradient-text">
-                Free AI Tools for Students
+              <Sparkles className="text-purple-600 mr-2" size={28} />
+              <h1 className="text-3xl md:text-5xl font-bold gradient-text">
+                AI Tools Directory
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-8">
-              Enhance your learning experience with these carefully curated AI tools. Perfect for students taking MS-CIT, Tally, typing courses, and programming at Incite Computers Radhanagari.
+            <p className="text-base md:text-lg text-gray-600 mb-6 md:mb-8">
+              Discover the latest AI tools for development, marketing, automation, and more. Find the perfect AI solution for your needs.
             </p>
             
             {/* Search Bar */}
