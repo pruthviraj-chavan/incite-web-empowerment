@@ -616,6 +616,258 @@ export const CTASection = () => {
   );
 };
 
+// Top Categories Section
+export const TopCategories = () => {
+  const categories = [
+    {
+      icon: <Monitor size={32} />,
+      title: "Basic Computer",
+      description: "MS-CIT, Computer Basics",
+      color: "from-teal-400 to-cyan-500",
+      iconColor: "text-teal-600"
+    },
+    {
+      icon: <Code size={32} />,
+      title: "Programming",
+      description: "C, C++, Java, Python",
+      color: "from-pink-400 to-rose-500",
+      iconColor: "text-pink-600"
+    },
+    {
+      icon: <Calculator size={32} />,
+      title: "Accounting",
+      description: "Tally, Excel, Finance",
+      color: "from-green-400 to-emerald-500",
+      iconColor: "text-green-600"
+    },
+    {
+      icon: <FileText size={32} />,
+      title: "Office Suite",
+      description: "MS Office, Documentation",
+      color: "from-orange-400 to-amber-500",
+      iconColor: "text-orange-600"
+    },
+    {
+      icon: <Brain size={32} />,
+      title: "AI & Technology",
+      description: "AI Tools, Modern Tech",
+      color: "from-purple-400 to-violet-500",
+      iconColor: "text-purple-600"
+    },
+    {
+      icon: <Building size={32} />,
+      title: "Business Skills",
+      description: "Digital Marketing, Management",
+      color: "from-blue-400 to-indigo-500",
+      iconColor: "text-blue-600"
+    },
+    {
+      icon: <Keyboard size={32} />,
+      title: "Typing Skills",
+      description: "Speed Typing, Keyboard Skills",
+      color: "from-cyan-400 to-blue-500",
+      iconColor: "text-cyan-600"
+    },
+    {
+      icon: <Laptop size={32} />,
+      title: "Hardware",
+      description: "PC Assembly, Troubleshooting",
+      color: "from-indigo-400 to-purple-500",
+      iconColor: "text-indigo-600"
+    },
+    {
+      icon: <Award size={32} />,
+      title: "Certifications",
+      description: "Industry Recognized Certificates",
+      color: "from-emerald-400 to-teal-500",
+      iconColor: "text-emerald-600"
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
+      <div className="container mx-auto px-4">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+            मुख्य श्रेणी
+            <div className="w-16 h-1 bg-gradient-to-r from-teal-400 to-cyan-500 mx-auto mt-2 rounded-full"></div>
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            आपल्या करिअरला गती देण्यासाठी आमच्या विविध तांत्रिक अभ्यासक्रम श्रेणींचा शोध घ्या
+          </p>
+        </motion.div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category, index) => (
+            <motion.div
+              key={index}
+              className="group relative overflow-hidden rounded-2xl p-6 bg-white shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02, y: -5 }}
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+              
+              <div className="relative z-10">
+                <div className={`inline-flex p-3 rounded-xl bg-gray-50 group-hover:bg-white transition-colors duration-300 mb-4 ${category.iconColor}`}>
+                  {category.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-gray-900">
+                  {category.title}
+                </h3>
+                <p className="text-gray-600 text-sm group-hover:text-gray-700">
+                  {category.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Enhanced About Section
+export const EnhancedAbout = () => {
+  return (
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+      {/* Decorative dots */}
+      <div className="absolute top-10 left-10 w-20 h-20 opacity-20">
+        <div className="grid grid-cols-4 gap-1">
+          {[...Array(16)].map((_, i) => (
+            <div key={i} className="w-1 h-1 bg-pink-400 rounded-full"></div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Image and Video */}
+          <motion.div 
+            className="relative"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative">
+              <img 
+                src="/p1.png" 
+                alt="Student learning at computer"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+              
+              {/* Video thumbnail overlay */}
+              <div className="absolute top-4 right-4 w-32 h-20 bg-white rounded-lg shadow-lg overflow-hidden">
+                <img 
+                  src="/img-03.jpg" 
+                  alt="Video thumbnail"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-0 h-0 border-l-4 border-l-incite-blue border-y-2 border-y-transparent ml-1"></div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Stats card */}
+              <motion.div 
+                className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-6 shadow-2xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-center mb-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-3">
+                    23+
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-500">Years of</div>
+                    <div className="font-semibold text-gray-800">Excellence</div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Content */}
+          <motion.div 
+            className="lg:pl-8"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="mb-6">
+              <span className="text-sm font-medium text-incite-blue bg-blue-50 px-3 py-1 rounded-full">
+                आमच्याबद्दल
+              </span>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+              कुठूनही तुमची कौशल्ये 
+              <span className="gradient-text-orange"> शिका आणि वाढवा</span>
+              <div className="w-16 h-1 bg-gradient-to-r from-teal-400 to-cyan-500 mt-2 rounded-full"></div>
+            </h2>
+            
+            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+              २००१ पासून आम्ही ग्रामीण भागातील हजारो विद्यार्थ्यांना डिजिटल कौशल्यांसह सशक्त बनवत आहोत. 
+              आमच्या आधुनिक शिक्षण पद्धती आणि अनुभवी प्रशिक्षकांसह तुमचे भवितव्य उज्वल करा.
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              {[
+                { icon: <User size={20} />, text: "तज्ञ प्रशिक्षक", color: "text-orange-500" },
+                { icon: <Monitor size={20} />, text: "ऑनलाइन व ऑफलाइन शिक्षण", color: "text-teal-500" },
+                { icon: <Award size={20} />, text: "आजीवन प्रवेश आणि समर्थन", color: "text-purple-500" }
+              ].map((item, index) => (
+                <motion.div 
+                  key={index}
+                  className="flex items-center space-x-3"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <div className={`${item.color} bg-gray-50 p-2 rounded-lg`}>
+                    {item.icon}
+                  </div>
+                  <span className="text-gray-700 font-medium">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <Link 
+                to="/about"
+                className="inline-flex items-center bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg transition-all duration-300 hover:scale-105"
+              >
+                अधिक जाणून घ्या
+                <ArrowRight size={18} className="ml-2" />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // Combine all sections
 const HomePage = () => {
   useEffect(() => {
@@ -626,8 +878,10 @@ const HomePage = () => {
     <div className="page-fade-in">
       <Hero />
       <AnimatedCourseIcons />
+      <TopCategories />
       <Services />
       <CoursesOverview />
+      <EnhancedAbout />
       <InspirationSection />
       <Testimonials />
       <GalleryPreview />
