@@ -221,44 +221,69 @@ export const Hero = () => {
   );
 };
 
-// Services Section with enhanced animations
+// Services Section with advanced design
 export const Services = () => {
   const services = [
     {
-      icon: <BookOpen size={40} className="text-incite-blue" />,
+      icon: <BookOpen size={48} className="text-white" />,
       title: "गुणवत्तापूर्ण शिक्षण",
-      description: "तज्ञ प्रशिक्षकांकडून प्रात्यक्षिकासह संपूर्ण संगणक शिक्षण"
+      description: "तज्ञ प्रशिक्षकांकडून प्रात्यक्षिकासह संपूर्ण संगणक शिक्षण",
+      gradient: "from-blue-500 via-blue-600 to-purple-600",
+      bgPattern: "opacity-10 bg-gradient-to-br from-blue-100 to-purple-100"
     },
     {
-      icon: <Award size={40} className="text-incite-orange" />,
+      icon: <Award size={48} className="text-white" />,
       title: "प्रमाणपत्रे",
-      description: "आपली व्यावसायिक विश्वासार्हता वाढवण्यासाठी उद्योग-मान्यताप्राप्त प्रमाणपत्रे"
+      description: "आपली व्यावसायिक विश्वासार्हता वाढवण्यासाठी उद्योग-मान्यताप्राप्त प्रमाणपत्रे",
+      gradient: "from-orange-500 via-red-500 to-pink-600",
+      bgPattern: "opacity-10 bg-gradient-to-br from-orange-100 to-pink-100"
     },
     {
-      icon: <Building size={40} className="text-incite-blue" />,
+      icon: <Building size={48} className="text-white" />,
       title: "नोकरी सहाय्य",
-      description: "आपल्याला नोकरी मिळवण्यात मदत करण्यासाठी प्लेसमेंट सहाय्य आणि करिअर मार्गदर्शन"
+      description: "आपल्याला नोकरी मिळवण्यात मदत करण्यासाठी प्लेसमेंट सहाय्य आणि करिअर मार्गदर्शन",
+      gradient: "from-green-500 via-teal-500 to-cyan-600",
+      bgPattern: "opacity-10 bg-gradient-to-br from-green-100 to-cyan-100"
     },
     {
-      icon: <User size={40} className="text-incite-orange" />,
+      icon: <User size={48} className="text-white" />,
       title: "वैयक्तिक शिक्षण",
-      description: "वैयक्तिक कौशल्ये आणि आवश्यकतांनुसार अनुकूलित शिक्षण मार्ग"
+      description: "वैयक्तिक कौशल्ये आणि आवश्यकतांनुसार अनुकूलित शिक्षण मार्ग",
+      gradient: "from-purple-500 via-indigo-500 to-blue-600",
+      bgPattern: "opacity-10 bg-gradient-to-br from-purple-100 to-blue-100"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-purple-50 to-white">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden">
+      {/* Background with animated patterns */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-purple-blue">आमच्या सेवा</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            इन्साइट कॉम्प्युटर्समध्ये दिल्या जाणाऱ्या संगणक प्रशिक्षण आणि शैक्षणिक सेवांची व्यापक श्रेणी शोधा
+          <motion.div
+            className="inline-block mb-4 px-6 py-2 bg-blue-500/10 backdrop-blur-sm text-blue-600 rounded-full text-sm font-semibold border border-blue-200/50"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            आमच्या सेवा
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+            इन्साइट कॉम्प्युटर्समध्ये दिल्या जाणारी सेवा
+          </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+            आधुनिक तंत्रज्ञानाच्या क्षेत्रात आपल्याला पुढे नेण्यासाठी आमच्या विशेष सेवा
           </p>
         </motion.div>
         
@@ -266,22 +291,79 @@ export const Services = () => {
           {services.map((service, index) => (
             <motion.div 
               key={index} 
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer border border-white/50"
-              initial={{ opacity: 0, y: 50 }}
+              className="group relative"
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, rotateY: 5 }}
             >
-              <motion.div 
-                className="mb-6 group-hover:scale-110 transition-transform duration-300"
-                whileHover={{ rotate: 10 }}
-              >
-                {service.icon}
-              </motion.div>
-              <h3 className="text-xl font-bold mb-4 group-hover:gradient-text transition-all duration-300">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
-              <div className="mt-4 w-12 h-1 bg-gradient-to-r from-incite-blue to-incite-purple rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Card background with glassmorphism */}
+              <div className="relative bg-white/70 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/50 group-hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                
+                {/* Background pattern */}
+                <div className={`absolute inset-0 ${service.bgPattern} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                
+                {/* Gradient overlay on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}></div>
+                
+                {/* Icon container with dynamic gradient */}
+                <motion.div 
+                  className={`relative z-10 w-20 h-20 mb-8 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500`}
+                  whileHover={{ 
+                    scale: 1.1,
+                    rotate: [0, -5, 5, 0],
+                    transition: { duration: 0.5 }
+                  }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    {service.icon}
+                  </motion.div>
+                  
+                  {/* Glow effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 rounded-2xl`}></div>
+                </motion.div>
+                
+                {/* Content */}
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold mb-4 text-gray-800 group-hover:text-gray-900 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    {service.description}
+                  </p>
+                  
+                  {/* Animated underline */}
+                  <div className={`mt-6 h-1 bg-gradient-to-r ${service.gradient} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
+                </div>
+
+                {/* Floating particles effect */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className={`absolute w-2 h-2 bg-gradient-to-r ${service.gradient} rounded-full opacity-0 group-hover:opacity-60`}
+                      style={{
+                        left: `${20 + i * 30}%`,
+                        top: `${20 + i * 20}%`,
+                      }}
+                      animate={{
+                        y: [0, -20, 0],
+                        x: [0, 10, -10, 0],
+                        scale: [1, 1.5, 1],
+                      }}
+                      transition={{
+                        duration: 3 + i,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: i * 0.5,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -290,98 +372,214 @@ export const Services = () => {
   );
 };
 
-// Courses Overview
+// Advanced Courses Overview
 export const CoursesOverview = () => {
   const courses = [
     {
-      icon: <Laptop size={32} className="text-white" />,
+      icon: <Laptop size={40} className="text-white" />,
       title: "एमएस-सीआयटी",
       description: "महाराष्ट्र स्टेट सर्टिफिकेट इन इन्फॉर्मेशन टेक्नॉलॉजी",
       students: 200,
       duration: "३ महिने",
-      rating: 4.9
+      rating: 4.9,
+      gradient: "from-emerald-400 via-teal-500 to-cyan-600",
+      shadowColor: "shadow-teal-500/25"
     },
     {
-      icon: <Cpu size={32} className="text-white" />,
+      icon: <Cpu size={40} className="text-white" />,
       title: "के-लिक कोर्सेस",
       description: "नॉलेज ऑफ लिटरसी फॉर कंप्युटर्स इन कीस्टोन्स",
       students: 200,
       duration: "२-६ महिने",
-      rating: 4.8
+      rating: 4.8,
+      gradient: "from-blue-400 via-indigo-500 to-purple-600",
+      shadowColor: "shadow-blue-500/25"
     },
     {
-      icon: <BookOpen size={32} className="text-white" />,
+      icon: <BookOpen size={40} className="text-white" />,
       title: "टॅली",
       description: "अकाउंटिंग आणि वित्तीय व्यवस्थापन सॉफ्टवेअर प्रशिक्षण",
       students: 200,
       duration: "२ महिने",
-      rating: 4.7
+      rating: 4.7,
+      gradient: "from-orange-400 via-red-500 to-pink-600",
+      shadowColor: "shadow-orange-500/25"
     },
     {
-      icon: <Award size={32} className="text-white" />,
+      icon: <Award size={40} className="text-white" />,
       title: "प्रोग्रामिंग",
       description: "सी, सी++, जावा आणि इतर प्रोग्रामिंग भाषा",
       students: 200,
       duration: "३-६ महिने",
-      rating: 4.8
+      rating: 4.8,
+      gradient: "from-purple-400 via-pink-500 to-red-600",
+      shadowColor: "shadow-purple-500/25"
     },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-orange-50 to-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-orange-red">लोकप्रिय अभ्यासक्रम</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+    <section className="py-24 relative overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L90 90 L10 90 Z' fill='%23f97316' fill-opacity='0.03'/%3E%3C/svg%3E")`,
+        }}></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div 
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="inline-block mb-4 px-6 py-2 bg-orange-500/10 backdrop-blur-sm text-orange-600 rounded-full text-sm font-semibold border border-orange-200/50"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            लोकप्रिय अभ्यासक्रम
+          </motion.div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-orange-600 via-red-600 to-pink-800 bg-clip-text text-transparent">
             आमच्या सर्वात मागणी असलेल्या अभ्यासक्रमांसह आपली तांत्रिक कौशल्ये विकसित करा
-          </p>
-        </div>
+          </h2>
+        </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {courses.map((course, index) => (
-            <div 
+            <motion.div 
               key={index} 
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-blue transition-all duration-300 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group relative"
+              initial={{ opacity: 0, y: 60, rotateY: 15 }}
+              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10, rotateY: 5 }}
             >
-              <div className="gradient-teal-blue p-6">
-                <div className="mb-2">{course.icon}</div>
-                <h3 className="text-xl font-bold text-white">{course.title}</h3>
-              </div>
-              <div className="p-6">
-                <p className="text-gray-600 mb-6">{course.description}</p>
-                <div className="flex items-center justify-between mb-3 text-sm">
-                  <div className="flex items-center">
-                    <Users size={16} className="text-incite-blue mr-1" />
-                    <span>{course.students.toLocaleString()}</span>
+              {/* Main card */}
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl overflow-hidden shadow-xl border border-white/50 group-hover:shadow-2xl transition-all duration-500">
+                
+                {/* Header with gradient and icon */}
+                <div className={`relative p-8 bg-gradient-to-br ${course.gradient} overflow-hidden`}>
+                  {/* Background pattern */}
+                  <div className="absolute inset-0 opacity-20">
+                    <div className="absolute inset-0" style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20v20h20v-20z'/%3E%3C/g%3E%3C/svg%3E")`,
+                    }}></div>
                   </div>
-                  <div className="flex items-center">
-                    <Clock size={16} className="text-incite-blue mr-1" />
-                    <span>{course.duration}</span>
+                  
+                  {/* Icon with animation */}
+                  <motion.div 
+                    className="relative z-10 mb-4"
+                    whileHover={{ 
+                      scale: 1.2,
+                      rotate: [0, -10, 10, 0],
+                      transition: { duration: 0.6 }
+                    }}
+                  >
+                    {course.icon}
+                  </motion.div>
+                  
+                  <h3 className="relative z-10 text-2xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
+                    {course.title}
+                  </h3>
+                  
+                  {/* Floating particles */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-white/40 rounded-full"
+                        style={{
+                          left: `${Math.random() * 100}%`,
+                          top: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                          y: [0, -30, 0],
+                          opacity: [0, 1, 0],
+                          scale: [1, 1.5, 1],
+                        }}
+                        transition={{
+                          duration: 2 + Math.random() * 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: Math.random() * 2,
+                        }}
+                      />
+                    ))}
                   </div>
                 </div>
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center">
-                    <Star size={16} className="text-incite-orange mr-1" />
-                    <span>{course.rating}/५</span>
+                
+                {/* Content section */}
+                <div className="p-8">
+                  <p className="text-gray-600 mb-6 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                    {course.description}
+                  </p>
+                  
+                  {/* Stats grid */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors duration-300">
+                      <Users size={18} className={`bg-gradient-to-r ${course.gradient} bg-clip-text text-transparent`} />
+                      <span className="text-sm font-medium text-gray-700">{course.students}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 p-3 bg-gray-50 rounded-xl group-hover:bg-gray-100 transition-colors duration-300">
+                      <Clock size={18} className={`bg-gradient-to-r ${course.gradient} bg-clip-text text-transparent`} />
+                      <span className="text-sm font-medium text-gray-700">{course.duration}</span>
+                    </div>
                   </div>
-                  <div className="text-incite-blue font-medium">
-                    संपर्क: 9423281767
+                  
+                  {/* Rating and contact */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-1">
+                      <Star size={18} className="text-yellow-500 fill-current" />
+                      <span className="font-semibold text-gray-800">{course.rating}</span>
+                      <span className="text-gray-500 text-sm">/५</span>
+                    </div>
+                    <div className={`text-sm font-semibold bg-gradient-to-r ${course.gradient} bg-clip-text text-transparent`}>
+                      9423281767
+                    </div>
                   </div>
+                  
+                  {/* Action button */}
+                  <motion.button
+                    className={`w-full mt-6 py-3 px-6 bg-gradient-to-r ${course.gradient} text-white rounded-xl font-semibold shadow-lg transition-all duration-300 group-hover:shadow-xl ${course.shadowColor}`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    तपशील पाहा
+                  </motion.button>
                 </div>
+
+                {/* Hover effect overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${course.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}></div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         
-        <div className="text-center mt-12 animate-fade-in">
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          viewport={{ once: true }}
+        >
           <Link 
             to="/courses" 
-            className="gradient-pink-orange text-white rounded-full px-8 py-3 font-medium inline-flex items-center btn-hover"
+            className="inline-flex items-center px-12 py-4 bg-gradient-to-r from-orange-500 via-red-500 to-pink-600 text-white rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 group"
           >
-            सर्व अभ्यासक्रम पहा <ArrowRight size={18} className="ml-2" />
+            सर्व अभ्यासक्रम पाहा 
+            <motion.div
+              className="ml-3"
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <ArrowRight size={20} />
+            </motion.div>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

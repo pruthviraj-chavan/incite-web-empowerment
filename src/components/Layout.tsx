@@ -9,6 +9,21 @@ const Layout = () => {
   const location = useLocation();
   const [gradientType, setGradientType] = useState("default");
   
+  // Load chatbot script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jotfor.ms/agent/embedjs/0197fed319b07d43aa55394622d92ab865fc/embed.js?skipWelcome=1&maximizable=1';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+  
   // Get different gradient colors based on the page
   useEffect(() => {
     if (location.pathname === "/") {
