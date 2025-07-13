@@ -80,46 +80,25 @@ const GalleryPage = () => {
       <section className="relative py-16 bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-400/30 to-purple-600/30"></div>
           <div className="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-3xl opacity-30"></div>
           <div className="absolute bottom-10 right-10 w-80 h-80 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full blur-3xl opacity-30"></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="inline-block px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6 border border-white/30"
-            >
+            <div className="inline-block px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-semibold mb-6 border border-white/30">
               📸 Visual Journey Through Our Institute
-            </motion.div>
+            </div>
             
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6 text-white"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
               आमची <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">गॅलरी</span>
-            </motion.h1>
+            </h1>
             
-            <motion.div 
-              className="w-32 h-1.5 bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-400 mx-auto mb-6 rounded-full"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            ></motion.div>
+            <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-400 mx-auto mb-6 rounded-full"></div>
             
-            <motion.p 
-              className="text-xl text-white/90 leading-relaxed"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
+            <p className="text-xl text-white/90 leading-relaxed">
               आमच्या संस्थेचा, सुविधांचा आणि विद्यार्थी उपक्रमांचा दृश्य आढावा घ्या
-            </motion.p>
+            </p>
           </div>
         </div>
       </section>
@@ -128,85 +107,57 @@ const GalleryPage = () => {
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <Tabs defaultValue={selectedTab} onValueChange={setSelectedTab} className="w-full">
-            {/* Enhanced Tab Navigation */}
+            {/* Simplified Tab Navigation */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
-              {galleryCategories.map((category, index) => (
-                <motion.div
+              {galleryCategories.map((category) => (
+                <TabsTrigger 
                   key={category.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  value={category.id}
+                  className="px-6 py-3 bg-white border border-gray-200 rounded-2xl text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-transparent data-[state=active]:shadow-xl"
                 >
-                  <TabsTrigger 
-                    value={category.id}
-                    className="group relative px-6 py-4 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl text-gray-700 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:border-transparent data-[state=active]:shadow-xl"
-                  >
-                    <span className="relative z-10">{category.name}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                  </TabsTrigger>
-                </motion.div>
+                  {category.name}
+                </TabsTrigger>
               ))}
             </div>
             
-            {/* Enhanced Gallery Content */}
+            {/* Gallery Content */}
             {Object.entries(galleryImages).map(([category, images]) => (
               <TabsContent key={category} value={category} className="mt-0">
-                <motion.div 
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6 }}
-                >
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                   {images.map((image, index) => (
                     <motion.div
                       key={image.id}
-                      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: index * 0.1,
-                        type: "spring",
-                        stiffness: 100
-                      }}
-                      whileHover={{ 
-                        scale: 1.03,
-                        y: -8,
-                        transition: { duration: 0.3 }
-                      }}
-                      className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.03, y: -5 }}
+                      className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
                     >
                       {/* Image Container */}
                       <div className="relative h-72 overflow-hidden">
                         <img 
                           src={image.src} 
                           alt={image.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                          loading="lazy"
                         />
                         
-                        {/* Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
                         {/* View Count Badge */}
-                        <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-gray-700 border border-white/20">
+                        <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-gray-700">
                           👁 {image.views}
                         </div>
                         
                         {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            whileHover={{ scale: 1, rotate: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl"
-                          >
+                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl">
                             🔍
-                          </motion.div>
+                          </div>
                         </div>
                       </div>
                       
                       {/* Content */}
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-indigo-600 transition-colors duration-300">
+                        <h3 className="text-xl font-bold text-gray-800 mb-2 hover:text-indigo-600 transition-colors duration-300">
                           {image.title}
                         </h3>
                         <div className="flex items-center justify-between text-sm text-gray-500">
@@ -218,12 +169,9 @@ const GalleryPage = () => {
                           </span>
                         </div>
                       </div>
-                      
-                      {/* Animated Border */}
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"></div>
                     </motion.div>
                   ))}
-                </motion.div>
+                </div>
               </TabsContent>
             ))}
           </Tabs>
