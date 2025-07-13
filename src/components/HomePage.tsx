@@ -818,112 +818,166 @@ export const CTASection = () => {
 export const TopCategories = () => {
   const categories = [
     {
-      icon: <Monitor size={32} />,
+      icon: <Monitor size={40} />,
       title: "Basic Computer",
       description: "MS-CIT, Computer Basics",
-      color: "from-teal-400 to-cyan-500",
-      iconColor: "text-teal-600"
+      gradient: "from-cyan-400 via-teal-500 to-cyan-600",
+      bgPattern: "bg-gradient-to-br from-cyan-50 to-teal-100",
+      iconBg: "bg-gradient-to-br from-cyan-500 to-teal-600",
+      borderColor: "border-cyan-200"
     },
     {
-      icon: <Code size={32} />,
+      icon: <Code size={40} />,
       title: "Programming",
       description: "C, C++, Java, Python",
-      color: "from-pink-400 to-rose-500",
-      iconColor: "text-pink-600"
+      gradient: "from-pink-400 via-rose-500 to-pink-600",
+      bgPattern: "bg-gradient-to-br from-pink-50 to-rose-100",
+      iconBg: "bg-gradient-to-br from-pink-500 to-rose-600",
+      borderColor: "border-pink-200"
     },
     {
-      icon: <Calculator size={32} />,
+      icon: <Calculator size={40} />,
       title: "Accounting",
       description: "Tally, Excel, Finance",
-      color: "from-green-400 to-emerald-500",
-      iconColor: "text-green-600"
+      gradient: "from-emerald-400 via-green-500 to-emerald-600",
+      bgPattern: "bg-gradient-to-br from-emerald-50 to-green-100",
+      iconBg: "bg-gradient-to-br from-emerald-500 to-green-600",
+      borderColor: "border-emerald-200"
     },
     {
-      icon: <FileText size={32} />,
+      icon: <FileText size={40} />,
       title: "Office Suite",
       description: "MS Office, Documentation",
-      color: "from-orange-400 to-amber-500",
-      iconColor: "text-orange-600"
+      gradient: "from-amber-400 via-orange-500 to-amber-600",
+      bgPattern: "bg-gradient-to-br from-amber-50 to-orange-100",
+      iconBg: "bg-gradient-to-br from-amber-500 to-orange-600",
+      borderColor: "border-amber-200"
     },
     {
-      icon: <Brain size={32} />,
+      icon: <Brain size={40} />,
       title: "AI & Technology",
       description: "AI Tools, Modern Tech",
-      color: "from-purple-400 to-violet-500",
-      iconColor: "text-purple-600"
+      gradient: "from-violet-400 via-purple-500 to-violet-600",
+      bgPattern: "bg-gradient-to-br from-violet-50 to-purple-100",
+      iconBg: "bg-gradient-to-br from-violet-500 to-purple-600",
+      borderColor: "border-violet-200"
     },
     {
-      icon: <Building size={32} />,
+      icon: <Building size={40} />,
       title: "Business Skills",
       description: "Digital Marketing, Management",
-      color: "from-blue-400 to-indigo-500",
-      iconColor: "text-blue-600"
-    },
-    {
-      icon: <Keyboard size={32} />,
-      title: "Typing Skills",
-      description: "Speed Typing, Keyboard Skills",
-      color: "from-cyan-400 to-blue-500",
-      iconColor: "text-cyan-600"
-    },
-    {
-      icon: <Laptop size={32} />,
-      title: "Hardware",
-      description: "PC Assembly, Troubleshooting",
-      color: "from-indigo-400 to-purple-500",
-      iconColor: "text-indigo-600"
-    },
-    {
-      icon: <Award size={32} />,
-      title: "Certifications",
-      description: "Industry Recognized Certificates",
-      color: "from-emerald-400 to-teal-500",
-      iconColor: "text-emerald-600"
+      gradient: "from-blue-400 via-indigo-500 to-blue-600",
+      bgPattern: "bg-gradient-to-br from-blue-50 to-indigo-100",
+      iconBg: "bg-gradient-to-br from-blue-500 to-indigo-600",
+      borderColor: "border-blue-200"
     }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-gray-50 to-white">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-gray-100 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="inline-block px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full text-sm font-semibold mb-6 shadow-lg"
+          >
+            ✨ Our Popular Categories
+          </motion.div>
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 bg-clip-text text-transparent">
             मुख्य श्रेणी
-            <div className="w-16 h-1 bg-gradient-to-r from-teal-400 to-cyan-500 mx-auto mt-2 rounded-full"></div>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 mx-auto mb-6 rounded-full"></div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             आपल्या करिअरला गती देण्यासाठी आमच्या विविध तांत्रिक अभ्यासक्रम श्रेणींचा शोध घ्या
           </p>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
             <motion.div
               key={index}
-              className="group relative overflow-hidden rounded-2xl p-6 bg-white shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+              initial={{ opacity: 0, y: 60, rotateX: 15 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.15,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -10,
+                rotateY: 5,
+                transition: { duration: 0.3 }
+              }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+              {/* Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-15 transition-all duration-500`}></div>
               
-              <div className="relative z-10">
-                <div className={`inline-flex p-3 rounded-xl bg-gray-50 group-hover:bg-white transition-colors duration-300 mb-4 ${category.iconColor}`}>
+              {/* Animated Border */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+              
+              <div className="relative z-10 p-8">
+                {/* Icon Container */}
+                <motion.div 
+                  className={`inline-flex p-4 rounded-2xl ${category.iconBg} text-white mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300`}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 5,
+                    transition: { duration: 0.2 }
+                  }}
+                >
                   {category.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-gray-900">
+                </motion.div>
+                
+                {/* Content */}
+                <h3 className="text-2xl font-bold text-gray-800 mb-3 group-hover:text-gray-900 transition-colors duration-300">
                   {category.title}
                 </h3>
-                <p className="text-gray-600 text-sm group-hover:text-gray-700">
+                <p className="text-gray-600 text-base leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                   {category.description}
                 </p>
+                
+                {/* Learn More Arrow */}
+                <motion.div 
+                  className="flex items-center mt-6 text-transparent group-hover:text-gray-700 transition-all duration-300"
+                  initial={{ x: -10, opacity: 0 }}
+                  whileHover={{ x: 0, opacity: 1 }}
+                >
+                  <span className="text-sm font-semibold mr-2">Learn More</span>
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  >
+                    →
+                  </motion.div>
+                </motion.div>
+              </div>
+              
+              {/* Floating Particles */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-4 right-4 w-2 h-2 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                <div className="absolute bottom-8 left-6 w-1.5 h-1.5 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                <div className="absolute top-1/2 right-8 w-1 h-1 bg-white/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-600 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
               </div>
             </motion.div>
           ))}

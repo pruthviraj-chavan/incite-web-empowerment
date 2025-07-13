@@ -82,9 +82,9 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="page-fade-in pt-24">
+    <div className="page-fade-in pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 hero-gradient">
+      <section className="relative py-12 hero-gradient">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
