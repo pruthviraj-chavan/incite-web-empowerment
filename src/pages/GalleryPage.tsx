@@ -107,8 +107,8 @@ const GalleryPage = () => {
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4">
           <Tabs defaultValue={selectedTab} onValueChange={setSelectedTab} className="w-full">
-            {/* Simplified Tab Navigation */}
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {/* Fixed Tab Navigation with proper TabsList */}
+            <TabsList className="bg-transparent h-auto mb-12 flex flex-wrap justify-center gap-3 p-0">
               {galleryCategories.map((category) => (
                 <TabsTrigger 
                   key={category.id}
@@ -118,7 +118,7 @@ const GalleryPage = () => {
                   {category.name}
                 </TabsTrigger>
               ))}
-            </div>
+            </TabsList>
             
             {/* Gallery Content */}
             {Object.entries(galleryImages).map(([category, images]) => (
