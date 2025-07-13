@@ -103,7 +103,7 @@ const Layout = () => {
 
       <Navbar />
       <motion.main 
-        className="flex-grow relative z-10 pt-16 md:pt-20"
+        className="flex-grow relative z-10 pt-12 md:pt-14"
         key={location.pathname}
         initial="initial"
         animate="in"
