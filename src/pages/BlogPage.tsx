@@ -1,15 +1,15 @@
-
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, User, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Helmet } from "react-helmet";
 
-const BlogPage = () => {
+const BlogPage = memo(() => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", "MS-CIT", "Tally", "Saarthi", "MKCL", "Typing", "Programming", "Career"];
+  const categories = ["All", "MS-CIT", "Tally", "Saarthi", "MKCL", "Typing", "Programming", "Career", "Marathi"];
 
   const blogPosts = [
     {
@@ -99,27 +99,60 @@ const BlogPage = () => {
       date: "2024-12-08",
       readTime: "3 min read",
       keywords: "Incite Computers internship, computer internship Radhanagari, skill internship Kolhapur"
+    },
+    {
+      id: 9,
+      title: "राधानगरी येथील संगणक कोर्स - संपूर्ण माहिती 2024",
+      slug: "radhanagari-computer-courses-marathi-guide-2024",
+      excerpt: "राधानगरी मधील इनसाईट कॉम्प्युटर्स संस्थेत उपलब्ध सर्व कोर्सेसची संपूर्ण माहिती. MS-CIT, Tally, MKCL, Typing आणि Programming कोर्सेस.",
+      category: "Marathi",
+      author: "इनसाईट कॉम्प्युटर्स",
+      date: "2024-12-07",
+      readTime: "6 min read",
+      keywords: "राधानगरी संगणक कोर्स, कॉम्प्युटर क्लासेस राधानगरी, MS-CIT राधानगरी, Tally कोर्स राधानगरी"
+    },
+    {
+      id: 10,
+      title: "कोल्हापूर मधील सर्वोत्तम कॉम्प्युटर प्रशिक्षण संस्था",
+      slug: "kolhapur-best-computer-training-institute-marathi",
+      excerpt: "इनसाईट कॉम्प्युटर्स - कोल्हापूर जिल्ह्यातील २० वर्षांचा अनुभव असलेली प्रमाणित संगणक प्रशिक्षण संस्था. शासकीय मान्यता प्राप्त कोर्सेस.",
+      category: "Marathi",
+      author: "इनसाईट कॉम्प्युटर्स",
+      date: "2024-12-06",
+      readTime: "5 min read",
+      keywords: "कोल्हापूर कॉम्प्युटर क्लासेस, संगणक प्रशिक्षण कोल्हापूर, कॉम्प्युटर कोर्स कोल्हापूर, राधानगरी संगणक शिक्षण"
     }
   ];
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredPosts = useMemo(() => 
+    blogPosts.filter(post => {
+      const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           post.keywords.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    }), [searchTerm, selectedCategory]);
 
   return (
-    <div className="min-h-screen pt-20 pb-12">
+    <>
+      <Helmet>
+        <title>Computer Courses Blog | Incite Computers Radhanagari | MS-CIT, Tally, Programming Classes Kolhapur</title>
+        <meta name="description" content="Expert computer courses in Radhanagari & Kolhapur region. MS-CIT classes, Tally training, MKCL courses, typing classes, Python programming. 20+ years experience. Government approved institute near Radhanagari, Kolhapur, Maharashtra." />
+        <meta name="keywords" content="computer courses radhanagari, MS-CIT classes radhanagari, Tally course kolhapur, computer training near radhanagari, MKCL center radhanagari, typing classes kolhapur, python programming radhanagari, computer institute kolhapur, IT courses radhanagari, computer classes near me, संगणक कोर्स राधानगरी, कॉम्प्युटर क्लासेस कोल्हापूर" />
+        <meta property="og:title" content="Computer Courses in Radhanagari - Incite Computers Blog" />
+        <meta property="og:description" content="Top-rated computer training institute in Radhanagari & Kolhapur. MS-CIT, Tally, MKCL, Programming courses with job placement." />
+        <link rel="canonical" href="https://incitecomputer.com/blog" />
+      </Helmet>
+      <div className="min-h-screen pt-20 pb-12">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-50 to-orange-50 py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-              Computer Course Blog
+              Computer Courses Blog - Radhanagari & Kolhapur
             </h1>
             <p className="text-lg text-gray-600 mb-8">
-              Stay updated with the latest insights on MS-CIT, Tally, MKCL, typing courses, and career guidance in Radhanagari and Kolhapur region.
+              Expert insights on MS-CIT, Tally, MKCL, typing, and programming courses in Radhanagari area. Government-approved computer training institute serving Kolhapur district for 20+ years.
             </p>
             
             {/* Search Bar */}
@@ -155,7 +188,7 @@ const BlogPage = () => {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post) => (
-            <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 will-change-transform">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">
@@ -203,16 +236,29 @@ const BlogPage = () => {
 
         {/* SEO Content Section */}
         <section className="mt-16 bg-gray-50 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4 text-center">About Our Computer Course Blog</h2>
-          <p className="text-gray-600 text-center max-w-3xl mx-auto">
-            Welcome to Incite Computers' blog - your go-to resource for computer courses in Radhanagari and Kolhapur. 
-            We provide comprehensive guides on MS-CIT, Tally classes, MKCL training, typing courses, and programming. 
-            Stay updated with the latest trends in technology education and career development opportunities in Maharashtra.
-          </p>
+          <h2 className="text-2xl font-bold mb-4 text-center">Best Computer Training Institute in Radhanagari, Kolhapur</h2>
+          <div className="text-gray-600 max-w-4xl mx-auto space-y-4">
+            <p>
+              <strong>Incite Computers Radhanagari</strong> - Your trusted partner for computer education in Kolhapur district. With over 20 years of excellence, we offer government-approved courses including MS-CIT, Tally ERP, MKCL digital literacy, typing classes (English & Marathi), Python programming, and career internships.
+            </p>
+            <p>
+              Located in Radhanagari, we serve students from across Kolhapur, Kagal, Gadhinglaj, Ajra, Chandgad, and surrounding areas. Our experienced faculty, modern computer labs, and job placement assistance make us the #1 choice for computer courses near you.
+            </p>
+            <p className="text-sm italic">
+              <strong>संगणक कोर्स राधानगरी:</strong> राधानगरी, कोल्हापूर मधील सर्वोत्तम कॉम्प्युटर प्रशिक्षण संस्था. MS-CIT, Tally, MKCL, Typing आणि Programming कोर्सेस. शासकीय मान्यता प्राप्त. २० वर्षांचा अनुभव. नोकरी मिळण्यास मदत.
+            </p>
+            <div className="mt-6 text-center">
+              <p className="font-semibold text-lg mb-2">📞 Contact: 9423281767 | 8263031055</p>
+              <p className="text-sm">📍 Radhanagari, Dist. Kolhapur, Maharashtra</p>
+            </div>
+          </div>
         </section>
       </div>
-    </div>
+      </div>
+    </>
   );
-};
+});
+
+BlogPage.displayName = "BlogPage";
 
 export default BlogPage;
