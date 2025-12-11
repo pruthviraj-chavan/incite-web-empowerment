@@ -30,6 +30,7 @@ const Navbar = () => {
     { name: "Gallery", to: "/gallery" },
     { name: "Blog", to: "/blog" },
     { name: "AI Tools", to: "/ai-tools" },
+    { name: "InciteAI", to: "/incite-ai" },
     { name: "Internship", to: "/internship" },
     { name: "Contact", to: "/contact" },
   ];
