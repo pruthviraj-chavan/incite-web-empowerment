@@ -13,6 +13,7 @@ import BlogPostPage from "./pages/BlogPostPage";
 import AIToolsPage from "./pages/AIToolsPage";
 import InternshipPage from "./pages/InternshipPage";
 import ContactPage from "./pages/ContactPage";
+import InciteAIPage from "./pages/InciteAIPage";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="ai-tools" element={<AIToolsPage />} />
             <Route path="internship" element={<InternshipPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="incite-ai" element={<InciteAIPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
