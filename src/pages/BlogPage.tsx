@@ -143,7 +143,7 @@ const BlogPage = memo(() => {
         <meta property="og:description" content="Top-rated computer training institute in Radhanagari & Kolhapur. MS-CIT, Tally, MKCL, Programming courses with job placement." />
         <link rel="canonical" href="https://incitecomputer.com/blog" />
       </Helmet>
-      <div className="min-h-screen pt-20 pb-12">
+      <div className="min-h-screen pt-24 md:pt-28 pb-12">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-50 to-orange-50 py-12">
         <div className="container mx-auto px-4">

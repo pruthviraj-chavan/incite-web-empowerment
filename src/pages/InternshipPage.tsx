@@ -1,8 +1,8 @@
-
+import { memo } from "react";
 import { Phone, Mail, MapPin, Clock, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const InternshipPage = () => {
+const InternshipPage = memo(() => {
   const internships = [
     {
       id: 1,
@@ -89,7 +89,7 @@ const InternshipPage = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-12">
+    <div className="min-h-screen pt-24 md:pt-28 pb-12">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-50 to-green-50 py-12">
         <div className="container mx-auto px-4">
@@ -249,6 +249,8 @@ const InternshipPage = () => {
       </div>
     </div>
   );
-};
+});
+
+InternshipPage.displayName = "InternshipPage";
 
 export default InternshipPage;

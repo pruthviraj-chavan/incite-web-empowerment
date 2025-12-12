@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState, memo } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { motion } from "framer-motion";
 
-const GalleryPage = () => {
+const GalleryPage = memo(() => {
   const [selectedTab, setSelectedTab] = useState("lab");
   
   const galleryCategories = [
@@ -74,7 +73,7 @@ const GalleryPage = () => {
   };
 
   return (
-    <div className="page-fade-in">
+    <div className="page-fade-in pt-20 md:pt-24">
       {/* Hero Section */}
       <section className="relative py-12 md:py-16 bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 overflow-hidden">
         {/* Background Pattern */}
@@ -123,12 +122,9 @@ const GalleryPage = () => {
             {Object.entries(galleryImages).map(([category, images]) => (
               <TabsContent key={category} value={category} className="mt-0">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                  {images.map((image, index) => (
-                    <motion.div
+                  {images.map((image) => (
+                    <div
                       key={image.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:scale-105"
                     >
                       {/* Image Container */}
@@ -167,7 +163,7 @@ const GalleryPage = () => {
                           </span>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </TabsContent>
@@ -177,6 +173,8 @@ const GalleryPage = () => {
       </section>
     </div>
   );
-};
+});
+
+GalleryPage.displayName = "GalleryPage";
 
 export default GalleryPage;
