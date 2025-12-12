@@ -80,7 +80,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="page-fade-in pt-24 pb-16">
+    <div className="page-fade-in pt-24 md:pt-28 pb-16">
       {/* Hero Section */}
       <section className="relative py-16 hero-gradient">
         <div className="container mx-auto px-4">

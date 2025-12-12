@@ -439,7 +439,7 @@ const BlogPostPage = memo(() => {
 
   if (!post) {
     return (
-      <div className="min-h-screen pt-20 pb-12 flex items-center justify-center">
+      <div className="min-h-screen pt-24 md:pt-28 pb-12 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Blog Post Not Found</h1>
           <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
@@ -462,7 +462,7 @@ const BlogPostPage = memo(() => {
         <meta name="keywords" content="computer courses radhanagari, MS-CIT radhanagari, Tally course kolhapur, computer training radhanagari, MKCL center, typing classes, programming courses, संगणक कोर्स राधानगरी" />
         <link rel="canonical" href={`https://incitecomputer.com/blog/${slug}`} />
       </Helmet>
-      <div className="min-h-screen pt-20 pb-12">
+      <div className="min-h-screen pt-24 md:pt-28 pb-12">
         <article className="container mx-auto px-4 max-w-4xl">
         {/* Back to Blog */}
         <Link to="/blog" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6">

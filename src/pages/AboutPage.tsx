@@ -1,7 +1,7 @@
+import { memo, useMemo } from "react";
 import { Users, Award, Building, GraduationCap } from "lucide-react";
-import { motion } from "framer-motion";
 
-const AboutPage = () => {
+const AboutPage = memo(() => {
   const teamMembers = [
     {
       id: 1,
@@ -82,7 +82,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="page-fade-in pt-16">
+    <div className="page-fade-in pt-24 md:pt-28">
       {/* Hero Section */}
       <section className="relative py-12 hero-gradient">
         <div className="container mx-auto px-4">
@@ -112,9 +112,10 @@ const AboutPage = () => {
             </div>
             <div className="order-1 md:order-2 relative">
               <img 
-                src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70" 
                 alt="Incite Computers Building" 
-                className="rounded-xl shadow-blue image-hover"
+                className="rounded-xl shadow-blue"
+                loading="lazy"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg animate-float">
                 <div className="text-center">
@@ -189,6 +190,7 @@ const AboutPage = () => {
                   src={member.image} 
                   alt={member.name} 
                   className="w-full h-64 object-cover object-center"
+                  loading="lazy"
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
@@ -220,7 +222,8 @@ const AboutPage = () => {
                   <img 
                     src={facility.image} 
                     alt={facility.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-6">
@@ -318,6 +321,8 @@ const AboutPage = () => {
       </section>
     </div>
   );
-};
+});
+
+AboutPage.displayName = "AboutPage";
 
 export default AboutPage;

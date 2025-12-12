@@ -474,7 +474,7 @@ const CoursesPage = () => {
   };
   
   return (
-    <div className="page-fade-in pt-24 relative overflow-hidden">
+    <div className="page-fade-in pt-24 md:pt-28 relative overflow-hidden">
       {animationsEnabled && <AnimatedCircles />}
       
       {/* Hero Section */}

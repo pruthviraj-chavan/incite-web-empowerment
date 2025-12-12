@@ -1,10 +1,9 @@
-
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
 import { ExternalLink, Search, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const AIToolsPage = () => {
+const AIToolsPage = memo(() => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -733,7 +732,7 @@ const AIToolsPage = () => {
   });
 
   return (
-    <div className="min-h-screen pt-16 md:pt-20 pb-12">
+    <div className="min-h-screen pt-24 md:pt-28 pb-12">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-purple-50 to-blue-50 py-8 md:py-12">
         <div className="container mx-auto px-4">
@@ -853,6 +852,8 @@ const AIToolsPage = () => {
       </div>
     </div>
   );
-};
+});
+
+AIToolsPage.displayName = "AIToolsPage";
 
 export default AIToolsPage;
