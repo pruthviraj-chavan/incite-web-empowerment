@@ -1,29 +1,25 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { X } from 'lucide-react';
-import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
-import { motion } from "framer-motion";
+import { Dialog, DialogContent, DialogClose, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
-const AdPopup = () => {
+const AdPopup = memo(() => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // Show popup after 3 seconds
-    const timer = setTimeout(() => {
-      setOpen(true);
-    }, 3000);
-
+    const timer = setTimeout(() => setOpen(true), 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md p-0 border-0 bg-transparent shadow-none">
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="rounded-xl overflow-hidden shadow-xl relative"
-        >
+      <DialogContent className="sm:max-w-md p-0 border-0 bg-transparent shadow-none" aria-describedby="ad-description">
+        <VisuallyHidden>
+          <DialogTitle>Special Offer from Incite Computers</DialogTitle>
+          <DialogDescription id="ad-description">New batches starting - contact us for more information</DialogDescription>
+        </VisuallyHidden>
+        <div className="rounded-xl overflow-hidden shadow-xl relative">
           <DialogClose className="absolute top-2 right-2 z-10 bg-white/90 rounded-full p-1 shadow-md hover:bg-white">
             <X size={24} className="text-gray-800" />
           </DialogClose>
@@ -34,6 +30,7 @@ const AdPopup = () => {
                 src="/m1.jpeg" 
                 alt="Incite Computers Special Offer" 
                 className="w-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
             </div>
@@ -49,10 +46,12 @@ const AdPopup = () => {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </DialogContent>
     </Dialog>
   );
-};
+});
+
+AdPopup.displayName = "AdPopup";
 
 export default AdPopup;
