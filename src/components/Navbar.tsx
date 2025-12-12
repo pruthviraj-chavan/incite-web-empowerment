@@ -27,10 +27,10 @@ const Navbar = () => {
     { name: "Home", to: "/" },
     { name: "About Us", to: "/about" },
     { name: "Courses", to: "/courses" },
+    { name: "IT Services", to: "/it-services" },
     { name: "Gallery", to: "/gallery" },
     { name: "Blog", to: "/blog" },
     { name: "AI Tools", to: "/ai-tools" },
-    { name: "InciteAI", to: "/incite-ai" },
     { name: "Internship", to: "/internship" },
     { name: "Contact", to: "/contact" },
   ];
