@@ -1,5 +1,8 @@
-import { memo, useMemo } from "react";
+import { memo, useMemo, lazy, Suspense } from "react";
 import { Users, Award, Building, GraduationCap } from "lucide-react";
+import { SuccessMetrics } from "@/components/sections";
+
+const PerformanceStats = lazy(() => import('@/components/sections/PerformanceStats'));
 
 const AboutPage = memo(() => {
   const teamMembers = [
@@ -144,6 +147,9 @@ const AboutPage = memo(() => {
           </div>
         </div>
       </section>
+
+      {/* Success Metrics */}
+      <SuccessMetrics />
 
       {/* Vision and Mission */}
       <section className="py-20">
@@ -319,6 +325,11 @@ const AboutPage = memo(() => {
           </div>
         </div>
       </section>
+
+      {/* Performance Stats */}
+      <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
+        <PerformanceStats />
+      </Suspense>
     </div>
   );
 });
