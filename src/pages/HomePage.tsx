@@ -1,33 +1,36 @@
-
-import { useEffect, lazy, Suspense } from 'react';
-import { Hero, Services, CoursesOverview, InspirationSection, Testimonials, GalleryPreview, CTASection, TopCategories, EnhancedAbout, AnimatedCourseIcons } from '../components/HomePage';
-import AdPopup from '../components/AdPopup';
+import { useEffect, lazy, Suspense, memo } from 'react';
+import { Hero, Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout, AnimatedCourseIcons } from '../components/HomePage';
+import { PerformanceStats, WhyChooseUs, SuccessMetrics } from '../components/sections';
 
 // Lazy load less critical components
 const OurTeam = lazy(() => import('../components/OurTeam'));
 const MarketingPostersSection = lazy(() => import('../components/MarketingPostersSection'));
 const OurStaff = lazy(() => import('../components/OurStaff'));
+const TestimonialsGrid = lazy(() => import('../components/sections/TestimonialsGrid'));
 
 // Simplified loading fallback
-const LoadingFallback = () => (
+const LoadingFallback = memo(() => (
   <div className="w-full py-6 flex justify-center">
-    <div className="bg-gray-100 rounded-lg w-full max-w-4xl h-32"></div>
+    <div className="bg-gray-100 rounded-lg w-full max-w-4xl h-32 animate-pulse"></div>
   </div>
-);
+));
 
-const HomePage = () => {
+LoadingFallback.displayName = "LoadingFallback";
+
+const HomePage = memo(() => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div>
-      <AdPopup />
       <Hero />
       <AnimatedCourseIcons />
       <TopCategories />
+      <SuccessMetrics />
       <Services />
       <CoursesOverview />
+      <WhyChooseUs />
       <EnhancedAbout />
       
       {/* Lazy loaded components */}
@@ -37,6 +40,8 @@ const HomePage = () => {
       
       <InspirationSection />
       
+      <PerformanceStats />
+      
       <Suspense fallback={<LoadingFallback />}>
         <OurTeam />
       </Suspense>
@@ -45,13 +50,17 @@ const HomePage = () => {
         <OurStaff />
       </Suspense>
       
-      <Testimonials />
+      <Suspense fallback={<LoadingFallback />}>
+        <TestimonialsGrid />
+      </Suspense>
       
       <GalleryPreview />
       
       <CTASection />
     </div>
   );
-};
+});
+
+HomePage.displayName = "HomePage";
 
 export default HomePage;
