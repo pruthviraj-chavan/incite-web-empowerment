@@ -1,4 +1,6 @@
-export { default as PerformanceStats } from './PerformanceStats';
-export { default as TestimonialsGrid } from './TestimonialsGrid';
-export { default as WhyChooseUs } from './WhyChooseUs';
-export { default as SuccessMetrics } from './SuccessMetrics';
+import PerformanceStats from './PerformanceStats';
+import TestimonialsGrid from './TestimonialsGrid';
+import WhyChooseUs from './WhyChooseUs';
+import SuccessMetrics from './SuccessMetrics';
+
+export { PerformanceStats, TestimonialsGrid, WhyChooseUs, SuccessMetrics };
