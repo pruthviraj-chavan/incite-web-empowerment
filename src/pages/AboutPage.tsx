@@ -325,6 +325,11 @@ const AboutPage = memo(() => {
           </div>
         </div>
       </section>
+
+      {/* Performance Stats */}
+      <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
+        <PerformanceStats />
+      </Suspense>
     </div>
   );
 });
