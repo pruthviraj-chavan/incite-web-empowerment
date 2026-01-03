@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense, memo } from "react";
 import { Users, Clock, Star, Search, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import CourseCard from "@/components/CourseCard";
+import { WhyChooseUs } from "@/components/sections";
+
+const TestimonialsGrid = lazy(() => import('@/components/sections/TestimonialsGrid'));
 
 // Course data
 const allCourses = [
@@ -744,6 +746,14 @@ const CoursesPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Why Choose Us */}
+      <WhyChooseUs />
+
+      {/* Testimonials */}
+      <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
+        <TestimonialsGrid />
+      </Suspense>
     </div>
   );
 };
