@@ -24,15 +24,16 @@ interface News {
 }
 
 const templateTypes = [
-  { id: 'classic', name: 'Classic Newspaper', description: 'Traditional style' },
-  { id: 'modern', name: 'Modern Card', description: 'Clean design' },
-  { id: 'breaking', name: 'Breaking News', description: 'Red banner' },
-  { id: 'featured', name: 'Featured Hero', description: 'Image overlay' },
-  { id: 'gradient', name: 'Gradient Glass', description: 'Glassmorphism' },
-  { id: 'magazine', name: 'Magazine', description: 'Editorial' },
+  { id: 'newspaper', name: '📰 Newspaper Style', description: 'Professional newspaper layout' },
+  { id: 'classic', name: 'Classic', description: 'Traditional amber style' },
+  { id: 'modern', name: 'Modern Card', description: 'Clean white design' },
+  { id: 'breaking', name: '🔴 Breaking News', description: 'Red urgent banner' },
+  { id: 'featured', name: '⭐ Featured Hero', description: 'Full image overlay' },
+  { id: 'gradient', name: 'Gradient Glass', description: 'Purple-blue gradient' },
+  { id: 'magazine', name: 'Magazine', description: 'Editorial split layout' },
   { id: 'minimal', name: 'Minimal Dark', description: 'Dark theme' },
-  { id: 'neon', name: 'Neon Glow', description: 'Neon accents' },
-  { id: 'corporate', name: 'Corporate', description: 'Professional' }
+  { id: 'neon', name: '💡 Neon Glow', description: 'Cyan neon accents' },
+  { id: 'corporate', name: 'Corporate', description: 'Professional blue' }
 ];
 
 const NewsManager = () => {
@@ -138,8 +139,22 @@ const NewsManager = () => {
   };
 
   const renderPreview = (item: News) => {
-    const date = new Date(item.published_at || item.created_at).toLocaleDateString('mr-IN');
+    const date = new Date(item.published_at || item.created_at).toLocaleDateString('en-IN');
     const templates: Record<string, JSX.Element> = {
+      newspaper: (
+        <div className="bg-[#f5f0e6] rounded-lg overflow-hidden border border-[#d4c5a9]">
+          <div className="bg-[#1e3a5f] px-3 py-2 flex items-center justify-center gap-2">
+            <span className="text-white font-serif font-bold">INCITE COMPUTER</span>
+            <span className="text-[#c9a227] font-serif">RADHANAGARI</span>
+          </div>
+          <div className="p-3">
+            <h2 className="text-lg font-serif font-bold text-[#1e3a5f] mb-2">{item.headline}</h2>
+            {item.image_url && <img src={item.image_url} alt="" className="w-full h-24 object-cover rounded mb-2" />}
+            <p className="text-gray-700 text-xs line-clamp-2">{item.content}</p>
+          </div>
+          <div className="bg-[#1e3a5f] px-3 py-1 text-center text-white text-xs">📞 9423281767</div>
+        </div>
+      ),
       classic: (
         <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 border-2 border-amber-200">
           <div className="bg-amber-800 px-3 py-2 text-center rounded-t-lg -mx-4 -mt-4 mb-3">
@@ -172,7 +187,6 @@ const NewsManager = () => {
       ),
       gradient: (
         <div className="bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 rounded-xl p-4">
-          <div className="flex items-center gap-2 mb-2"><img src="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png" alt="" className="w-6 h-6" /><span className="text-white font-semibold text-sm">Incite</span></div>
           <h2 className="text-xl font-bold text-white">{item.headline}</h2>
           {item.image_url && <img src={item.image_url} alt="" className="w-full h-28 object-cover rounded-lg mt-2 border border-white/20" />}
         </div>
@@ -193,7 +207,7 @@ const NewsManager = () => {
       ),
       corporate: (
         <div className="bg-blue-900 rounded-xl overflow-hidden">
-          <div className="bg-blue-800/50 px-3 py-1.5 flex items-center justify-between"><span className="text-white font-semibold text-sm">Incite Computers</span><span className="text-blue-300 text-xs">{date}</span></div>
+          <div className="bg-blue-800/50 px-3 py-1.5 flex items-center justify-between"><span className="text-white font-semibold text-sm">Incite</span><span className="text-blue-300 text-xs">{date}</span></div>
           <div className="p-3">{item.image_url && <img src={item.image_url} alt="" className="w-full h-28 object-cover rounded mb-2" />}<h2 className="text-white font-bold">{item.headline}</h2></div>
         </div>
       )
