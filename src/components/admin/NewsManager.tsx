@@ -75,14 +75,17 @@ const NewsManager = () => {
     e.preventDefault();
     setSaving(true);
 
+    let uploadedFilePath: string | null = null;
+
     try {
       let imageUrl = editingNews?.image_url || null;
 
       if (formData.file) {
         const fileName = `${Date.now()}.${formData.file.name.split('.').pop()}`;
-        const { error: uploadError } = await supabase.storage.from('news').upload(`news/${fileName}`, formData.file);
+        uploadedFilePath = `news/${fileName}`;
+        const { error: uploadError } = await supabase.storage.from('news').upload(uploadedFilePath, formData.file);
         if (uploadError) throw uploadError;
-        imageUrl = supabase.storage.from('news').getPublicUrl(`news/${fileName}`).data.publicUrl;
+        imageUrl = supabase.storage.from('news').getPublicUrl(uploadedFilePath).data.publicUrl;
       } else if (mediaType === 'video' && formData.youtube_url) {
         const videoId = extractVideoId(formData.youtube_url);
         if (videoId) imageUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
@@ -90,7 +93,7 @@ const NewsManager = () => {
 
       const newsData = {
         headline: formData.headline,
-        subheadline: formData.subheadline,
+        subheadline: formData.subheadline || null,
         content: formData.content,
         template_type: formData.template_type,
         image_url: imageUrl,
@@ -98,19 +101,30 @@ const NewsManager = () => {
         published_at: formData.is_published ? new Date().toISOString() : null
       };
 
+      let error;
       if (editingNews) {
-        await supabase.from('news').update(newsData).eq('id', editingNews.id);
-        toast({ title: 'Updated!' });
+        const result = await supabase.from('news').update(newsData).eq('id', editingNews.id);
+        error = result.error;
       } else {
-        await supabase.from('news').insert(newsData);
-        toast({ title: 'Created!' });
+        const result = await supabase.from('news').insert(newsData);
+        error = result.error;
       }
 
+      if (error) {
+        // Cleanup uploaded file if insert/update failed
+        if (uploadedFilePath && !editingNews) {
+          await supabase.storage.from('news').remove([uploadedFilePath]);
+        }
+        throw error;
+      }
+
+      toast({ title: editingNews ? 'Updated!' : 'Created!', description: 'News saved successfully.' });
       setDialogOpen(false);
       resetForm();
       fetchNews();
     } catch (error: any) {
-      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+      console.error('News save error:', error);
+      toast({ title: 'Error saving news', description: error.message || 'Unknown error', variant: 'destructive' });
     } finally {
       setSaving(false);
     }
