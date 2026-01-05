@@ -1,28 +1,16 @@
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
+// Lazy load the chatbot for performance
+const FAQChatbot = lazy(() => import("./FAQChatbot"));
+
 const Layout = () => {
   const location = useLocation();
   const [gradientType, setGradientType] = useState("default");
-  
-  // Load chatbot script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jotfor.ms/agent/embedjs/0197fed319b07d43aa55394622d92ab865fc/embed.js?skipWelcome=1&maximizable=1';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script on unmount
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
   
   // Get different gradient colors based on the page
   useEffect(() => {
@@ -38,7 +26,7 @@ const Layout = () => {
       setGradientType("gradient-blue-purple");
     } else if (location.pathname === "/ai-tools") {
       setGradientType("gradient-purple-pink");
-    } else if (location.pathname === "/internship") {
+    } else if (location.pathname === "/news") {
       setGradientType("gradient-green-blue");
     } else if (location.pathname === "/contact") {
       setGradientType("gradient-cyan");
@@ -114,6 +102,11 @@ const Layout = () => {
         <Outlet />
       </motion.main>
       <Footer />
+      
+      {/* FAQ Chatbot */}
+      <Suspense fallback={null}>
+        <FAQChatbot />
+      </Suspense>
     </div>
   );
 };
