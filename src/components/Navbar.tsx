@@ -30,8 +30,8 @@ const Navbar = () => {
     { name: "IT Services", to: "/it-services" },
     { name: "Gallery", to: "/gallery" },
     { name: "Blog", to: "/blog" },
+    { name: "News", to: "/news" },
     { name: "AI Tools", to: "/ai-tools" },
-    { name: "Internship", to: "/internship" },
     { name: "Contact", to: "/contact" },
   ];
 
