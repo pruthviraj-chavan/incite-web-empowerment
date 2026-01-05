@@ -1,6 +1,6 @@
 import { useEffect, lazy, Suspense, memo } from 'react';
-import { Hero, Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout, AnimatedCourseIcons } from '../components/HomePage';
-import { PerformanceStats, WhyChooseUs, SuccessMetrics } from '../components/sections';
+import { Hero, Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout } from '../components/HomePage';
+import { WhyChooseUs, ModernBenefits, StatsShowcase, IntegrationTree } from '../components/sections';
 
 // Lazy load less critical components
 const OurTeam = lazy(() => import('../components/OurTeam'));
@@ -25,11 +25,18 @@ const HomePage = memo(() => {
   return (
     <div>
       <Hero />
-      <AnimatedCourseIcons />
       <TopCategories />
-      <SuccessMetrics />
+      
+      {/* Modern dark sections inspired by reference */}
+      <ModernBenefits />
+      <StatsShowcase />
+      
       <Services />
       <CoursesOverview />
+      
+      {/* Integration tree section */}
+      <IntegrationTree />
+      
       <WhyChooseUs />
       <EnhancedAbout />
       
@@ -39,8 +46,6 @@ const HomePage = memo(() => {
       </Suspense>
       
       <InspirationSection />
-      
-      <PerformanceStats />
       
       <Suspense fallback={<LoadingFallback />}>
         <OurTeam />
