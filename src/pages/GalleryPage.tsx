@@ -2,6 +2,7 @@ import { useState, useEffect, memo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Play, Image as ImageIcon } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 
 interface GalleryImage {
   id: string;
@@ -135,7 +136,23 @@ const GalleryPage = memo(() => {
   };
 
   return (
-    <div className="page-fade-in pt-20 md:pt-24">
+    <>
+      <Helmet>
+        <title>Gallery | Incite Computers Radhanagari - Photos & Videos</title>
+        <meta name="description" content="Explore our gallery featuring computer labs, lecture halls, student activities, seminars and more at Incite Computers Radhanagari. Best computer training institute in Kolhapur district." />
+        <meta property="og:title" content="Incite Computers Radhanagari - Gallery" />
+        <meta property="og:description" content="View our modern computer labs, training sessions, and student activities. 20+ years of excellence in computer education in Radhanagari, Kolhapur." />
+        <meta property="og:image" content="/img-03.jpg" />
+        <meta property="og:url" content="https://incitecomputer.com/gallery" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Incite Computers Radhanagari" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Incite Computers Radhanagari - Gallery" />
+        <meta name="twitter:description" content="View our modern computer labs, training sessions, and student activities." />
+        <meta name="twitter:image" content="/img-03.jpg" />
+        <link rel="canonical" href="https://incitecomputer.com/gallery" />
+      </Helmet>
+      <div className="page-fade-in pt-20 md:pt-24">
       {/* Hero Section */}
       <section className="relative py-12 md:py-16 bg-gradient-to-br from-indigo-600 via-purple-700 to-pink-600 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -310,7 +327,8 @@ const GalleryPage = memo(() => {
           </Tabs>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 });
 

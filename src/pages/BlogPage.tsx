@@ -1,17 +1,32 @@
-import { useState, useMemo, memo } from "react";
+import { useState, useMemo, memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, User, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Helmet } from "react-helmet";
+import { supabase } from "@/integrations/supabase/client";
+
+interface DbBlog {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  category: string;
+  author: string | null;
+  published_at: string | null;
+  created_at: string;
+  featured_image: string | null;
+}
 
 const BlogPage = memo(() => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [dbBlogs, setDbBlogs] = useState<DbBlog[]>([]);
 
-  const categories = ["All", "MS-CIT", "Tally", "Saarthi", "MKCL", "Typing", "Programming", "Career", "Marathi"];
+  const categories = ["All", "MS-CIT", "Tally", "Saarthi", "MKCL", "Typing", "Programming", "Career", "Marathi", "General"];
 
-  const blogPosts = [
+  // Static blog posts (existing data)
+  const staticBlogPosts = [
     {
       id: 1,
       title: "MS-CIT Course in Radhanagari - Complete Guide 2024",
@@ -124,14 +139,46 @@ const BlogPage = memo(() => {
     }
   ];
 
+  // Fetch blogs from Supabase
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const { data } = await supabase
+        .from('blogs')
+        .select('id, title, slug, excerpt, category, author, published_at, created_at, featured_image')
+        .eq('is_published', true)
+        .order('published_at', { ascending: false });
+      
+      if (data) {
+        setDbBlogs(data);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
+  // Combine static and database blogs
+  const combinedPosts = useMemo(() => {
+    const dbPostsFormatted = dbBlogs.map(blog => ({
+      id: blog.id,
+      title: blog.title,
+      slug: blog.slug,
+      excerpt: blog.excerpt || '',
+      category: blog.category,
+      author: blog.author || 'Incite Computers',
+      date: blog.published_at || blog.created_at,
+      readTime: '3 min read',
+      keywords: '',
+      featured_image: blog.featured_image
+    }));
+    return [...dbPostsFormatted, ...staticBlogPosts];
+  }, [dbBlogs]);
+
   const filteredPosts = useMemo(() => 
-    blogPosts.filter(post => {
+    combinedPosts.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           post.keywords.toLowerCase().includes(searchTerm.toLowerCase());
+                           post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
       return matchesSearch && matchesCategory;
-    }), [searchTerm, selectedCategory]);
+    }), [searchTerm, selectedCategory, combinedPosts]);
 
   return (
     <>
