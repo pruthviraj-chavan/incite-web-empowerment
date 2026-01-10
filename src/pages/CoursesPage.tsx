@@ -20,6 +20,7 @@ interface DbCourse {
   students: number;
   rating: number;
   icon: string;
+  link: string | null;
 }
 
 // Course data
@@ -462,14 +463,15 @@ const CoursesPage = () => {
     const fetchCourses = async () => {
       const { data } = await supabase
         .from('courses')
-        .select('id, title, description, category, duration, students, rating, icon')
+        .select('id, title, description, category, duration, students, rating, icon, link')
         .eq('is_active', true)
         .order('display_order', { ascending: true });
       
       if (data) {
         setDbCourses(data.map(c => ({
           ...c,
-          rating: Number(c.rating) || 4.5
+          rating: Number(c.rating) || 4.5,
+          link: c.link || null
         })));
       }
     };
@@ -486,9 +488,10 @@ const CoursesPage = () => {
       students: c.students,
       duration: c.duration,
       rating: c.rating,
-      icon: c.icon
+      icon: c.icon,
+      link: c.link
     }));
-    return [...dbCoursesFormatted, ...allCourses];
+    return [...dbCoursesFormatted, ...allCourses.map(c => ({ ...c, link: null as string | null }))];
   }, [dbCourses]);
   
   // Filter courses based on search query and active category

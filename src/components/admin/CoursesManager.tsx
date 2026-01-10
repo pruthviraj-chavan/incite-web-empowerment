@@ -19,6 +19,7 @@ interface Course {
   students: number;
   rating: number;
   icon: string;
+  link: string | null;
   is_active: boolean;
   created_at: string;
 }
@@ -53,6 +54,7 @@ const CoursesManager = () => {
     students: 0,
     rating: 4.5,
     icon: '💻',
+    link: '',
     is_active: true
   });
 
@@ -88,6 +90,7 @@ const CoursesManager = () => {
         students: formData.students,
         rating: formData.rating,
         icon: formData.icon,
+        link: formData.link || null,
         is_active: formData.is_active
       };
 
@@ -129,6 +132,7 @@ const CoursesManager = () => {
       students: 0,
       rating: 4.5,
       icon: '💻',
+      link: '',
       is_active: true
     });
   };
@@ -166,6 +170,7 @@ const CoursesManager = () => {
       students: course.students,
       rating: course.rating,
       icon: course.icon,
+      link: course.link || '',
       is_active: course.is_active
     });
     setDialogOpen(true);
@@ -265,6 +270,15 @@ const CoursesManager = () => {
                     </SelectContent>
                   </Select>
                 </div>
+              </div>
+              <div>
+                <Label>Link (optional)</Label>
+                <Input 
+                  value={formData.link} 
+                  onChange={(e) => setFormData({...formData, link: e.target.value})}
+                  className="bg-white/10 border-white/20"
+                  placeholder="https://example.com/course-details"
+                />
               </div>
               <div className="flex items-center gap-2">
                 <Switch 

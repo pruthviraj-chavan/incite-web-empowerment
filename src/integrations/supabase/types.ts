@@ -69,6 +69,7 @@ export type Database = {
           icon: string | null
           id: string
           is_active: boolean | null
+          link: string | null
           rating: number | null
           students: number | null
           title: string
@@ -83,6 +84,7 @@ export type Database = {
           icon?: string | null
           id?: string
           is_active?: boolean | null
+          link?: string | null
           rating?: number | null
           students?: number | null
           title: string
@@ -97,6 +99,7 @@ export type Database = {
           icon?: string | null
           id?: string
           is_active?: boolean | null
+          link?: string | null
           rating?: number | null
           students?: number | null
           title?: string
