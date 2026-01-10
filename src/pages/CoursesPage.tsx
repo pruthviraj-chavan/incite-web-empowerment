@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense, memo } from "react";
+import { useState, useEffect, lazy, Suspense, memo, useMemo } from "react";
 import { Users, Clock, Star, Search, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import CourseCard from "@/components/CourseCard";
 import { WhyChooseUs } from "@/components/sections";
+import { supabase } from "@/integrations/supabase/client";
 
 const TestimonialsGrid = lazy(() => import('@/components/sections/TestimonialsGrid'));
+
+interface DbCourse {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  duration: string;
+  students: number;
+  rating: number;
+  icon: string;
+}
 
 // Course data
 const allCourses = [
@@ -438,14 +450,49 @@ const CoursesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Courses");
   const [animationsEnabled, setAnimationsEnabled] = useState(false);
+  const [dbCourses, setDbCourses] = useState<DbCourse[]>([]);
   
   // Enable animations after component mounts to prevent SSR hydration issues
   useEffect(() => {
     setAnimationsEnabled(true);
   }, []);
+
+  // Fetch courses from Supabase
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const { data } = await supabase
+        .from('courses')
+        .select('id, title, description, category, duration, students, rating, icon')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+      
+      if (data) {
+        setDbCourses(data.map(c => ({
+          ...c,
+          rating: Number(c.rating) || 4.5
+        })));
+      }
+    };
+    fetchCourses();
+  }, []);
+
+  // Combine static and database courses
+  const combinedCourses = useMemo(() => {
+    const dbCoursesFormatted = dbCourses.map(c => ({
+      id: c.id,
+      category: c.category,
+      title: c.title,
+      description: c.description,
+      students: c.students,
+      duration: c.duration,
+      rating: c.rating,
+      icon: c.icon
+    }));
+    return [...dbCoursesFormatted, ...allCourses];
+  }, [dbCourses]);
   
   // Filter courses based on search query and active category
-  const filteredCourses = allCourses.filter((course) => {
+  const filteredCourses = combinedCourses.filter((course) => {
     const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                          course.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = activeCategory === "All Courses" || course.category === activeCategory;
@@ -456,11 +503,11 @@ const CoursesPage = () => {
   // Count courses by category
   const countByCategory = categories.map(category => {
     if (category === "All Courses") {
-      return { name: category, count: allCourses.length };
+      return { name: category, count: combinedCourses.length };
     }
     return { 
       name: category, 
-      count: allCourses.filter(course => course.category === category).length 
+      count: combinedCourses.filter(course => course.category === category).length 
     };
   });
   

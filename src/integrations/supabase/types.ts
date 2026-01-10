@@ -59,6 +59,51 @@ export type Database = {
         }
         Relationships: []
       }
+      courses: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          display_order: number | null
+          duration: string
+          icon: string | null
+          id: string
+          is_active: boolean | null
+          rating: number | null
+          students: number | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          description: string
+          display_order?: number | null
+          duration: string
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          rating?: number | null
+          students?: number | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          display_order?: number | null
+          duration?: string
+          icon?: string | null
+          id?: string
+          is_active?: boolean | null
+          rating?: number | null
+          students?: number | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gallery_images: {
         Row: {
           category: string

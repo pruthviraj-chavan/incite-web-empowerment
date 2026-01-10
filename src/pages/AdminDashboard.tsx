@@ -12,17 +12,13 @@ import {
   FileText, 
   Newspaper, 
   LogOut,
-  Upload,
-  Trash2,
-  Edit,
-  Plus,
-  Eye,
-  EyeOff
+  BookOpen
 } from 'lucide-react';
 import GalleryManager from '@/components/admin/GalleryManager';
 import VideoManager from '@/components/admin/VideoManager';
 import BlogManager from '@/components/admin/BlogManager';
 import NewsManager from '@/components/admin/NewsManager';
+import CoursesManager from '@/components/admin/CoursesManager';
 
 const AdminDashboard = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -32,7 +28,8 @@ const AdminDashboard = () => {
     images: 0,
     videos: 0,
     blogs: 0,
-    news: 0
+    news: 0,
+    courses: 0
   });
 
   useEffect(() => {
@@ -48,18 +45,20 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [images, videos, blogs, news] = await Promise.all([
+      const [images, videos, blogs, news, courses] = await Promise.all([
         supabase.from('gallery_images').select('id', { count: 'exact', head: true }),
         supabase.from('gallery_videos').select('id', { count: 'exact', head: true }),
         supabase.from('blogs').select('id', { count: 'exact', head: true }),
         supabase.from('news').select('id', { count: 'exact', head: true }),
+        supabase.from('courses').select('id', { count: 'exact', head: true }),
       ]);
       
       setStats({
         images: images.count || 0,
         videos: videos.count || 0,
         blogs: blogs.count || 0,
-        news: news.count || 0
+        news: news.count || 0,
+        courses: courses.count || 0
       });
     };
     
@@ -117,12 +116,13 @@ const AdminDashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
           {[
             { label: 'Gallery Images', count: stats.images, icon: ImageIcon, color: 'from-blue-500 to-cyan-500' },
             { label: 'Videos', count: stats.videos, icon: Video, color: 'from-purple-500 to-pink-500' },
             { label: 'Blog Posts', count: stats.blogs, icon: FileText, color: 'from-orange-500 to-red-500' },
             { label: 'News Articles', count: stats.news, icon: Newspaper, color: 'from-green-500 to-teal-500' },
+            { label: 'Courses', count: stats.courses, icon: BookOpen, color: 'from-indigo-500 to-purple-500' },
           ].map((stat, i) => (
             <div key={i} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
               <div className="flex items-center justify-between">
@@ -140,14 +140,18 @@ const AdminDashboard = () => {
 
         {/* Management Tabs */}
         <Tabs defaultValue="gallery" className="w-full">
-          <TabsList className="bg-white/5 border border-white/10 p-1 mb-6">
+          <TabsList className="bg-white/5 border border-white/10 p-1 mb-6 flex-wrap">
             <TabsTrigger value="gallery" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 text-white">
               <ImageIcon className="w-4 h-4 mr-2" />
-              Gallery Images
+              Gallery
             </TabsTrigger>
             <TabsTrigger value="videos" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 text-white">
               <Video className="w-4 h-4 mr-2" />
               Videos
+            </TabsTrigger>
+            <TabsTrigger value="courses" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 text-white">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Courses
             </TabsTrigger>
             <TabsTrigger value="blogs" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 text-white">
               <FileText className="w-4 h-4 mr-2" />
@@ -165,6 +169,10 @@ const AdminDashboard = () => {
           
           <TabsContent value="videos">
             <VideoManager />
+          </TabsContent>
+
+          <TabsContent value="courses">
+            <CoursesManager />
           </TabsContent>
           
           <TabsContent value="blogs">
