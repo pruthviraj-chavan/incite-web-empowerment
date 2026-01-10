@@ -14,6 +14,7 @@ interface CourseProps {
     duration: string;
     rating: number;
     icon: string;
+    link?: string | null;
   };
   index: number;
 }
@@ -106,8 +107,19 @@ const CourseCard = ({ course, index }: CourseProps) => {
       </div>
       
       <div className="p-6 border-t border-gray-100 bg-gray-50">
-        <div className="flex justify-between items-center">
-          <span className="font-medium text-gray-700">संपर्क:</span>
+        <div className="flex justify-between items-center gap-2">
+          {course.link ? (
+            <a 
+              href={course.link}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-incite-blue hover:underline truncate flex-1"
+            >
+              अधिक माहिती →
+            </a>
+          ) : (
+            <span className="font-medium text-gray-700">संपर्क:</span>
+          )}
           <Button 
             size="sm" 
             className={`text-white btn-hover ${getRandomGradient()}`}
