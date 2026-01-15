@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import CourseCard from "@/components/CourseCard";
-import { WhyChooseUs } from "@/components/sections";
+import { WhyChooseUs, OfficialCoursesLogos } from "@/components/sections";
 import { supabase } from "@/integrations/supabase/client";
 
 const TestimonialsGrid = lazy(() => import('@/components/sections/TestimonialsGrid'));
@@ -796,6 +796,9 @@ const CoursesPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Official MKCL Course Logos */}
+      <OfficialCoursesLogos />
 
       {/* Why Choose Us */}
       <WhyChooseUs />

@@ -1,6 +1,6 @@
 import { useEffect, lazy, Suspense, memo } from 'react';
 import { Hero, Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout } from '../components/HomePage';
-import { WhyChooseUs, ModernBenefits, StatsShowcase, IntegrationTree } from '../components/sections';
+import { WhyChooseUs, ModernBenefits, StatsShowcase, IntegrationTree, OfficialCoursesLogos } from '../components/sections';
 
 // Lazy load less critical components
 const OurTeam = lazy(() => import('../components/OurTeam'));
@@ -26,6 +26,9 @@ const HomePage = memo(() => {
     <div>
       <Hero />
       <TopCategories />
+      
+      {/* Official MKCL Course Logos */}
+      <OfficialCoursesLogos />
       
       {/* Modern dark sections inspired by reference */}
       <ModernBenefits />
