@@ -6,6 +6,7 @@ import ModernBenefits from './ModernBenefits';
 import StatsShowcase from './StatsShowcase';
 import FeatureShowcase from './FeatureShowcase';
 import IntegrationTree from './IntegrationTree';
+import OfficialCoursesLogos from './OfficialCoursesLogos';
 
 export { 
   PerformanceStats, 
@@ -15,5 +16,6 @@ export {
   ModernBenefits,
   StatsShowcase,
   FeatureShowcase,
-  IntegrationTree
+  IntegrationTree,
+  OfficialCoursesLogos
 };
