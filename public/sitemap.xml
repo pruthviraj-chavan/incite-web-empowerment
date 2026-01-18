@@ -2,20 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://incitecomputer.com/</loc>
-        <lastmod>2024-07-04</lastmod>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://incitecomputer.com/courses</loc>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>https://incitecomputer.com/about</loc>
-        <loc>https://incitecomputer.com/contact</loc>
-        <loc>https://incitecomputer.com/blog</loc>
-        <loc>https://incitecomputer.com/gallery</loc>
-        <loc>https://incitecomputer.com/ai-tools</loc>
-        <loc>https://incitecomputer.com/internship</loc>
-        
-        
-        <lastmod>2024-08-06</lastmod>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://incitecomputer.com/contact</loc>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://incitecomputer.com/blog</loc>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://incitecomputer.com/gallery</loc>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://incitecomputer.com/ai-tools</loc>
+        <lastmod>2026-01-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 </urlset>

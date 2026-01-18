@@ -1,4 +1,5 @@
 import { useState, useMemo, memo } from "react";
+import { Helmet } from "react-helmet";
 import { ExternalLink, Search, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -732,9 +733,18 @@ const AIToolsPage = memo(() => {
   });
 
   return (
-    <div className="min-h-screen pt-24 md:pt-28 pb-12">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-50 to-blue-50 py-8 md:py-12">
+    <>
+      <Helmet>
+        <title>AI Tools Directory | Incite Computers - Best AI Tools for Learning</title>
+        <meta name="description" content="Discover the best AI tools for learning, development, marketing and automation. Curated list of 100+ AI tools by Incite Computers Radhanagari." />
+        <link rel="canonical" href="https://incitecomputer.com/ai-tools" />
+        <meta property="og:title" content="AI Tools Directory - Incite Computers" />
+        <meta property="og:description" content="Explore 100+ AI tools for development, marketing, automation and more. Curated by Incite Computers." />
+        <meta property="og:url" content="https://incitecomputer.com/ai-tools" />
+      </Helmet>
+      <div className="min-h-screen pt-24 md:pt-28 pb-12">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-purple-50 to-blue-50 py-8 md:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex items-center justify-center mb-4">
@@ -850,7 +860,8 @@ const AIToolsPage = memo(() => {
           </div>
         </section>
       </div>
-    </div>
+      </div>
+    </>
   );
 });
 
