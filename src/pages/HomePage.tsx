@@ -1,4 +1,5 @@
 import { useEffect, lazy, Suspense, memo } from 'react';
+import { Helmet } from 'react-helmet';
 import { Hero, Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout } from '../components/HomePage';
 import { WhyChooseUs, ModernBenefits, StatsShowcase, IntegrationTree, OfficialCoursesLogos } from '../components/sections';
 
@@ -23,8 +24,18 @@ const HomePage = memo(() => {
   }, []);
 
   return (
-    <div>
-      <Hero />
+    <>
+      <Helmet>
+        <title>Incite Computers Radhanagari | Best Computer Training Institute in Kolhapur</title>
+        <meta name="description" content="Incite Computers - Premier computer training institute in Radhanagari, Kolhapur. MS-CIT, Tally, MKCL, Programming courses. 20+ years experience. Government approved." />
+        <link rel="canonical" href="https://incitecomputer.com/" />
+        <meta property="og:title" content="Incite Computers - Best Computer Training in Radhanagari" />
+        <meta property="og:description" content="Premier computer training institute in Radhanagari. MS-CIT, Tally, Programming courses with placement assistance." />
+        <meta property="og:url" content="https://incitecomputer.com/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <div>
+        <Hero />
       <TopCategories />
       
       {/* Official MKCL Course Logos */}
@@ -65,7 +76,8 @@ const HomePage = memo(() => {
       <GalleryPreview />
       
       <CTASection />
-    </div>
+      </div>
+    </>
   );
 });
 

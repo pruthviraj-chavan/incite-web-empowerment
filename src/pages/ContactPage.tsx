@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -80,20 +80,29 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="page-fade-in pt-24 md:pt-28 pb-16">
-      {/* Hero Section */}
-      <section className="relative py-16 hero-gradient">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Get in <span className="gradient-text">Touch</span>
-            </h1>
-            <p className="text-xl text-gray-700">
-              We'd love to hear from you. Reach out to our team for any queries.
-            </p>
+    <>
+      <Helmet>
+        <title>Contact Us | Incite Computers Radhanagari - Get in Touch</title>
+        <meta name="description" content="Contact Incite Computers Radhanagari. Phone: 9423281767, 8263031055. Visit us at Main Road, Radhanagari, Kolhapur. Computer courses inquiry and admissions." />
+        <link rel="canonical" href="https://incitecomputer.com/contact" />
+        <meta property="og:title" content="Contact Incite Computers Radhanagari" />
+        <meta property="og:description" content="Get in touch with Incite Computers for course inquiries. Phone: 9423281767. Located in Radhanagari, Kolhapur." />
+        <meta property="og:url" content="https://incitecomputer.com/contact" />
+      </Helmet>
+      <div className="page-fade-in pt-24 md:pt-28 pb-16">
+        {/* Hero Section */}
+        <section className="relative py-16 hero-gradient">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Get in <span className="gradient-text">Touch</span>
+              </h1>
+              <p className="text-xl text-gray-700">
+                We'd love to hear from you. Reach out to our team for any queries.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Contact Information */}
       <section className="py-12">
@@ -280,8 +289,9 @@ const ContactPage = () => {
             </Button>
           </div>
         </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

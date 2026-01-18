@@ -1,4 +1,5 @@
 import { useState, useEffect, lazy, Suspense, memo, useMemo } from "react";
+import { Helmet } from "react-helmet";
 import { Users, Clock, Star, Search, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -526,11 +527,20 @@ const CoursesPage = () => {
   };
   
   return (
-    <div className="page-fade-in pt-24 md:pt-28 relative overflow-hidden">
-      {animationsEnabled && <AnimatedCircles />}
-      
-      {/* Hero Section */}
-      <section className="relative py-20 hero-gradient-purple">
+    <>
+      <Helmet>
+        <title>Computer Courses | Incite Computers Radhanagari - MS-CIT, Tally, Programming</title>
+        <meta name="description" content="Explore 30+ computer courses at Incite Computers Radhanagari. MS-CIT, KLiCK, Tally, Programming, Hardware & more. Government approved institute in Kolhapur." />
+        <link rel="canonical" href="https://incitecomputer.com/courses" />
+        <meta property="og:title" content="Computer Courses - Incite Computers Radhanagari" />
+        <meta property="og:description" content="30+ courses including MS-CIT, Tally, Programming. Government approved. 20+ years experience." />
+        <meta property="og:url" content="https://incitecomputer.com/courses" />
+      </Helmet>
+      <div className="page-fade-in pt-24 md:pt-28 relative overflow-hidden">
+        {animationsEnabled && <AnimatedCircles />}
+        
+        {/* Hero Section */}
+        <section className="relative py-20 hero-gradient-purple">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
@@ -807,7 +817,8 @@ const CoursesPage = () => {
       <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
         <TestimonialsGrid />
       </Suspense>
-    </div>
+      </div>
+    </>
   );
 };
 

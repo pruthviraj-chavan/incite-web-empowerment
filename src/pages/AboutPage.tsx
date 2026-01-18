@@ -1,4 +1,5 @@
 import { memo, useMemo, lazy, Suspense } from "react";
+import { Helmet } from "react-helmet";
 import { Users, Award, Building, GraduationCap } from "lucide-react";
 import { SuccessMetrics } from "@/components/sections";
 
@@ -85,9 +86,18 @@ const AboutPage = memo(() => {
   ];
 
   return (
-    <div className="page-fade-in pt-24 md:pt-28">
-      {/* Hero Section */}
-      <section className="relative py-12 hero-gradient">
+    <>
+      <Helmet>
+        <title>About Us | Incite Computers Radhanagari - 20+ Years of Excellence</title>
+        <meta name="description" content="Learn about Incite Computers Radhanagari - 20+ years of excellence in computer education. Our team, facilities, achievements and mission to empower rural India with digital skills." />
+        <link rel="canonical" href="https://incitecomputer.com/about" />
+        <meta property="og:title" content="About Incite Computers - Premier IT Training in Radhanagari" />
+        <meta property="og:description" content="20+ years of excellence in computer education. 15,000+ students trained. Government approved institute." />
+        <meta property="og:url" content="https://incitecomputer.com/about" />
+      </Helmet>
+      <div className="page-fade-in pt-24 md:pt-28">
+        {/* Hero Section */}
+        <section className="relative py-12 hero-gradient">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -330,7 +340,8 @@ const AboutPage = memo(() => {
       <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
         <PerformanceStats />
       </Suspense>
-    </div>
+      </div>
+    </>
   );
 });
 
