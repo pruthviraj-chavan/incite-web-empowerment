@@ -1,0 +1,30 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # Runs every 3 days at midnight UTC
+    - cron: '0 0 */3 * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://kmqjrkvxlxrrmdhyebef.supabase.co/rest/v1/courses?select=id&limit=1" \
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttcWpya3Z4bHhycm1kaHllYmVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1OTQ5MzUsImV4cCI6MjA4MzE3MDkzNX0.2u3GYvnUaIqckI7Y2F40wDT9t0-q46tZfbi7_nHjnV0" \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttcWpya3Z4bHhycm1kaHllYmVmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1OTQ5MzUsImV4cCI6MjA4MzE3MDkzNX0.2u3GYvnUaIqckI7Y2F40wDT9t0-q46tZfbi7_nHjnV0")
+          
+          echo "Response code: $response"
+          
+          if [ "$response" -eq 200 ]; then
+            echo "✅ Supabase ping successful - Project kept alive!"
+          else
+            echo "⚠️ Ping returned status $response"
+            exit 1
+          fi
+          
+      - name: Log timestamp
+        run: echo "Ping completed at $(date -u)"
