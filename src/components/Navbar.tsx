@@ -1,10 +1,9 @@
-
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +29,6 @@ const Navbar = () => {
     { name: "IT Services", to: "/it-services" },
     { name: "Gallery", to: "/gallery" },
     { name: "Blog", to: "/blog" },
-    { name: "News", to: "/news" },
     { name: "AI Tools", to: "/ai-tools" },
     { name: "Contact", to: "/contact" },
   ];
@@ -97,34 +95,42 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden glass shadow-lg shadow-blue-500/10 border-t border-white/20 backdrop-blur-xl">
-          <div className="container mx-auto px-3 py-4 flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.to}
-                className={({ isActive }) =>
-                  cn(
-                    "px-3 py-2 rounded-lg font-medium transition-all duration-200 block text-sm",
-                    isActive
-                      ? "gradient-text font-semibold bg-gradient-to-r from-incite-blue/20 to-incite-purple/20"
-                      : "text-gray-700 hover:bg-gradient-to-r hover:from-incite-blue/10 hover:to-incite-purple/10"
-                  )
-                }
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </NavLink>
-            ))}
-            <Button className="gradient-blue text-white transition-all duration-200 w-full mt-2 text-sm py-2 shadow-md">
-              <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="w-full">
-                Enroll Now
-              </a>
-            </Button>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            className="lg:hidden glass shadow-lg shadow-blue-500/10 border-t border-white/20 backdrop-blur-xl"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="container mx-auto px-3 py-4 flex flex-col space-y-2">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.to}
+                  className={({ isActive }) =>
+                    cn(
+                      "px-3 py-2 rounded-lg font-medium transition-all duration-200 block text-sm",
+                      isActive
+                        ? "gradient-text font-semibold bg-gradient-to-r from-incite-blue/20 to-incite-purple/20"
+                        : "text-gray-700 hover:bg-gradient-to-r hover:from-incite-blue/10 hover:to-incite-purple/10"
+                    )
+                  }
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+              <Button className="gradient-blue text-white transition-all duration-200 w-full mt-2 text-sm py-2 shadow-md">
+                <a href="https://wa.me/919423281767" target="_blank" rel="noopener noreferrer" className="w-full">
+                  Enroll Now
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

@@ -10,14 +10,12 @@ import {
   Image as ImageIcon, 
   Video, 
   FileText, 
-  Newspaper, 
   LogOut,
   BookOpen
 } from 'lucide-react';
 import GalleryManager from '@/components/admin/GalleryManager';
 import VideoManager from '@/components/admin/VideoManager';
 import BlogManager from '@/components/admin/BlogManager';
-import NewsManager from '@/components/admin/NewsManager';
 import CoursesManager from '@/components/admin/CoursesManager';
 
 const AdminDashboard = () => {
@@ -28,7 +26,6 @@ const AdminDashboard = () => {
     images: 0,
     videos: 0,
     blogs: 0,
-    news: 0,
     courses: 0
   });
 
@@ -45,11 +42,10 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchStats = async () => {
-      const [images, videos, blogs, news, courses] = await Promise.all([
+      const [images, videos, blogs, courses] = await Promise.all([
         supabase.from('gallery_images').select('id', { count: 'exact', head: true }),
         supabase.from('gallery_videos').select('id', { count: 'exact', head: true }),
         supabase.from('blogs').select('id', { count: 'exact', head: true }),
-        supabase.from('news').select('id', { count: 'exact', head: true }),
         supabase.from('courses').select('id', { count: 'exact', head: true }),
       ]);
       
@@ -57,7 +53,6 @@ const AdminDashboard = () => {
         images: images.count || 0,
         videos: videos.count || 0,
         blogs: blogs.count || 0,
-        news: news.count || 0,
         courses: courses.count || 0
       });
     };
@@ -116,12 +111,11 @@ const AdminDashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {[
             { label: 'Gallery Images', count: stats.images, icon: ImageIcon, color: 'from-blue-500 to-cyan-500' },
             { label: 'Videos', count: stats.videos, icon: Video, color: 'from-purple-500 to-pink-500' },
             { label: 'Blog Posts', count: stats.blogs, icon: FileText, color: 'from-orange-500 to-red-500' },
-            { label: 'News Articles', count: stats.news, icon: Newspaper, color: 'from-green-500 to-teal-500' },
             { label: 'Courses', count: stats.courses, icon: BookOpen, color: 'from-indigo-500 to-purple-500' },
           ].map((stat, i) => (
             <div key={i} className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -157,10 +151,6 @@ const AdminDashboard = () => {
               <FileText className="w-4 h-4 mr-2" />
               Blogs
             </TabsTrigger>
-            <TabsTrigger value="news" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 text-white">
-              <Newspaper className="w-4 h-4 mr-2" />
-              News
-            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="gallery">
@@ -177,10 +167,6 @@ const AdminDashboard = () => {
           
           <TabsContent value="blogs">
             <BlogManager />
-          </TabsContent>
-          
-          <TabsContent value="news">
-            <NewsManager />
           </TabsContent>
         </Tabs>
       </main>

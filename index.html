@@ -1,23 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Incite Computers Radhanagari - IT Training & Certification Center</title>
-    <meta name="description" content="Incite Computers offers cutting-edge tech courses, MS-CIT, KLiCK, programming, PM Vishwakarma training and IT services in Radhanagari, Maharashtra." />
-    <meta name="keywords" content="Incite Computers, Radhanagari Computer Center , mscit, tally, typing, MS-CIT, KLiCK, Programming, IT Hardware, MKCL Typing, Designing, Web Development, Python, Java, Mobile App Development, Network Administration, Hardware Repair, Graphic Design, Photoshop, CorelDRAW, Office Suite, Internet & Email, Multimedia, Digital Marketing, Computer Hardware, Financial Accounting, Web Technologies, Advanced Office Management, Multimedia & Design, Tally ERP 9, Tally with GST, Small Business Tally, PC Hardware Basics, Hardware & Networking, English Typing, Marathi Typing, Hindi Typing, Microsoft Office, Database Management, Software Development, Cloud Computing, Cyber Security, Data Science, Artificial Intelligence, Machine Learning, Computer Literacy, Online Training, Certification Courses, Career Growth, Job-Oriented, Hands-On Learning, Industry Skills, Professional Training, Practical Skills, Digital Skills, Radhanagari" />
+    <meta name="description" content="Incite Computers offers cutting-edge tech courses, MS-CIT, KLiCK, programming, Tally training and IT services in Radhanagari, Maharashtra." />
+    <meta name="keywords" content="Incite Computers, Radhanagari Computer Center, mscit, tally, typing, MS-CIT, KLiCK, Programming, IT Hardware, MKCL Typing, Designing, Web Development, Python, Java, Mobile App Development, Network Administration, Hardware Repair, Graphic Design, Photoshop, CorelDRAW, Radhanagari" />
     <meta name="author" content="Incite Computers" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png" />
     
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Incite Computers - IT Training Center in Radhanagari" />
     <meta property="og:description" content="Get the best computer training, certification courses, and IT solutions at Incite Computers in Radhanagari." />
     <meta property="og:url" content="https://incitecomputer.com" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png" />
     
     <!-- Preload critical resources -->
-    <link rel="preload" as="image" href="/1.jpg" fetchpriority="high" />
-    <link rel="preload" as="font" href="/fonts/inter-var.woff2" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" href="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png" fetchpriority="high" />
     
     <!-- Preconnect to third-party domains -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
@@ -31,7 +33,7 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Incite Computers",
-        "image": "https://incitecomputer.com/1.jpg",
+        "image": "https://incitecomputer.com/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Main Road",
@@ -68,18 +70,139 @@
       gtag('config', 'G-6NX8ZJ38VL', { 'anonymize_ip': true });
     </script>
     
-    <!-- Page loading optimization -->
+    <!-- Advanced Loading Screen Styles -->
     <style>
-      /* Critical CSS */
-      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; }
-      .loading { display: flex; align-items: center; justify-content: center; height: 100vh; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+      }
+      
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      }
+      
+      #initial-loader.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+      
+      .loader-logo {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 20px;
+        padding: 16px;
+        box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
+        animation: pulse-glow 2s ease-in-out infinite, float 3s ease-in-out infinite;
+      }
+      
+      .loader-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      
+      .loader-text {
+        margin-top: 24px;
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradient-shift 3s ease infinite;
+        background-size: 200% 200%;
+      }
+      
+      .loader-bar-container {
+        margin-top: 24px;
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      
+      .loader-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        border-radius: 4px;
+        animation: loader-progress 2s ease-out forwards;
+      }
+      
+      .loader-subtext {
+        margin-top: 16px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+      }
+      
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 60px rgba(139, 92, 246, 0.4); }
+        50% { box-shadow: 0 0 100px rgba(139, 92, 246, 0.6); }
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      @keyframes loader-progress {
+        0% { width: 0%; }
+        100% { width: 100%; }
+      }
     </style>
   </head>
 
   <body>
-    <div id="root">
-      <div class="loading">Loading Incite Computers...</div>
+    <!-- Initial Loading Screen (shown before React loads) -->
+    <div id="initial-loader">
+      <div class="loader-logo">
+        <img src="/lovable-uploads/5d12ee02-32f1-4a6c-8bc8-cc5d0ceeec8f.png" alt="Incite Computers" />
+      </div>
+      <div class="loader-text">Incite Computers</div>
+      <div class="loader-bar-container">
+        <div class="loader-bar"></div>
+      </div>
+      <div class="loader-subtext">Loading...</div>
     </div>
+    
+    <div id="root"></div>
+    
+    <!-- Hide loader when React is ready -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.classList.add('hide');
+            setTimeout(function() {
+              loader.style.display = 'none';
+            }, 500);
+          }
+        }, 1500);
+      });
+    </script>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
