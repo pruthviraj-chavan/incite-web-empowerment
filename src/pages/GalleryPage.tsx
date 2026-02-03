@@ -77,13 +77,14 @@ const staticImages: Record<string, { id: number; src: string; title: string; dat
 
 const GalleryPage = memo(() => {
   const [selectedTab, setSelectedTab] = useState("images");
-  const [selectedCategory, setSelectedCategory] = useState("lab");
+  const [selectedCategory, setSelectedCategory] = useState("general");
   const [dbImages, setDbImages] = useState<GalleryImage[]>([]);
   const [videos, setVideos] = useState<GalleryVideo[]>([]);
   const [loading, setLoading] = useState(true);
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   const galleryCategories = [
+    { id: "general", name: "General" },
     { id: "lab", name: "Computer Lab" },
     { id: "hall", name: "Lecture Hall" },
     { id: "office", name: "Office Area" },
