@@ -1,159 +1,123 @@
-import { useState, useMemo, memo, useEffect } from "react";
+import { useState, useMemo, memo } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, User, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Helmet } from "react-helmet";
-import { supabase } from "@/integrations/supabase/client";
+import { useBlogs } from "@/hooks/useOptimizedQuery";
 
-interface DbBlog {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  category: string;
-  author: string | null;
-  published_at: string | null;
-  created_at: string;
-  featured_image: string | null;
-}
+const categories = ["All", "MS-CIT", "Tally", "Saarthi", "MKCL", "Typing", "Programming", "Career", "Marathi", "General"];
+
+// Static blog posts (existing data)
+const staticBlogPosts = [
+  {
+    id: 1,
+    title: "MS-CIT Course in Radhanagari - Complete Guide 2024",
+    slug: "ms-cit-course-radhanagari-guide-2024",
+    excerpt: "Comprehensive guide to MS-CIT certification in Radhanagari. Learn about syllabus, fees, duration and job opportunities.",
+    category: "MS-CIT",
+    author: "Incite Computers",
+    date: "2024-12-15",
+    readTime: "5 min read",
+  },
+  {
+    id: 2,
+    title: "Tally Classes in Kolhapur - Best Training Institute",
+    slug: "tally-classes-kolhapur-best-training",
+    excerpt: "Master Tally ERP 9 and Tally Prime with our expert-led classes in Kolhapur region. Industry-relevant curriculum.",
+    category: "Tally",
+    author: "Incite Computers",
+    date: "2024-12-14",
+    readTime: "4 min read",
+  },
+  {
+    id: 3,
+    title: "MKCL Training Near Me - Digital Literacy Programs",
+    slug: "mkcl-training-digital-literacy-programs",
+    excerpt: "Explore MKCL digital literacy programs at Incite Computers. Government-approved courses for skill development.",
+    category: "MKCL",
+    author: "Incite Computers",
+    date: "2024-12-13",
+    readTime: "3 min read",
+  },
+  {
+    id: 4,
+    title: "Typing Speed Course - English & Marathi Typing Classes",
+    slug: "typing-speed-course-english-marathi",
+    excerpt: "Improve your typing speed with our structured English and Marathi typing courses. Perfect for government job preparation.",
+    category: "Typing",
+    author: "Incite Computers",
+    date: "2024-12-12",
+    readTime: "4 min read",
+  },
+  {
+    id: 5,
+    title: "Saarthi Course Details - Skill Development Program",
+    slug: "saarthi-course-details-skill-development",
+    excerpt: "Learn about Saarthi skill development courses offered at Incite Computers. Government-recognized certification programs.",
+    category: "Saarthi",
+    author: "Incite Computers",
+    date: "2024-12-11",
+    readTime: "3 min read",
+  },
+  {
+    id: 6,
+    title: "Python Programming Course for Beginners in Radhanagari",
+    slug: "python-programming-course-beginners-radhanagari",
+    excerpt: "Start your programming journey with Python. Beginner-friendly course with hands-on projects and industry applications.",
+    category: "Programming",
+    author: "Incite Computers",
+    date: "2024-12-10",
+    readTime: "6 min read",
+  },
+  {
+    id: 7,
+    title: "Why Internships Are Important for Your Career",
+    slug: "why-internships-important-career",
+    excerpt: "Discover how internships at Incite Computers can boost your career prospects and provide real-world experience.",
+    category: "Career",
+    author: "Incite Computers",
+    date: "2024-12-09",
+    readTime: "4 min read",
+  },
+  {
+    id: 8,
+    title: "Why Choose Incite Computers for Your Internship",
+    slug: "why-choose-incite-computers-internship",
+    excerpt: "Learn why Incite Computers is the best choice for your internship in computer courses and skill development.",
+    category: "Career",
+    author: "Incite Computers",
+    date: "2024-12-08",
+    readTime: "3 min read",
+  },
+  {
+    id: 9,
+    title: "राधानगरी येथील संगणक कोर्स - संपूर्ण माहिती 2024",
+    slug: "radhanagari-computer-courses-marathi-guide-2024",
+    excerpt: "राधानगरी मधील इनसाईट कॉम्प्युटर्स संस्थेत उपलब्ध सर्व कोर्सेसची संपूर्ण माहिती. MS-CIT, Tally, MKCL, Typing आणि Programming कोर्सेस.",
+    category: "Marathi",
+    author: "इनसाईट कॉम्प्युटर्स",
+    date: "2024-12-07",
+    readTime: "6 min read",
+  },
+  {
+    id: 10,
+    title: "कोल्हापूर मधील सर्वोत्तम कॉम्प्युटर प्रशिक्षण संस्था",
+    slug: "kolhapur-best-computer-training-institute-marathi",
+    excerpt: "इनसाईट कॉम्प्युटर्स - कोल्हापूर जिल्ह्यातील २० वर्षांचा अनुभव असलेली प्रमाणित संगणक प्रशिक्षण संस्था. शासकीय मान्यता प्राप्त कोर्सेस.",
+    category: "Marathi",
+    author: "इनसाईट कॉम्प्युटर्स",
+    date: "2024-12-06",
+    readTime: "5 min read",
+  }
+];
 
 const BlogPage = memo(() => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [dbBlogs, setDbBlogs] = useState<DbBlog[]>([]);
 
-  const categories = ["All", "MS-CIT", "Tally", "Saarthi", "MKCL", "Typing", "Programming", "Career", "Marathi", "General"];
-
-  // Static blog posts (existing data)
-  const staticBlogPosts = [
-    {
-      id: 1,
-      title: "MS-CIT Course in Radhanagari - Complete Guide 2024",
-      slug: "ms-cit-course-radhanagari-guide-2024",
-      excerpt: "Comprehensive guide to MS-CIT certification in Radhanagari. Learn about syllabus, fees, duration and job opportunities.",
-      category: "MS-CIT",
-      author: "Incite Computers",
-      date: "2024-12-15",
-      readTime: "5 min read",
-      keywords: "MS-CIT course Radhanagari, MSCIT classes Kolhapur, computer course near me"
-    },
-    {
-      id: 2,
-      title: "Tally Classes in Kolhapur - Best Training Institute",
-      slug: "tally-classes-kolhapur-best-training",
-      excerpt: "Master Tally ERP 9 and Tally Prime with our expert-led classes in Kolhapur region. Industry-relevant curriculum.",
-      category: "Tally",
-      author: "Incite Computers",
-      date: "2024-12-14",
-      readTime: "4 min read",
-      keywords: "Tally classes Kolhapur, Tally training Radhanagari, Tally course near me"
-    },
-    {
-      id: 3,
-      title: "MKCL Training Near Me - Digital Literacy Programs",
-      slug: "mkcl-training-digital-literacy-programs",
-      excerpt: "Explore MKCL digital literacy programs at Incite Computers. Government-approved courses for skill development.",
-      category: "MKCL",
-      author: "Incite Computers",
-      date: "2024-12-13",
-      readTime: "3 min read",
-      keywords: "MKCL training near me, digital literacy Radhanagari, MKCL courses Kolhapur"
-    },
-    {
-      id: 4,
-      title: "Typing Speed Course - English & Marathi Typing Classes",
-      slug: "typing-speed-course-english-marathi",
-      excerpt: "Improve your typing speed with our structured English and Marathi typing courses. Perfect for government job preparation.",
-      category: "Typing",
-      author: "Incite Computers",
-      date: "2024-12-12",
-      readTime: "4 min read",
-      keywords: "typing classes Radhanagari, English typing course, Marathi typing classes"
-    },
-    {
-      id: 5,
-      title: "Saarthi Course Details - Skill Development Program",
-      slug: "saarthi-course-details-skill-development",
-      excerpt: "Learn about Saarthi skill development courses offered at Incite Computers. Government-recognized certification programs.",
-      category: "Saarthi",
-      author: "Incite Computers",
-      date: "2024-12-11",
-      readTime: "3 min read",
-      keywords: "Saarthi course Radhanagari, skill development program, Saarthi training Kolhapur"
-    },
-    {
-      id: 6,
-      title: "Python Programming Course for Beginners in Radhanagari",
-      slug: "python-programming-course-beginners-radhanagari",
-      excerpt: "Start your programming journey with Python. Beginner-friendly course with hands-on projects and industry applications.",
-      category: "Programming",
-      author: "Incite Computers",
-      date: "2024-12-10",
-      readTime: "6 min read",
-      keywords: "Python course Radhanagari, programming classes Kolhapur, coding course near me"
-    },
-    {
-      id: 7,
-      title: "Why Internships Are Important for Your Career",
-      slug: "why-internships-important-career",
-      excerpt: "Discover how internships at Incite Computers can boost your career prospects and provide real-world experience.",
-      category: "Career",
-      author: "Incite Computers",
-      date: "2024-12-09",
-      readTime: "4 min read",
-      keywords: "internship benefits, career development, skill-based internships Radhanagari"
-    },
-    {
-      id: 8,
-      title: "Why Choose Incite Computers for Your Internship",
-      slug: "why-choose-incite-computers-internship",
-      excerpt: "Learn why Incite Computers is the best choice for your internship in computer courses and skill development.",
-      category: "Career",
-      author: "Incite Computers",
-      date: "2024-12-08",
-      readTime: "3 min read",
-      keywords: "Incite Computers internship, computer internship Radhanagari, skill internship Kolhapur"
-    },
-    {
-      id: 9,
-      title: "राधानगरी येथील संगणक कोर्स - संपूर्ण माहिती 2024",
-      slug: "radhanagari-computer-courses-marathi-guide-2024",
-      excerpt: "राधानगरी मधील इनसाईट कॉम्प्युटर्स संस्थेत उपलब्ध सर्व कोर्सेसची संपूर्ण माहिती. MS-CIT, Tally, MKCL, Typing आणि Programming कोर्सेस.",
-      category: "Marathi",
-      author: "इनसाईट कॉम्प्युटर्स",
-      date: "2024-12-07",
-      readTime: "6 min read",
-      keywords: "राधानगरी संगणक कोर्स, कॉम्प्युटर क्लासेस राधानगरी, MS-CIT राधानगरी, Tally कोर्स राधानगरी"
-    },
-    {
-      id: 10,
-      title: "कोल्हापूर मधील सर्वोत्तम कॉम्प्युटर प्रशिक्षण संस्था",
-      slug: "kolhapur-best-computer-training-institute-marathi",
-      excerpt: "इनसाईट कॉम्प्युटर्स - कोल्हापूर जिल्ह्यातील २० वर्षांचा अनुभव असलेली प्रमाणित संगणक प्रशिक्षण संस्था. शासकीय मान्यता प्राप्त कोर्सेस.",
-      category: "Marathi",
-      author: "इनसाईट कॉम्प्युटर्स",
-      date: "2024-12-06",
-      readTime: "5 min read",
-      keywords: "कोल्हापूर कॉम्प्युटर क्लासेस, संगणक प्रशिक्षण कोल्हापूर, कॉम्प्युटर कोर्स कोल्हापूर, राधानगरी संगणक शिक्षण"
-    }
-  ];
-
-  // Fetch blogs from Supabase
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      const { data } = await supabase
-        .from('blogs')
-        .select('id, title, slug, excerpt, category, author, published_at, created_at, featured_image')
-        .eq('is_published', true)
-        .order('published_at', { ascending: false });
-      
-      if (data) {
-        setDbBlogs(data);
-      }
-    };
-    fetchBlogs();
-  }, []);
+  // Use optimized cached query - data stays fresh for 5 mins
+  const { data: dbBlogs = [] } = useBlogs();
 
   // Combine static and database blogs
   const combinedPosts = useMemo(() => {
@@ -166,7 +130,6 @@ const BlogPage = memo(() => {
       author: blog.author || 'Incite Computers',
       date: blog.published_at || blog.created_at,
       readTime: '3 min read',
-      keywords: '',
       featured_image: blog.featured_image
     }));
     return [...dbPostsFormatted, ...staticBlogPosts];
