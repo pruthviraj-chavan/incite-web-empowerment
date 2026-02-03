@@ -390,3 +390,12 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   @apply from-incite-purple to-incite-pink;
 }
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
