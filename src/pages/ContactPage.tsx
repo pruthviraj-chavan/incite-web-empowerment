@@ -100,9 +100,9 @@ const ContactPage = () => {
         <meta property="og:url" content="https://incitecomputer.com/contact" />
       </Helmet>
 
-      <div className="page-fade-in pt-24 md:pt-28">
+      <div className="page-fade-in">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 overflow-hidden">
+        <section className="relative pt-32 md:pt-40 pb-16 md:pb-24 overflow-hidden">
           {/* Animated Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900">
             <div className="absolute inset-0 opacity-30">
