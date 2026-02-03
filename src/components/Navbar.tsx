@@ -29,6 +29,7 @@ const Navbar = () => {
     { name: "IT Services", to: "/it-services" },
     { name: "Gallery", to: "/gallery" },
     { name: "Blog", to: "/blog" },
+    { name: "PPT", to: "/ppt" },
     { name: "AI Tools", to: "/ai-tools" },
     { name: "Contact", to: "/contact" },
   ];
