@@ -224,24 +224,24 @@ const GalleryPage = memo(() => {
         </section>
 
         {/* Main Content */}
-        <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+        <section className="py-8 md:py-16 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4">
             <Tabs defaultValue="images" onValueChange={setSelectedTab} className="w-full">
               {/* Main Tabs */}
-              <div className="flex justify-center mb-12">
-                <TabsList className="bg-white shadow-xl rounded-2xl p-2 border border-gray-100">
+              <div className="flex justify-center mb-6 md:mb-10">
+                <TabsList className="bg-white shadow-lg rounded-full p-1 border border-gray-100">
                   <TabsTrigger 
                     value="images" 
-                    className="px-8 py-4 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-purple-600 data-[state=active]:text-white font-bold text-lg transition-all duration-300"
+                    className="px-5 md:px-8 py-2.5 md:py-3 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-purple-600 data-[state=active]:text-white font-semibold text-sm md:text-base transition-all duration-200"
                   >
-                    <ImageIcon className="w-5 h-5 mr-2" />
+                    <ImageIcon className="w-4 h-4 mr-1.5" />
                     Photos
                   </TabsTrigger>
                   <TabsTrigger 
                     value="videos" 
-                    className="px-8 py-4 rounded-xl data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-pink-600 data-[state=active]:text-white font-bold text-lg transition-all duration-300"
+                    className="px-5 md:px-8 py-2.5 md:py-3 rounded-full data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-pink-600 data-[state=active]:text-white font-semibold text-sm md:text-base transition-all duration-200"
                   >
-                    <Play className="w-5 h-5 mr-2" />
+                    <Play className="w-4 h-4 mr-1.5" />
                     Videos
                   </TabsTrigger>
                 </TabsList>
@@ -249,77 +249,49 @@ const GalleryPage = memo(() => {
 
               {/* Images Tab */}
               <TabsContent value="images">
-                {/* Category Pills */}
-                <div className="flex flex-wrap justify-center gap-3 mb-12">
-                  {galleryCategories.map((category) => (
-                    <motion.button 
-                      key={category.id}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setSelectedCategory(category.id)}
-                      className={`group relative px-5 py-3 rounded-2xl text-sm font-bold transition-all duration-300 overflow-hidden ${
-                        selectedCategory === category.id 
-                          ? 'text-white shadow-xl' 
-                          : 'bg-white text-gray-700 border-2 border-gray-100 hover:border-gray-200 hover:shadow-lg'
-                      }`}
-                    >
-                      {selectedCategory === category.id && (
-                        <div className={`absolute inset-0 bg-gradient-to-r ${category.color}`}></div>
-                      )}
-                      <span className="relative flex items-center gap-2">
-                        <span className="text-lg">{categoryIcons[category.id]}</span>
-                        {category.name}
-                      </span>
-                    </motion.button>
-                  ))}
+                {/* Category Pills - Horizontal Scroll on Mobile */}
+                <div className="mb-6 md:mb-10 -mx-4 px-4 md:mx-0 md:px-0">
+                  <div className="flex md:flex-wrap md:justify-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                    {galleryCategories.map((category) => (
+                      <button 
+                        key={category.id}
+                        onClick={() => setSelectedCategory(category.id)}
+                        className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-200 ${
+                          selectedCategory === category.id 
+                            ? `bg-gradient-to-r ${category.color} text-white shadow-md` 
+                            : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-300'
+                        }`}
+                      >
+                        <span>{categoryIcons[category.id]}</span>
+                        <span className="whitespace-nowrap">{category.name}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Category Header */}
-                <motion.div 
-                  key={selectedCategory}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center mb-12"
-                >
-                  <div className={`inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r ${currentCategory?.color} text-white shadow-lg mb-4`}>
-                    <span className="text-2xl">{categoryIcons[selectedCategory]}</span>
-                    <span className="font-bold text-lg">{currentCategory?.name}</span>
-                  </div>
-                </motion.div>
-
-                {/* Masonry-style Grid */}
-                <motion.div 
-                  key={`grid-${selectedCategory}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4"
-                >
-                  {getCategoryImages(selectedCategory).map((image, index) => (
-                    <motion.div
+                {/* Image Grid - Compact on Mobile */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+                  {getCategoryImages(selectedCategory).map((image) => (
+                    <div
                       key={image.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="break-inside-avoid group relative overflow-hidden rounded-2xl cursor-pointer"
+                      className="group relative aspect-square overflow-hidden rounded-lg md:rounded-xl cursor-pointer bg-gray-100"
                       onClick={() => setSelectedImage(image.src)}
                     >
                       <img 
                         src={image.src} 
                         alt="Gallery"
-                        className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                       />
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center pb-6">
-                        <div className="flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-                          <LayoutGrid className="w-4 h-4 text-white" />
-                          <span className="text-white text-sm font-medium">View Full</span>
+                      {/* Hover Overlay - Desktop only */}
+                      <div className="hidden md:flex absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                          <LayoutGrid className="w-5 h-5 text-white" />
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
-                </motion.div>
+                </div>
 
                 {getCategoryImages(selectedCategory).length === 0 && (
                   <div className="text-center py-20">
