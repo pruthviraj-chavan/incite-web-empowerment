@@ -7,7 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Trash2, Edit, Upload, Image as ImageIcon } from 'lucide-react';
+import { Plus, Trash2, Edit, Upload, Image as ImageIcon, Images, CheckCircle, XCircle, Loader2 } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
 
 interface GalleryImage {
   id: string;
@@ -19,6 +20,12 @@ interface GalleryImage {
   created_at: string;
 }
 
+interface BulkUploadStatus {
+  fileName: string;
+  status: 'pending' | 'uploading' | 'success' | 'error';
+  error?: string;
+}
+
 const categories = ['lab', 'hall', 'office', 'reception', 'seminar', 'placement', 'lectures', 'activities', 'advertisements', 'general'];
 
 const GalleryManager = () => {
@@ -26,7 +33,13 @@ const GalleryManager = () => {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [bulkDialogOpen, setBulkDialogOpen] = useState(false);
   const [editingImage, setEditingImage] = useState<GalleryImage | null>(null);
+  const [bulkCategory, setBulkCategory] = useState('general');
+  const [bulkFiles, setBulkFiles] = useState<File[]>([]);
+  const [bulkUploadStatus, setBulkUploadStatus] = useState<BulkUploadStatus[]>([]);
+  const [bulkUploading, setBulkUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -182,67 +195,272 @@ const GalleryManager = () => {
     setDialogOpen(true);
   };
 
+  // Bulk upload handlers
+  const handleBulkFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      setBulkFiles(filesArray);
+      setBulkUploadStatus(filesArray.map(f => ({ fileName: f.name, status: 'pending' })));
+    }
+  };
+
+  const handleBulkUpload = async () => {
+    if (bulkFiles.length === 0) {
+      toast({ title: 'Error', description: 'Please select files to upload', variant: 'destructive' });
+      return;
+    }
+
+    setBulkUploading(true);
+    setUploadProgress(0);
+    let successCount = 0;
+    let errorCount = 0;
+
+    for (let i = 0; i < bulkFiles.length; i++) {
+      const file = bulkFiles[i];
+      
+      // Update status to uploading
+      setBulkUploadStatus(prev => prev.map((s, idx) => 
+        idx === i ? { ...s, status: 'uploading' } : s
+      ));
+
+      try {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Date.now()}_${i}.${fileExt}`;
+        const filePath = `gallery/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('gallery')
+          .upload(filePath, file);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('gallery')
+          .getPublicUrl(filePath);
+
+        // Create database entry - use filename without extension as title
+        const title = file.name.replace(/\.[^/.]+$/, "").replace(/[_-]/g, ' ');
+        
+        const { error: dbError } = await supabase
+          .from('gallery_images')
+          .insert({
+            title: title,
+            description: '',
+            category: bulkCategory,
+            image_url: publicUrl
+          });
+
+        if (dbError) throw dbError;
+
+        setBulkUploadStatus(prev => prev.map((s, idx) => 
+          idx === i ? { ...s, status: 'success' } : s
+        ));
+        successCount++;
+      } catch (error: any) {
+        setBulkUploadStatus(prev => prev.map((s, idx) => 
+          idx === i ? { ...s, status: 'error', error: error.message } : s
+        ));
+        errorCount++;
+      }
+
+      setUploadProgress(((i + 1) / bulkFiles.length) * 100);
+    }
+
+    setBulkUploading(false);
+    toast({ 
+      title: 'Bulk Upload Complete', 
+      description: `${successCount} uploaded, ${errorCount} failed`,
+      variant: errorCount > 0 ? 'destructive' : 'default'
+    });
+
+    if (successCount > 0) {
+      fetchImages();
+    }
+  };
+
+  const resetBulkUpload = () => {
+    setBulkFiles([]);
+    setBulkUploadStatus([]);
+    setUploadProgress(0);
+    setBulkCategory('general');
+  };
+
+  const closeBulkDialog = () => {
+    setBulkDialogOpen(false);
+    resetBulkUpload();
+  };
+
   return (
     <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
         <h2 className="text-xl font-bold text-white">Gallery Images</h2>
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button onClick={openNewDialog} className="bg-gradient-to-r from-blue-500 to-purple-600">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Image
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="bg-slate-900 border-white/20 text-white">
-            <DialogHeader>
-              <DialogTitle>{editingImage ? 'Edit Image' : 'Add New Image'}</DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label>Title</Label>
-                <Input 
-                  value={formData.title} 
-                  onChange={(e) => setFormData({...formData, title: e.target.value})}
-                  className="bg-white/10 border-white/20"
-                  required
-                />
-              </div>
-              <div>
-                <Label>Description</Label>
-                <Textarea 
-                  value={formData.description} 
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
-                  className="bg-white/10 border-white/20"
-                />
-              </div>
-              <div>
-                <Label>Category</Label>
-                <Select value={formData.category} onValueChange={(v) => setFormData({...formData, category: v})}>
-                  <SelectTrigger className="bg-white/10 border-white/20">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map(cat => (
-                      <SelectItem key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Label>Image {editingImage && '(leave empty to keep current)'}</Label>
-                <Input 
-                  type="file" 
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  className="bg-white/10 border-white/20"
-                />
-              </div>
-              <Button type="submit" disabled={uploading} className="w-full bg-gradient-to-r from-blue-500 to-purple-600">
-                {uploading ? 'Uploading...' : (editingImage ? 'Update' : 'Upload')}
+        <div className="flex gap-2">
+          {/* Bulk Upload Dialog */}
+          <Dialog open={bulkDialogOpen} onOpenChange={(open) => { if (!open) closeBulkDialog(); else setBulkDialogOpen(true); }}>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="border-purple-500/50 text-purple-300 hover:bg-purple-500/20">
+                <Images className="w-4 h-4 mr-2" />
+                Bulk Upload
               </Button>
-            </form>
-          </DialogContent>
-        </Dialog>
+            </DialogTrigger>
+            <DialogContent className="bg-slate-900 border-white/20 text-white max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Images className="w-5 h-5 text-purple-400" />
+                  Bulk Image Upload
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div>
+                  <Label>Category for all images</Label>
+                  <Select value={bulkCategory} onValueChange={setBulkCategory} disabled={bulkUploading}>
+                    <SelectTrigger className="bg-white/10 border-white/20">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map(cat => (
+                        <SelectItem key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <Label>Select Multiple Images</Label>
+                  <Input 
+                    type="file" 
+                    accept="image/*"
+                    multiple
+                    onChange={handleBulkFileSelect}
+                    className="bg-white/10 border-white/20"
+                    disabled={bulkUploading}
+                  />
+                  <p className="text-xs text-gray-400 mt-1">
+                    Select multiple images at once. Titles will be auto-generated from filenames.
+                  </p>
+                </div>
+
+                {bulkFiles.length > 0 && (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <Label>Selected Files ({bulkFiles.length})</Label>
+                      {!bulkUploading && (
+                        <Button variant="ghost" size="sm" onClick={resetBulkUpload} className="text-gray-400 hover:text-white">
+                          Clear All
+                        </Button>
+                      )}
+                    </div>
+                    
+                    {bulkUploading && (
+                      <div className="space-y-2">
+                        <Progress value={uploadProgress} className="h-2" />
+                        <p className="text-xs text-center text-gray-400">
+                          Uploading... {Math.round(uploadProgress)}%
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="max-h-48 overflow-y-auto space-y-1 bg-white/5 rounded-lg p-2">
+                      {bulkUploadStatus.map((file, idx) => (
+                        <div key={idx} className="flex items-center justify-between py-1 px-2 rounded bg-white/5">
+                          <span className="text-sm text-gray-300 truncate flex-1">{file.fileName}</span>
+                          <div className="ml-2">
+                            {file.status === 'pending' && <span className="text-xs text-gray-500">Pending</span>}
+                            {file.status === 'uploading' && <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />}
+                            {file.status === 'success' && <CheckCircle className="w-4 h-4 text-green-400" />}
+                            {file.status === 'error' && (
+                              <div className="flex items-center gap-1">
+                                <XCircle className="w-4 h-4 text-red-400" />
+                                <span className="text-xs text-red-400">{file.error?.slice(0, 20)}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <Button 
+                  onClick={handleBulkUpload} 
+                  disabled={bulkUploading || bulkFiles.length === 0} 
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600"
+                >
+                  {bulkUploading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Uploading...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload {bulkFiles.length} Images
+                    </>
+                  )}
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          {/* Single Upload Dialog */}
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button onClick={openNewDialog} className="bg-gradient-to-r from-blue-500 to-purple-600">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Image
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-slate-900 border-white/20 text-white">
+              <DialogHeader>
+                <DialogTitle>{editingImage ? 'Edit Image' : 'Add New Image'}</DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label>Title</Label>
+                  <Input 
+                    value={formData.title} 
+                    onChange={(e) => setFormData({...formData, title: e.target.value})}
+                    className="bg-white/10 border-white/20"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label>Description</Label>
+                  <Textarea 
+                    value={formData.description} 
+                    onChange={(e) => setFormData({...formData, description: e.target.value})}
+                    className="bg-white/10 border-white/20"
+                  />
+                </div>
+                <div>
+                  <Label>Category</Label>
+                  <Select value={formData.category} onValueChange={(v) => setFormData({...formData, category: v})}>
+                    <SelectTrigger className="bg-white/10 border-white/20">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map(cat => (
+                        <SelectItem key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>Image {editingImage && '(leave empty to keep current)'}</Label>
+                  <Input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="bg-white/10 border-white/20"
+                  />
+                </div>
+                <Button type="submit" disabled={uploading} className="w-full bg-gradient-to-r from-blue-500 to-purple-600">
+                  {uploading ? 'Uploading...' : (editingImage ? 'Update' : 'Upload')}
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       {loading ? (
