@@ -195,12 +195,100 @@ const GalleryManager = () => {
     setDialogOpen(true);
   };
 
+  // Image compression utility
+  const compressImage = (file: File, maxWidth = 1920, quality = 0.8): Promise<File> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let { width, height } = img;
+          
+          // Scale down if larger than maxWidth
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            resolve(file); // Fallback to original
+            return;
+          }
+          
+          ctx.drawImage(img, 0, 0, width, height);
+          
+          canvas.toBlob(
+            (blob) => {
+              if (blob) {
+                const compressedFile = new File([blob], file.name, {
+                  type: 'image/jpeg',
+                  lastModified: Date.now(),
+                });
+                resolve(compressedFile);
+              } else {
+                resolve(file);
+              }
+            },
+            'image/jpeg',
+            quality
+          );
+        };
+        img.onerror = () => reject(new Error('Failed to load image'));
+        img.src = e.target?.result as string;
+      };
+      reader.onerror = () => reject(new Error('Failed to read file'));
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // Check for duplicate files
+  const checkDuplicates = async (files: File[]): Promise<{ unique: File[], duplicates: string[] }> => {
+    const existingNames = new Set(images.map(img => {
+      // Extract filename from URL
+      const urlParts = img.image_url.split('/');
+      return urlParts[urlParts.length - 1]?.split('_').slice(1).join('_') || '';
+    }));
+    
+    const seenNames = new Set<string>();
+    const unique: File[] = [];
+    const duplicates: string[] = [];
+    
+    for (const file of files) {
+      const normalizedName = file.name.toLowerCase();
+      
+      // Check if already in current selection or exists in gallery
+      if (seenNames.has(normalizedName) || existingNames.has(normalizedName)) {
+        duplicates.push(file.name);
+      } else {
+        seenNames.add(normalizedName);
+        unique.push(file);
+      }
+    }
+    
+    return { unique, duplicates };
+  };
+
   // Bulk upload handlers
-  const handleBulkFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBulkFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const filesArray = Array.from(e.target.files);
-      setBulkFiles(filesArray);
-      setBulkUploadStatus(filesArray.map(f => ({ fileName: f.name, status: 'pending' })));
+      const { unique, duplicates } = await checkDuplicates(filesArray);
+      
+      if (duplicates.length > 0) {
+        toast({
+          title: 'Duplicates Removed',
+          description: `${duplicates.length} duplicate file(s) were skipped: ${duplicates.slice(0, 3).join(', ')}${duplicates.length > 3 ? '...' : ''}`,
+          variant: 'default'
+        });
+      }
+      
+      setBulkFiles(unique);
+      setBulkUploadStatus(unique.map(f => ({ fileName: f.name, status: 'pending' })));
     }
   };
 
@@ -224,13 +312,15 @@ const GalleryManager = () => {
       ));
 
       try {
-        const fileExt = file.name.split('.').pop();
-        const fileName = `${Date.now()}_${i}.${fileExt}`;
+        // Compress image before upload
+        const compressedFile = await compressImage(file, 1920, 0.75);
+        
+        const fileName = `${Date.now()}_${i}.jpg`;
         const filePath = `gallery/${fileName}`;
 
         const { error: uploadError } = await supabase.storage
           .from('gallery')
-          .upload(filePath, file);
+          .upload(filePath, compressedFile);
 
         if (uploadError) throw uploadError;
 
