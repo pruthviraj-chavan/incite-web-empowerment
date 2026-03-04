@@ -18,6 +18,7 @@ const AIToolsPage = lazy(() => import("./pages/AIToolsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ITServicesPage = lazy(() => import("./pages/ITServicesPage"));
 const PPTPage = lazy(() => import("./pages/PPTPage"));
+const CentersPage = lazy(() => import("./pages/CentersPage"));
 const AdminLoginPage = lazy(() => import("./pages/AdminLoginPage"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -67,6 +68,7 @@ const App = () => {
                   <Route path="ai-tools" element={<AIToolsPage />} />
                   <Route path="it-services" element={<ITServicesPage />} />
                   <Route path="ppt" element={<PPTPage />} />
+                  <Route path="centers" element={<CentersPage />} />
                   <Route path="contact" element={<ContactPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
