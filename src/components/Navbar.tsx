@@ -40,6 +40,7 @@ const Navbar = () => {
     { name: "Gallery", to: "/gallery" },
     { name: "Blog", to: "/blog" },
     { name: "PPT", to: "/ppt" },
+    { name: "Centers", to: "/centers" },
     { name: "AI Tools", to: "/ai-tools" },
     { name: "Contact", to: "/contact" },
   ];
