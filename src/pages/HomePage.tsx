@@ -4,7 +4,7 @@ import { Services, CoursesOverview, InspirationSection, GalleryPreview, CTASecti
 import { WhyChooseUs, ModernBenefits, StatsShowcase, IntegrationTree, OfficialCoursesLogos } from '../components/sections';
 
 // Lazy load less critical components
-const HeroVideo = lazy(() => import('../components/HeroVideo'));
+const HeroImages = lazy(() => import('../components/HeroImages'));
 const OurTeam = lazy(() => import('../components/OurTeam'));
 const MarketingPostersSection = lazy(() => import('../components/MarketingPostersSection'));
 const OurStaff = lazy(() => import('../components/OurStaff'));
@@ -37,7 +37,7 @@ const HomePage = memo(() => {
       </Helmet>
       <div>
         <Suspense fallback={<div className="h-screen bg-gray-900" />}>
-          <HeroVideo />
+          <HeroImages />
         </Suspense>
       <TopCategories />
       
