@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, MessageSquare, ArrowRight, Heart, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, MessageSquare, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
