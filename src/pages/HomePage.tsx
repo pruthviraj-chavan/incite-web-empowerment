@@ -36,7 +36,9 @@ const HomePage = memo(() => {
         <meta property="og:type" content="website" />
       </Helmet>
       <div>
-        <Hero />
+        <Suspense fallback={<div className="h-screen bg-gray-900" />}>
+          <HeroVideo />
+        </Suspense>
       <TopCategories />
       
       {/* Official MKCL Course Logos */}
