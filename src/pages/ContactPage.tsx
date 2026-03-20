@@ -292,7 +292,7 @@ const ContactPage = () => {
                 className="rounded-3xl overflow-hidden shadow-xl h-[600px] lg:h-auto"
               >
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.606923872979!2d74.10920147338389!3d16.444777929278267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc044edbc12aad5%3A0x2bf7d4858ae230e!2sIncite%20Computer!5e0!3m2!1sen!2sin!4v1741621699049!5m2!1sen!2sin" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.2903486851355!2d73.9960169!3d16.4100739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc045a3c370ca6f%3A0x4ae19240c232f086!2sIncite%20Computers%20Radhangari!5e0!3m2!1sen!2sin!4v1774020588037!5m2!1sen!2sin" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0, minHeight: '600px' }} 

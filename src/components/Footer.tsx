@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, MessageSquare, ArrowRight, Heart, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, MessageSquare, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -223,17 +223,12 @@ const Footer = () => {
           <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-gray-400 text-sm flex items-center gap-1">
-                © {currentYear} Incite Computers | Made with 
-                <Heart size={14} className="text-red-500 fill-red-500" /> 
-                by 
+                © {currentYear} Incite Computers | Made by 
                 <a 
-                  href="https://dievektor.tech" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href="tel:+919404895667" 
                   className="text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center gap-1"
                 >
-                  dieVektor.tech
-                  <ExternalLink size={12} />
+                  Pruthviraj Chavan 9404895667
                 </a>
               </p>
               <p className="text-gray-500 text-sm">
