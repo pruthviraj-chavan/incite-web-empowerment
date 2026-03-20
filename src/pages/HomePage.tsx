@@ -1,9 +1,10 @@
 import { useEffect, lazy, Suspense, memo } from 'react';
 import { Helmet } from 'react-helmet';
-import { Hero, Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout } from '../components/HomePage';
+import { Services, CoursesOverview, InspirationSection, GalleryPreview, CTASection, TopCategories, EnhancedAbout } from '../components/HomePage';
 import { WhyChooseUs, ModernBenefits, StatsShowcase, IntegrationTree, OfficialCoursesLogos } from '../components/sections';
 
 // Lazy load less critical components
+const HeroVideo = lazy(() => import('../components/HeroVideo'));
 const OurTeam = lazy(() => import('../components/OurTeam'));
 const MarketingPostersSection = lazy(() => import('../components/MarketingPostersSection'));
 const OurStaff = lazy(() => import('../components/OurStaff'));
