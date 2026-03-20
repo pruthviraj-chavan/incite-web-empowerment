@@ -1,350 +1,260 @@
-import { memo, useMemo, lazy, Suspense } from "react";
+import { memo, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
-import { Users, Award, Building, GraduationCap } from "lucide-react";
+import { Users, Award, Building, GraduationCap, Target, Eye, Heart, Sparkles, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { SuccessMetrics } from "@/components/sections";
 
-const PerformanceStats = lazy(() => import('@/components/sections/PerformanceStats'));
+const PerformanceStats = lazy(() => import("@/components/sections/PerformanceStats"));
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay },
+  viewport: { once: true, amount: 0.2 as const },
+});
 
 const AboutPage = memo(() => {
   const teamMembers = [
-    {
-      id: 1,
-      name: "राजेंद्र चव्हाण",
-      role: "Founder & CEO",
-      bio: "२५ वर्षांचा अनुभव असलेले आयटी शिक्षणतज्ज्ञ, ज्यांनी २००१ मध्ये इन्साइट कॉम्प्यूटर्सची स्थापना केली.",
-      image: "/rajendra.png"
-    },
-    {
-      id: 2,
-      name: "Sumit Chavan",
-      role: "Management Head",
-      bio: "अभ्यासक्रम आणि प्रशिक्षण पद्धती विकसित करण्यात महत्त्वाची भूमिका निभावली.",
-      image: "/sumit.jpg"
-    },
-    {
-      id: 3,
-      name: "Prashant Vanjule",
-      role: "Technical Director",
-      bio: "विद्यार्थ्यांना सर्वात अद्ययावत आणि उद्योगास उपयुक्त तांत्रिक कौशल्ये शिकवण्यासाठी जबाबदार.",
-      image: "/prashant.png"
-    },
-    {
-      id: 4,
-      name: "Pruthviraj Chavan",
-      role: "Placement Officer",
-      bio: "विद्यार्थ्यांना योग्य संधी मिळवून देण्यासाठी उद्योगांशी संपर्क साधण्याचे कार्य करतात",
-      image: "/pruthvi.jpg"
-    }
+    { id: 1, name: "राजेंद्र चव्हाण", role: "Founder & CEO", bio: "२५ वर्षांचा अनुभव असलेले आयटी शिक्षणतज्ज्ञ, ज्यांनी २००१ मध्ये इन्साइट कॉम्प्यूटर्सची स्थापना केली.", image: "/rajendra.png" },
+    { id: 2, name: "Sumit Chavan", role: "Management Head", bio: "अभ्यासक्रम आणि प्रशिक्षण पद्धती विकसित करण्यात महत्त्वाची भूमिका निभावली.", image: "/sumit.jpg" },
+    { id: 3, name: "Prashant Vanjule", role: "Technical Director", bio: "विद्यार्थ्यांना सर्वात अद्ययावत आणि उद्योगास उपयुक्त तांत्रिक कौशल्ये शिकवण्यासाठी जबाबदार.", image: "/prashant.png" },
+    { id: 4, name: "Pruthviraj Chavan", role: "Placement Officer", bio: "विद्यार्थ्यांना योग्य संधी मिळवून देण्यासाठी उद्योगांशी संपर्क साधण्याचे कार्य करतात", image: "/pruthvi.jpg" },
   ];
 
-  const achievements = [
-    {
-      id: 1,
-      title: "15,000+",
-      description: "Students Trained",
-      icon: <Users className="w-6 h-6" />
-    },
-    {
-      id: 2,
-      title: "90%",
-      description: "Placement Rate",
-      icon: <GraduationCap className="w-6 h-6" />
-    },
-    {
-      id: 3,
-      title: "22+",
-      description: "Years of Excellence",
-      icon: <Award className="w-6 h-6" />
-    },
-    {
-      id: 4,
-      title: "5+",
-      description: "Modern Labs",
-      icon: <Building className="w-6 h-6" />
-    }
+  const stats = [
+    { value: "15,000+", label: "Students Trained", icon: <Users className="w-5 h-5" />, color: "from-blue-500 to-blue-600" },
+    { value: "90%", label: "Placement Rate", icon: <GraduationCap className="w-5 h-5" />, color: "from-emerald-500 to-emerald-600" },
+    { value: "22+", label: "Years of Excellence", icon: <Award className="w-5 h-5" />, color: "from-amber-500 to-amber-600" },
+    { value: "5+", label: "Modern Labs", icon: <Building className="w-5 h-5" />, color: "from-violet-500 to-violet-600" },
   ];
 
   const facilities = [
-    {
-      id: 1,
-      title: "Modern Computer Labs",
-      description: "Equipped with the latest hardware and software to provide hands-on learning experience.",
-      image: "/img-15.jpg"
-    },
-    {
-      id: 2,
-      title: "Smart Classrooms",
-      description: "Interactive learning environment with projectors and digital teaching aids.",
-      image: "/img-16.jpg"
-    },
-    {
-      id: 3,
-      title: "Study Library",
-      description: "Comprehensive collection of books, guides and digital resources for self-study.",
-      image: "/img-12.jpg"
-    }
+    { title: "Modern Computer Labs", desc: "Latest hardware and software for hands-on learning.", image: "/img-15.jpg" },
+    { title: "Smart Classrooms", desc: "Interactive learning with projectors and digital aids.", image: "/img-16.jpg" },
+    { title: "Study Library", desc: "Books, guides and digital resources for self-study.", image: "/img-12.jpg" },
+  ];
+
+  const certifications = [
+    { title: "12,000+ MS-CIT Certifications", sub: "Maharashtra State Certificate in IT" },
+    { title: "5,000+ KLiCK Diplomas", sub: "Knowledge of Computer through Learning & Certification" },
+    { title: "3,000+ Programming Certifications", sub: "Web Development, Python, Java" },
+    { title: "2,500+ Hardware & Networking", sub: "Computer Hardware and Network Management" },
+  ];
+
+  const placements = [
+    { title: "400+ Government Sector", sub: "Various government departments" },
+    { title: "2,000+ Banking Sector", sub: "National and regional banks" },
+    { title: "1,500+ IT Companies", sub: "Software development and services" },
+    { title: "3,000+ Self-Employed", sub: "Own businesses and freelancing" },
   ];
 
   return (
     <>
       <Helmet>
         <title>About Us | Incite Computers Radhanagari - 20+ Years of Excellence</title>
-        <meta name="description" content="Learn about Incite Computers Radhanagari - 20+ years of excellence in computer education. Our team, facilities, achievements and mission to empower rural India with digital skills." />
+        <meta name="description" content="Learn about Incite Computers Radhanagari - 20+ years of excellence in computer education." />
         <link rel="canonical" href="https://incitecomputer.com/about" />
-        <meta property="og:title" content="About Incite Computers - Premier IT Training in Radhanagari" />
-        <meta property="og:description" content="20+ years of excellence in computer education. 15,000+ students trained. Government approved institute." />
-        <meta property="og:url" content="https://incitecomputer.com/about" />
       </Helmet>
-      <div className="page-fade-in pt-24 md:pt-28">
-        {/* Hero Section */}
-        <section className="relative py-12 hero-gradient">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              About <span className="gradient-text">Incite Computers</span>
-            </h1>
-            <p className="text-xl text-gray-700">
-              सन 2001 पासून, आम्ही ग्रामीण भारतात दर्जेदार संगणक शिक्षण आणि डिजिटल कौशल्ये प्रदान करण्याच्या मिशनवर कार्यरत आहोत.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div className="order-2 md:order-1">
-              <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-              <p className="text-gray-700 mb-4">
-                इन्साइट कॉम्प्यूटर्स: ग्रामीण भारताच्या डिजिटल भविष्याची पायाभरणी
 
-2001 मध्ये राधानगरी या छोट्याशा गावात स्थापन झालेल्या इन्साइट कॉम्प्यूटर्स संस्थेची सुरुवात एका साध्या पण महत्त्वाच्या ध्येयाने झाली – ग्रामीण भारतात दर्जेदार संगणक शिक्षण पोहोचवणे. अवघ्या 5 संगणकांवर आणि मोजक्या विद्यार्थ्यांसोबत सुरू झालेली ही संस्था आज आधुनिक सुविधांनी युक्त एक प्रमुख संगणक प्रशिक्षण केंद्र बनली आहे, ज्यामधून हजारो विद्यार्थी यशस्वीपणे घडून निघाले आहेत.
+      <div className="min-h-screen">
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 py-20 md:py-28">
+          <div className="absolute inset-0 opacity-15" style={{
+            backgroundImage: `radial-gradient(circle at 30% 40%, rgba(59,130,246,0.4) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(168,85,247,0.25) 0%, transparent 40%)`
+          }} />
+          <div className="container mx-auto px-4 relative z-10">
+            <motion.div className="text-center max-w-3xl mx-auto" {...fadeUp()}>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-blue-300 text-sm font-medium mb-6">
+                <Sparkles size={16} /> Since 2001
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+                About Incite Computers
+              </h1>
+              <p className="text-gray-300 text-base md:text-lg max-w-xl mx-auto">
+                सन 2001 पासून ग्रामीण भारतात दर्जेदार संगणक शिक्षण देणारी अग्रगण्य संस्था.
               </p>
-              <p className="text-gray-700 mb-4">
-                आमचे संस्थापक श्री. राजेंद्र मारुती चव्हाण यांनी शहरी आणि ग्रामीण भागातील डिजिटल दरी ओळखली आणि ती भरून काढण्याचा निर्धार केला. सर्वांसाठी संगणक शिक्षण उपलब्ध करून देणे, त्यांच्या पार्श्वभूमी किंवा स्थळावरून भेद न करता, हे त्यांचे मुख्य उद्दिष्ट होते.
-              </p>
-              <p className="text-gray-700">
-                 गेल्या दोन दशकांपासून, आम्ही आमचा अभ्यासक्रम आणि शिकवण्याच्या पद्धती सातत्याने अद्ययावत करत आहोत. विद्यार्थ्यांना आधुनिक आणि उपयुक्त ज्ञान मिळावे, जे त्यांना वास्तविक जगात यशस्वी होण्यासाठी मदत करेल, हे आमचे ध्येय आहे
-              </p>
-            </div>
-            <div className="order-1 md:order-2 relative">
-              <img 
-                src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70" 
-                alt="Incite Computers Building" 
-                className="rounded-xl shadow-blue"
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Stats */}
+        <section className="relative -mt-10 z-20 container mx-auto px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                {...fadeUp(i * 0.08)}
+                className="bg-white rounded-2xl p-5 shadow-lg border border-gray-100 text-center"
+              >
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${s.color} flex items-center justify-center text-white mx-auto mb-3`}>
+                  {s.icon}
+                </div>
+                <p className="text-2xl md:text-3xl font-bold text-gray-900">{s.value}</p>
+                <p className="text-sm text-gray-500 mt-1">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Story */}
+        <section className="py-20 container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div {...fadeUp()}>
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">Our Story</h2>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                <p>
+                  2001 मध्ये राधानगरी या छोट्याशा गावात स्थापन झालेल्या इन्साइट कॉम्प्यूटर्स संस्थेची सुरुवात एका साध्या पण महत्त्वाच्या ध्येयाने झाली – ग्रामीण भारतात दर्जेदार संगणक शिक्षण पोहोचवणे.
+                </p>
+                <p>
+                  अवघ्या 5 संगणकांवर आणि मोजक्या विद्यार्थ्यांसोबत सुरू झालेली ही संस्था आज आधुनिक सुविधांनी युक्त एक प्रमुख संगणक प्रशिक्षण केंद्र बनली आहे.
+                </p>
+                <p>
+                  आमचे संस्थापक श्री. राजेंद्र मारुती चव्हाण यांनी शहरी आणि ग्रामीण भागातील डिजिटल दरी ओळखली आणि ती भरून काढण्याचा निर्धार केला.
+                </p>
+              </div>
+            </motion.div>
+            <motion.div {...fadeUp(0.2)} className="relative">
+              <img
+                src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=70"
+                alt="Incite Computers"
+                className="rounded-2xl shadow-xl w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg animate-float">
-                <div className="text-center">
-                  <p className="font-bold gradient-text text-xl">Est. 2001</p>
-                  <p className="text-sm text-gray-600">Radhanagari</p>
-                </div>
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl px-5 py-3 shadow-lg border border-gray-100">
+                <p className="font-bold text-blue-600 text-lg">Est. 2001</p>
+                <p className="text-xs text-gray-500">Radhanagari</p>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Achievements Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((item) => (
-              <div key={item.id} className="bg-white rounded-xl p-6 shadow-md hover:shadow-blue transition-all text-center">
-                <div className="w-12 h-12 rounded-full bg-incite-blue/10 flex items-center justify-center text-incite-blue mx-auto mb-4">
-                  {item.icon}
+        {/* Vision & Mission */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div {...fadeUp()} className="bg-white rounded-2xl p-8 shadow-md border border-gray-100">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-white mb-5">
+                  <Eye className="w-6 h-6" />
                 </div>
-                <h3 className="text-3xl font-bold gradient-text mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Metrics */}
-      <SuccessMetrics />
-
-      {/* Vision and Mission */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="bg-white rounded-xl p-8 shadow-blue">
-              <h3 className="text-2xl font-bold mb-6 gradient-text">Our Vision</h3>
-              <p className="text-gray-700 mb-4">
-                 ग्रामीण भारतातील आघाडीची संगणक शिक्षण संस्था होण्याचे आमचे ध्येय आहे. डिजिटल कौशल्यांद्वारे व्यक्ती आणि समुदायांना सक्षम करणे, ही आमची दूरदृष्टी आहे.
-              </p>
-              <p className="text-gray-700">
-               आम्ही परवडणारे, सुलभ आणि दर्जेदार संगणक शिक्षण देण्यास कटिबद्ध आहोत. डिजिटल क्रांतीत कोणताही विद्यार्थी मागे राहू नये, हे सुनिश्चित करण्याचा आमचा प्रयत्न आहे.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl p-8 shadow-orange">
-              <h3 className="text-2xl font-bold mb-6 gradient-text-orange">Our Mission</h3>
-              <p className="text-gray-700 mb-4">
-                ग्रामीण भागातील लोकसंख्येला परवडणारे, सुलभ आणि उच्च-गुणवत्तेचे संगणक शिक्षण प्रदान करणे, ज्यामुळे त्यांना आजच्या डिजिटल जगात यशस्वी होण्यासाठी आवश्यक कौशल्ये मिळतील.
-              </p>
-              <p className="text-gray-700">
-                आम्ही डिजिटल दरी कमी करण्यासाठी कटिबद्ध आहोत, तंत्रज्ञान शिक्षण सर्वसमावेशक बनवण्याचा आणि कोणालाही डिजिटल क्रांतीत मागे राहू न देण्याचा आमचा संकल्प आहे
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Team */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="gradient-text">Team</span>
-            </h2>
-            <p className="text-xl text-gray-600">
-              Meet the dedicated professionals who are passionate about teaching and empowering students.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member) => (
-              <div key={member.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-blue transition-all duration-300">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-64 object-cover object-center"
-                  loading="lazy"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-incite-blue font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm">{member.bio}</p>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Vision</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  ग्रामीण भारतातील आघाडीची संगणक शिक्षण संस्था होण्याचे आमचे ध्येय आहे. डिजिटल कौशल्यांद्वारे व्यक्ती आणि समुदायांना सक्षम करणे, ही आमची दूरदृष्टी आहे.
+                </p>
+              </motion.div>
+              <motion.div {...fadeUp(0.1)} className="bg-white rounded-2xl p-8 shadow-md border border-gray-100">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white mb-5">
+                  <Target className="w-6 h-6" />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Facilities */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="gradient-text">Facilities</span>
-            </h2>
-            <p className="text-xl text-gray-600">
-              We provide a modern learning environment with state-of-the-art facilities.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {facilities.map((facility) => (
-              <div key={facility.id} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-blue transition-all duration-300">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={facility.image} 
-                    alt={facility.title} 
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{facility.title}</h3>
-                  <p className="text-gray-600">{facility.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Student Achievements */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Student <span className="gradient-text">Achievements</span>
-            </h2>
-            <p className="text-xl text-gray-600">
-              We take pride in the success of our students who have gone on to achieve great things.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-md">
-              <h3 className="text-2xl font-bold mb-6">Certifications</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3">
-                  <Award className="w-5 h-5 text-incite-blue mt-1" />
-                  <div>
-                    <p className="font-medium">12,000+ MS-CIT Certifications</p>
-                    <p className="text-sm text-gray-600">Maharashtra State Certificate in Information Technology</p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Award className="w-5 h-5 text-incite-blue mt-1" />
-                  <div>
-                    <p className="font-medium">5,000+ KLiCK Diplomas</p>
-                    <p className="text-sm text-gray-600">Knowledge of Computer through Learning & Certification</p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Award className="w-5 h-5 text-incite-blue mt-1" />
-                  <div>
-                    <p className="font-medium">3,000+ Programming Certifications</p>
-                    <p className="text-sm text-gray-600">Web Development, Python, Java and Mobile Apps</p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Award className="w-5 h-5 text-incite-blue mt-1" />
-                  <div>
-                    <p className="font-medium">2,500+ Hardware & Networking Diplomas</p>
-                    <p className="text-sm text-gray-600">Computer Hardware and Network Management</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-white rounded-xl p-8 shadow-md">
-              <h3 className="text-2xl font-bold mb-6">Job Placements</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3">
-                  <Building className="w-5 h-5 text-incite-orange mt-1" />
-                  <div>
-                    <p className="font-medium">400+ placed in Government Sector</p>
-                    <p className="text-sm text-gray-600">Various government departments and offices</p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Building className="w-5 h-5 text-incite-orange mt-1" />
-                  <div>
-                    <p className="font-medium">2,000+ placed in Banking Sector</p>
-                    <p className="text-sm text-gray-600">National and regional banks across Maharashtra</p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Building className="w-5 h-5 text-incite-orange mt-1" />
-                  <div>
-                    <p className="font-medium">1,500+ placed in IT Companies</p>
-                    <p className="text-sm text-gray-600">Software development, support and services</p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <Building className="w-5 h-5 text-incite-orange mt-1" />
-                  <div>
-                    <p className="font-medium">3,000+ Self-Employed</p>
-                    <p className="text-sm text-gray-600">Started their own businesses or freelancing careers</p>
-                  </div>
-                </li>
-              </ul>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Mission</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  ग्रामीण भागातील लोकसंख्येला परवडणारे, सुलभ आणि उच्च-गुणवत्तेचे संगणक शिक्षण प्रदान करणे, ज्यामुळे त्यांना आजच्या डिजिटल जगात यशस्वी होता येईल.
+                </p>
+              </motion.div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Performance Stats */}
-      <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
-        <PerformanceStats />
-      </Suspense>
+        {/* Success Metrics */}
+        <SuccessMetrics />
+
+        {/* Team */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <motion.div className="text-center mb-12" {...fadeUp()}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Team</h2>
+              <p className="text-gray-500">Meet the passionate professionals behind Incite Computers.</p>
+            </motion.div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teamMembers.map((m, i) => (
+                <motion.div
+                  key={m.id}
+                  {...fadeUp(i * 0.08)}
+                  className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                >
+                  <div className="h-56 overflow-hidden">
+                    <img src={m.image} alt={m.name} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-bold text-gray-900">{m.name}</h3>
+                    <p className="text-sm font-medium text-blue-600 mb-2">{m.role}</p>
+                    <p className="text-sm text-gray-500 leading-relaxed">{m.bio}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Facilities */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.div className="text-center mb-12" {...fadeUp()}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Facilities</h2>
+              <p className="text-gray-500">Modern learning environment with state-of-the-art infrastructure.</p>
+            </motion.div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {facilities.map((f, i) => (
+                <motion.div key={f.title} {...fadeUp(i * 0.1)} className="group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 bg-white border border-gray-100">
+                  <div className="h-48 overflow-hidden">
+                    <img src={f.image} alt={f.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-bold text-gray-900 mb-1">{f.title}</h3>
+                    <p className="text-sm text-gray-500">{f.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Achievements */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <motion.div className="text-center mb-12" {...fadeUp()}>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Achievements</h2>
+            </motion.div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div {...fadeUp()} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center text-white"><Award className="w-5 h-5" /></div>
+                  <h3 className="text-xl font-bold text-gray-900">Certifications</h3>
+                </div>
+                <ul className="space-y-3">
+                  {certifications.map(c => (
+                    <li key={c.title} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
+                      <div><p className="font-medium text-sm text-gray-800">{c.title}</p><p className="text-xs text-gray-400">{c.sub}</p></div>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+              <motion.div {...fadeUp(0.1)} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 flex items-center justify-center text-white"><Building className="w-5 h-5" /></div>
+                  <h3 className="text-xl font-bold text-gray-900">Job Placements</h3>
+                </div>
+                <ul className="space-y-3">
+                  {placements.map(p => (
+                    <li key={p.title} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <div><p className="font-medium text-sm text-gray-800">{p.title}</p><p className="text-xs text-gray-400">{p.sub}</p></div>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Performance */}
+        <Suspense fallback={<div className="py-20 bg-zinc-900" />}>
+          <PerformanceStats />
+        </Suspense>
       </div>
     </>
   );
 });
 
 AboutPage.displayName = "AboutPage";
-
 export default AboutPage;
